@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn the basic stuff - Ray Zhang</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html">Ray Zhang</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#projects" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#blog" class="nav-link">Blog</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Content -->
+    <main class="blog-post-container">
+        <div class="container">
+            <article class="blog-post-content">
+                <header class="post-header">
+                    <div class="post-meta">
+                        <span class="post-date">April 15, 2024</span>
+                        <span class="post-author">By Ray</span>
+                    </div>
+                    <h1 class="post-title">Learn the basic stuff</h1>
+                </header>
+
+                <div class="post-content">
+                    <h2>Learn the basic stuff</h2>
+                    <h3>1. Learn how to write md file</h3>
+                    <ul>
+                        <li><a href="https://www.runoob.com/markdown/md-tutorial.html" target="_blank">tutorial website</a></li>
+                        <li>标题: #, 可以多层</li>
+                        <li>段落：两个空格或者直接空一行是换行</li>
+                        <li>斜体：* xxx *</li>
+                        <li>粗体：** xxx **</li>
+                        <li>粗斜体：*** xxx ***</li>
+                        <li>分割线： ***</li>
+                        <li>删除线：~~</li>
+                        <li>下划线：&lt;u&gt; xxx &lt;/u&gt;</li>
+                        <li>注脚： [^ xxx ], [^ xxx ]: explain</li>
+                        <li>无序列表：+, -, * 后面加空格</li>
+                        <li>有序列表：1. 2. 后面加空格</li>
+                        <li>列表嵌套：前面加四个空格即可</li>
+                        <li>特殊区块：&gt; 可以嵌套其他列表或者叠加，如果列表嵌套区块，则需要加四个空格，反之不需要。</li>
+                        <li>代码：` xxx ` 或者是 整段 ``` xxxxxxx ```</li>
+                        <li>链接：[xxx](http) or &lt; http &gt; or [1], [1]: http</li>
+                        <li>图片：![alt 属性文本](图片地址) 或者 ![alt 属性文本](图片地址 "可选标题") 也可以用连接的方式添加图片(最后一种方式)</li>
+                        <li>表格：
+                            <ul>
+                                <li>Markdown 制作表格使用 | 来分隔不同的单元格，使用 - 来分隔表头和其他行</li>
+                                <li>-: 设置内容和标题栏居右对齐。:- 设置内容和标题栏居左对齐。:-: 设置内容和标题栏居中对齐。</li>
+                            </ul>
+                        </li>
+                        <li>其他：(这些用的应该不多，可以参考<a href="https://www.runoob.com/markdown/md-advance.html" target="_blank">链接</a>)
+                            <ul>
+                                <li>可以使用大部分的HTML元素</li>
+                                <li>可以画流程图</li>
+                                <li>可以写数学公式</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3>2. Other stuff</h3>
+                    <ul>
+                        <li>github page链接文件要取决于当前链接已经在的那个文件夹，比如已经在articles下了，再链接就不需要在写文件夹，直接括号链接即可
+                            <ul>
+                                <li>例如：xxx.com/articles/ 在调用同文件夹下的文件时就不用写（/articles/xxx）</li>
+                            </ul>
+                        </li>
+                        <li>根目录标识： ../</li>
+                    </ul>
+                </div>
+
+                <div class="post-navigation">
+                    <a href="../index.html#blog" class="back-to-blog">
+                        <i class="fas fa-arrow-left"></i> Back to Blog
+                    </a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Ray Zhang. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="mailto:crusade.ray@gmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/crusaderay" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/crusaderay" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
