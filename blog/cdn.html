@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDN - Ray Zhang</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html">Ray Zhang</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#projects" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#blog" class="nav-link">Blog</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Content -->
+    <main class="blog-post-container">
+        <div class="container">
+            <article class="blog-post-content">
+                <header class="post-header">
+                    <div class="post-meta">
+                        <span class="post-date">April 15, 2024</span>
+                        <span class="post-author">By Ray</span>
+                    </div>
+                    <h1 class="post-title">CDN</h1>
+                </header>
+
+                <div class="post-content">
+                    <h2>CDN</h2>
+                    <h3>1. Building blocks</h3>
+                    <ul>
+                        <li><strong>PoPs (Points of Presence)</strong>: CDN PoPs (Points of Presence) are strategically located data centers responsible for communicating with users in their geographic vicinity. Their main function is to reduce round trip time by bringing the content closer to the website's visitor. Each CDN PoP typically contains numerous caching servers.</li>
+                        <li><strong>Caching servers</strong>: Caching servers are responsible for the storage and delivery of cached files. Their main function is to accelerate website load times and reduce bandwidth consumption. Each CDN caching server typically holds multiple storage drives and high amounts of RAM resources.</li>
+                        <li><strong>SSD/HDD + RAM</strong>: Inside CDN caching servers, cached files are stored on solid-state and hard-disk drives (SSD and HDD) or in random-access memory (RAM), with the more commonly-used files hosted on the more speedy mediums. Being the fastest of the three, RAM is typically used to store the most frequently-accessed items.</li>
+                    </ul>
+
+                    <h4>Reverse proxy</h4>
+                    <ul>
+                        <li>Receiving a user connection request</li>
+                        <li>Completing a TCP three-way handshake, terminating the initial connection</li>
+                        <li>Connecting with the origin server and forwarding the original request</li>
+                    </ul>
+
+                    <h4>Forward proxy</h4>
+                    <ul>
+                        <li>Block employees from visiting certain websites</li>
+                        <li>Monitor employee online activity</li>
+                        <li>Block malicious traffic from reaching an origin server</li>
+                        <li>Improve the user experience by caching external site content</li>
+                    </ul>
+
+                    <h4>CDN using reverse proxy servers</h4>
+                    <ul>
+                        <li><strong>Content caching</strong>: Reverse proxies are placed in several geographically dispersed locations, where mirror versions of website pages are compressed and cached. This facilitates rapid content delivery based on client geolocation, helping to reduce page load times and improve your user experience.</li>
+                        <li><strong>Traffic scrubbing</strong>: Prevent DDoS & security threads from outside. Located in front of your backend servers, reverse proxies are ideally situated to scrub all incoming application traffic before it's sent on to your backend servers.</li>
+                        <li><strong>IP masking</strong>: When routing your incoming traffic through a reverse proxy server, connections are first terminated by the proxy and then reopened with the backend server. From your users' perspective, their requests are resolved via the proxy IP.</li>
+                        <li><strong>Load balancing</strong>: Because reverse proxy server are the gateway between users and your application's origin server, they're able to determine where to route individual HTTP sessions. For applications using multiple backend servers, this means the reverse proxy can efficiently distribute the load, thereby improving overall user experience and helping ensure high availability. In the event that a server goes down, reverse proxies act as a failover solution, rerouting traffic to ensure continued site availability.</li>
+                    </ul>
+
+                    <h3>2. CDN Architecture</h3>
+                    <ul>
+                        <li><strong>Four pilliar of CDN</strong>: Performance (location, low-latency, high bandwidth), Scalability (high bandwidth resource, DDoS protection), Reliability (high availability, no single point failure), Responsiveness (quick configuration propagation, sync)</li>
+                        <li><strong>Caching</strong>: HDD&lt;SSD&lt;RAM</li>
+                        <li><strong>Topology</strong>: The Scattered CDN, The Consolidated CDN (mainly about cost/DDoS)</li>
+                    </ul>
+
+                    <h3>3. CDN caching</h3>
+                    <ul>
+                        <li><strong>static file</strong>: image/videos/music/javascript/css (cu down cost/improve user experience/reliable delivery)</li>
+                        <li><strong>caching header</strong>: Web developers use HTTP cache headers to mark cacheable web content and set cache durations. Using cache headers, you can control your caching strategy by establishing optimum cache policies that ensure the freshness of your content. For example: "Cache-Control: max-age=3600" means that the file can be cached for no longer than an hour before it must be refetched from the origin content.</li>
+                    </ul>
+
+                    <h4>cache control</h4>
+                    <ul>
+                        <li>Cache-Control: public – enables caching by public platforms such as CDNs.</li>
+                        <li>Cache-Control: private – reserved for private information that is designated non-cacheable.</li>
+                        <li>Cache-Control: no-cache – requires validation before caching.</li>
+                        <li>Cache-Control: no-store – completely prohibits caching.</li>
+                        <li>Expires: Similar to Cache-Control: max-age, sets the time of content expiration and removal.</li>
+                        <li>Surrogate: Gives you increased control over cache policies, acting with the authority of the origin server.</li>
+                        <li>Etag: Provides your cached web content with unique identifiers, enabling individual labeling and more sophisticated sorting.</li>
+                        <li>Pragma: Largely supplanted by Cache Control, Pragma was previously used to handle caching instructions for browsers.</li>
+                        <li>Vary (use with caution): Some browsers still struggle with supporting the Vary header. When used properly, Vary can be a powerful tool for managing delivery of multiple file versions, especially for compressed files cached alongside their uncompressed counterparts.</li>
+                    </ul>
+                </div>
+
+                <div class="post-navigation">
+                    <a href="../index.html#blog" class="back-to-blog">
+                        <i class="fas fa-arrow-left"></i> Back to Blog
+                    </a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Ray Zhang. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="mailto:crusade.ray@gmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/crusaderay" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/crusaderay" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNS Related - Ray Zhang</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html">Ray Zhang</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#projects" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#blog" class="nav-link">Blog</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Content -->
+    <main class="blog-post-container">
+        <div class="container">
+            <article class="blog-post-content">
+                <header class="post-header">
+                    <div class="post-meta">
+                        <span class="post-date">April 10, 2024</span>
+                        <span class="post-author">By Ray</span>
+                    </div>
+                    <h1 class="post-title">DNS Related</h1>
+                </header>
+
+                <div class="post-content">
+                    <h2>DNS Related</h2>
+                    <h3>1. DNS</h3>
+                    <p>The Domain Name System (DNS) is the phonebook of the Internet. Humans access information online through domain names, like nytimes.com or espn.com. Web browsers interact through Internet Protocol (IP) addresses. DNS translates domain names to IP addresses so browsers can load Internet resources.</p>
+
+                    <h4>DNS resolution process</h4>
+                    <ol>
+                        <li><strong>DNS query</strong>: A user types 'example.com' into a web browser and the query travels into the Internet and is received by a DNS recursive resolver.</li>
+                        <li><strong>Root nameserver</strong>: The resolver then queries a DNS root nameserver (.).</li>
+                        <li><strong>TLD nameserver</strong>: The root server then responds to the resolver with the address of a Top Level Domain (TLD) DNS server (such as .com or .net), which stores the information for its domains. When searching for example.com, our request is pointed toward the .com TLD.</li>
+                        <li><strong>Authoritative nameserver</strong>: The TLD server then responds with the IP address of the domain's nameserver, example.com.</li>
+                        <li><strong>DNS resolver</strong>: Lastly, the recursive resolver sends a query to the domain's nameserver.</li>
+                        <li><strong>IP address</strong>: The IP address for example.com is then returned to the resolver from the nameserver.</li>
+                        <li><strong>DNS resolver response</strong>: The DNS resolver then responds to the web browser with the IP address of the domain requested initially.</li>
+                        <li><strong>Browser request</strong>: Once the 8 steps of the DNS lookup have returned the IP address for example.com, the browser is able to make the request for the web page.</li>
+                        <li><strong>Web server response</strong>: The browser makes a HTTP request to the IP address.</li>
+                        <li><strong>Page display</strong>: The server at that IP returns the webpage to be rendered in the browser.</li>
+                    </ol>
+
+                    <h4>DNS record types</h4>
+                    <ul>
+                        <li><strong>A record</strong>: The record that holds the IP address of a domain. Learn more about the A record.</li>
+                        <li><strong>AAAA record</strong>: The record that contains the IPv6 address for a domain (as opposed to A records, which list the IPv4 address). Learn more about the AAAA record.</li>
+                        <li><strong>CNAME record</strong>: Forwards one domain or subdomain to another domain, does NOT provide an IP address. Learn more about the CNAME record.</li>
+                        <li><strong>MX record</strong>: Directs mail to an email server. Learn more about the MX record.</li>
+                        <li><strong>TXT record</strong>: Lets an admin store text notes in the record. These records are often used for email security. Learn more about the TXT record.</li>
+                        <li><strong>NS record</strong>: Stores the name server for a DNS entry. Learn more about the NS record.</li>
+                        <li><strong>SOA record</strong>: Stores admin information about a domain. Learn more about the SOA record.</li>
+                        <li><strong>SRV record</strong>: Specifies a port for specific services. Learn more about the SRV record.</li>
+                        <li><strong>PTR record</strong>: Provides a domain name in reverse-lookups. Learn more about the PTR record.</li>
+                    </ul>
+
+                    <h3>2. DNS caching</h3>
+                    <p>The purpose of caching is to temporarily stored data in a location that results in faster data retrieval for future requests. DNS caching involves storing data closer to the requesting client so that the DNS query can be resolved earlier and additional queries further down the DNS lookup chain can be avoided, thereby improving load times and reducing bandwidth/CPU consumption. DNS data can be cached in a variety of locations, each of which will store DNS records for a set amount of time determined by a time-to-live (TTL).</p>
+
+                    <h4>Browser DNS caching</h4>
+                    <p>Modern web browsers are designed by default to cache DNS records for a set amount of time. The purpose here is obvious; the closer the DNS caching occurs to the web browser, the fewer processing steps must be taken in order to check the cache and make the correct requests to an IP address. When a request is made for a DNS record, the browser cache is the first location checked for the requested record.</p>
+
+                    <h4>Operating system (OS) level DNS caching</h4>
+                    <p>The operating system level DNS resolver is the second and last local stop before a DNS query leaves your machine. The process inside your operating system that is designed to handle this query is commonly called a "stub resolver" or DNS client. When a stub resolver gets a request from an application, it first checks its own cache to see if it has the record. If it does not, it then sends a DNS query (with a recursive flag set), outside the local network to a DNS recursive resolver inside the Internet service provider (ISP).</p>
+
+                    <h4>Recursive resolver DNS caching</h4>
+                    <p>When a recursive resolver receives a DNS query, like all previous steps, it will check to see if the requested host-to-IP-address translation is already stored inside its local persistence layer. The recursive resolver also has additional functionality depending on the types of records it has in its cache:</p>
+                    <ul>
+                        <li>If the resolver does not have the A records, but does have the NS records for the authoritative nameservers, it will query those name servers directly, bypassing several steps in the DNS query. This shortcut prevents lookups from the root and .com nameservers (in our search for example.com) and helps the resolution of the DNS query occur more quickly.</li>
+                        <li>If the resolver does not have the NS records, it will send a query to the TLD servers (.com in our case), skipping the root server.</li>
+                        <li>In the unlikely event that the resolver does not have records pointing to the TLD servers, it will then query the root servers. This event typically occurs after a DNS cache has been purged.</li>
+                    </ul>
+
+                    <h3>3. DNS security</h3>
+                    <h4>DNS spoofing/cache poisoning</h4>
+                    <p>DNS spoofing is a type of cyber attack that exploits DNS server vulnerabilities to divert traffic away from legitimate servers towards fake ones. One of the reasons DNS spoofing is so dangerous is because it can spread from DNS server to DNS server. A common result of DNS spoofing is DNS cache poisoning, which occurs when a DNS server's cache is corrupted with false information.</p>
+
+                    <h4>DNS tunneling</h4>
+                    <p>DNS tunneling utilizes the DNS protocol to communicate non-DNS traffic over port 53. It sends HTTP and other protocol traffic over DNS. There are various, legitimate reasons to utilize DNS tunneling. However, there are also malicious reasons to use DNS tunneling VPN services. They can be used to disguise outbound traffic as DNS, concealing data that is typically shared through an internet connection. For malicious use, DNS requests are manipulated to exfiltrate data from a compromised system to the attacker's infrastructure. It can also be used for command and control callbacks from the attacker's infrastructure to a compromised system.</p>
+
+                    <h4>DNS hijacking</h4>
+                    <p>DNS hijacking is the practice of redirecting DNS queries to different nameservers. This can be accomplished via malware that overrides a computer's TCP/IP configuration to point at a rogue DNS server under the control of an attacker, or through modifying the behavior of a trusted DNS server so that it does not comply with internet standards.</p>
+
+                    <h4>NXDOMAIN attack</h4>
+                    <p>An NXDOMAIN attack is a type of DNS flood attack where an attacker inundates a DNS server with requests for invalid or non-existent records. The attack's goal is to cause a denial of service for legitimate traffic by consuming DNS server resources with lookups for records that don't exist. NXDOMAIN attacks can also target recursive resolvers with the goal of filling up the resolver's cache with junk requests.</p>
+
+                    <h4>Phantom domain attack</h4>
+                    <p>A phantom domain attack is similar to an NXDOMAIN attack in its goal of consuming resolver resources. Phantom domain attacks set up a number of 'phantom' domain servers which either respond to requests very slowly or not at all. The resolver is then hit with a flood of requests to these domains, creating a backlog of requests that can tie up the resolver's resources and degrade performance for legitimate requests.</p>
+
+                    <h4>Random subdomain attack</h4>
+                    <p>In a random subdomain attack, the attacker sends DNS queries for various random, non-existent subdomains of one or more legitimate sites. The goal is to create a denial of service for the domain's authoritative nameserver, making it impossible to lookup the website from the nameserver. As a side effect, the ISP serving the attacker may also be impacted as their recursive resolver's cache becomes filled with bad requests.</p>
+
+                    <h4>Domain lock-up attack</h4>
+                    <p>In a domain lock-up attack, the attacker sets up malicious domains with nameservers that respond very slowly to requests. When a resolver requests the malicious domains, the nameserver responds slowly, which ties up the resolver's resources waiting for a response and can eventually lead to denial of service as the resolver's capacity to respond to other requests becomes impaired.</p>
+
+                    <h4>Botnet-based CPE attack</h4>
+                    <p>In a botnet-based CPE attack, the attacker uses a botnet to generate massive amounts of DNS requests from customer premise equipment (CPE) devices like home routers towards a victim's authoritative server. Because the requests are coming from legitimate IP addresses of real users, it becomes difficult to block the attack traffic without also blocking legitimate users.</p>
+                </div>
+
+                <div class="post-navigation">
+                    <a href="../index.html#blog" class="back-to-blog">
+                        <i class="fas fa-arrow-left"></i> Back to Blog
+                    </a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Ray Zhang. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="mailto:crusade.ray@gmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/crusaderay" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/crusaderay" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
