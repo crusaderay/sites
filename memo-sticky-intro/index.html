@@ -4,135 +4,245 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memo Sticky - Your Smart Note Companion</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LR9DDCTCJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-9LR9DDCTCJ');
+    </script>
+    
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
-            color: #fff;
-            line-height: 1.8;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .header {
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 20px 0;
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        .header h1 {
-            margin: 0;
-            font-size: 3em;
+        
+        .hero h1 {
+            font-size: 3.5rem;
             font-weight: 700;
-            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
         }
-        .container {
-            flex: 1;
-            width: 90%;
-            max-width: 960px;
-            margin: 30px auto;
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            color: #333;
+        
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
         }
-        h2 {
-            color: #ff6b6b;
-            font-size: 2em;
-            margin-top: 30px;
-            border-bottom: 2px solid #ff9a9e;
-            padding-bottom: 10px;
+        
+        .content-section {
+            padding: 80px 0;
         }
-        p {
-            margin-bottom: 15px;
-        }
-        .features ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .features ul li {
-            background-color: #fff3e0;
-            margin-bottom: 10px;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            color: #e65100;
-            font-weight: 500;
-        }
-        .download-buttons a {
-            display: inline-block;
-            background-color: #ff6b6b;
-            color: #fff;
-            padding: 15px 30px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 1.1em;
-            margin-right: 20px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        .download-buttons a:hover {
-            background-color: #ff5252;
-            transform: translateY(-3px);
-        }
-        .footer {
+        
+        .content-section h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
             text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            font-size: 0.9em;
-            color: #fff;
-            background-color: rgba(0, 0, 0, 0.2);
         }
-        .footer a {
-            color: #fff;
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .download-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .download-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+        
+        .contact-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .contact-section a {
+            color: #007bff;
             text-decoration: none;
         }
-        .footer a:hover {
+        
+        .contact-section a:hover {
             text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content-section h2 {
+                font-size: 2rem;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Memo Sticky</h1>
-        <p>Your Smart Note Companion</p>
-    </div>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <h1><a href="../index.html">Ray Zhang</a></h1>
+                    <p class="tagline">Network Engineer, Yinzer, and Houston Rockets</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../index.html#blog" class="nav-link">Blog</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-    <div class="container">
-        <h2>About Memo Sticky</h2>
-        <p>Memo Sticky is a modern, intuitive, and powerful note-taking app designed to enhance your recording and management experience. Whether you're a student, professional, or creative worker who needs to capture ideas on the go, Memo Sticky provides a smooth and efficient note-taking experience.</p>
-        
-        <h2>Key Features</h2>
-        <div class="features">
-            <ul>
-                <li><strong>🎤 Voice-to-Text:</strong> Advanced speech recognition technology that effortlessly converts your voice into text, making note-taking more convenient than ever.</li>
-                <li><strong>📷 Document Scanning:</strong> Built-in document scanning feature that extracts text from images and converts them into editable note content.</li>
-                <li><strong>🔒 Face ID Security:</strong> Protect your important notes with Face ID or Touch ID authentication, ensuring your privacy and data security.</li>
-                <li><strong>📱 iOS Widget Support:</strong> Quick access to your note count directly from your home screen, keeping you updated on your recording activity.</li>
-                <li><strong>🎨 Colorful Note Designs:</strong> Multiple vibrant color schemes for your notes, making your records more visually appealing and organized.</li>
-                <li><strong>💾 Reliable Data Storage:</strong> Powered by Core Data technology to ensure your notes are safely stored and never lost.</li>
-                <li><strong>🔄 Background Refresh:</strong> Supports background app refresh to keep your note content always up-to-date and synchronized.</li>
-            </ul>
+    <section class="hero">
+        <div class="container">
+            <h1>Memo Sticky</h1>
+            <p>Your Smart Note Companion</p>
         </div>
-        
-        <h2>Download Memo Sticky</h2>
-        <p>Ready to start your smart note-taking journey? Download Memo Sticky today!</p>
-        <div class="download-buttons">
-            <a href="#">Download on the App Store (Coming Soon)</a>
-            <a href="#">Download on Google Play (Coming Soon)</a>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2>About Memo Sticky</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto;">Memo Sticky is a modern, intuitive, and powerful note-taking app designed to enhance your recording and management experience. Whether you're a student, professional, or creative worker who needs to capture ideas on the go, Memo Sticky provides a smooth and efficient note-taking experience.</p>
         </div>
+    </section>
 
-        <h2>Contact Us</h2>
-        <p>We'd love to hear from you! For technical support, feedback, or business inquiries, please feel free to contact us.</p>
-        <p>Email: <a href="mailto:crusade.ray@gmail.com">crusade.ray@gmail.com</a></p>
-    </div>
+    <section class="content-section" style="background: #f8f9fa;">
+        <div class="container">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🎤 Voice-to-Text</h3>
+                    <p>Advanced speech recognition technology that effortlessly converts your voice into text, making note-taking more convenient than ever.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📷 Document Scanning</h3>
+                    <p>Built-in document scanning feature that extracts text from images and converts them into editable note content.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔒 Face ID Security</h3>
+                    <p>Protect your important notes with Face ID or Touch ID authentication, ensuring your privacy and data security.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📱 iOS Widget Support</h3>
+                    <p>Quick access to your note count directly from your home screen, keeping you updated on your recording activity.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎨 Colorful Note Designs</h3>
+                    <p>Multiple vibrant color schemes for your notes, making your records more visually appealing and organized.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>💾 Reliable Data Storage</h3>
+                    <p>Powered by Core Data technology to ensure your notes are safely stored and never lost.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔄 Background Refresh</h3>
+                    <p>Supports background app refresh to keep your note content always up-to-date and synchronized.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="footer">
-        <p>&copy; 2024 Memo Sticky. All rights reserved.</p>
-        <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-    </div>
+    <section class="download-section">
+        <div class="container">
+            <h2>Download Memo Sticky</h2>
+            <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">Ready to start your smart note-taking journey? Download Memo Sticky today!</p>
+            <div class="download-buttons">
+                <a href="#" class="download-btn">Download on the App Store (Coming Soon)</a>
+                <a href="#" class="download-btn">Download on Google Play (Coming Soon)</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p style="font-size: 1.1rem; color: #666; margin-bottom: 1rem;">We'd love to hear from you! For technical support, feedback, or business inquiries, please feel free to contact us.</p>
+            <p style="font-size: 1.1rem;">Email: <a href="mailto:crusade.ray@gmail.com">crusade.ray@gmail.com</a></p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="mailto:crusade.ray@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/crusaderay" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/crusaderay" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p>&copy; 2024 Ray Zhang. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

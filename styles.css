@@ -376,6 +376,64 @@ section {
     margin-top: 2rem;
 }
 
+.projects-list {
+    margin-top: 2rem;
+}
+
+.projects-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.projects-list li {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid #5cacee;
+}
+
+.projects-list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.projects-list h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.projects-list h3 a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.projects-list h3 a:hover {
+    color: #5cacee;
+}
+
+.projects-list .project-type {
+    background: #5cacee;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.projects-list p {
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+}
+
 .project-card {
     background: white;
     border-radius: 15px;
@@ -456,6 +514,60 @@ section {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
+}
+
+.blog-list {
+    margin-top: 2rem;
+}
+
+.blog-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.blog-list li {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.blog-list h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.blog-list h3 a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.blog-list h3 a:hover {
+    color: #5cacee;
+}
+
+.blog-list .blog-date {
+    color: #5cacee;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.blog-list p {
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
 }
 
 .blog-post, .blog-card {
