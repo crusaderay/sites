@@ -94,7 +94,7 @@
             document.getElementById('notePreview').textContent = decodedText;
             
             // Try to open the app with the Universal Link
-            const appUrl = `memoSticky://entry?text=${encodeURIComponent(decodedText)}`;
+            const appUrl = `https://ray-zhang.xyz/post_it_note_share/u/entry?text=${encodeURIComponent(decodedText)}`;
             document.getElementById('openAppBtn').href = appUrl;
             
             // Auto-redirect attempt
