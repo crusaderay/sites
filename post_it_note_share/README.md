@@ -1,6 +1,6 @@
-# Memo Sticky - GitHub Pages Setup
+# Memo Sticky Universal Link Setup
 
-This directory contains the files needed to set up GitHub Pages for Universal Link support in the Memo Sticky app.
+This directory contains the files needed to set up Universal Link support for the Memo Sticky app on ray-zhang.xyz domain.
 
 ## Files Structure
 
@@ -16,52 +16,44 @@ github-pages/
 
 ## Setup Instructions
 
-### 1. Create GitHub Repository
+### 1. Domain Setup
 
-1. Create a new repository named `dongjiezhang.github.io` (replace with your GitHub username)
-2. Make sure the repository is public
+The Universal Link is configured for the custom domain `ray-zhang.xyz` with the path `/post_it_note_share/`.
 
-### 2. Upload Files
+### 2. File Structure
 
-1. Copy all files from this `github-pages` directory to the root of your GitHub repository
-2. Make sure the `apple-app-site-association` file has **no file extension**
-3. Commit and push the files
+Files are deployed at:
+- Main page: `https://ray-zhang.xyz/post_it_note_share/`
+- Universal Link entry: `https://ray-zhang.xyz/post_it_note_share/u/entry`
+- Association file: `https://ray-zhang.xyz/post_it_note_share/.well-known/apple-app-site-association`
 
-### 3. Enable GitHub Pages
+### 3. Verify Setup
 
-1. Go to your repository Settings
-2. Scroll down to "Pages" section
-3. Under "Source", select "Deploy from a branch"
-4. Choose "main" branch and "/ (root)" folder
-5. Click "Save"
-
-### 4. Verify Setup
-
-1. Wait a few minutes for GitHub Pages to deploy
-2. Visit `https://yourusername.github.io` to see the main page
-3. Visit `https://yourusername.github.io/.well-known/apple-app-site-association` to verify the association file
-4. Test the Universal Link: `https://yourusername.github.io/u/entry?text=Hello%20World`
+1. Visit `https://ray-zhang.xyz/post_it_note_share/` to see the main page
+2. Visit `https://ray-zhang.xyz/post_it_note_share/.well-known/apple-app-site-association` to verify the association file
+3. Test the Universal Link: `https://ray-zhang.xyz/post_it_note_share/u/entry?text=Hello%20World`
 
 ## How It Works
 
 ### Sharing Flow
 1. User swipes right on a note in the app
-2. Share sheet opens with message: "I wrote a new note, click to view: https://dongjiezhang.github.io/u/entry?text=..."
+2. Share sheet opens with message: "I wrote a new note, click to view: https://ray-zhang.xyz/post_it_note_share/u/entry?text=..."
 3. When shared link is clicked:
    - If app is installed: Opens app directly with the shared text
    - If app is not installed: Shows download page
 
 ### Universal Link Configuration
-- Domain: `dongjiezhang.github.io`
-- Path: `/u/entry*`
+- Domain: `ray-zhang.xyz`
+- Path: `/post_it_note_share/u/entry*`
 - App ID: `3HWBZVW7QW.com.dongjiezhang.Post-It-Notes`
+- App Store URL: `https://apps.apple.com/app/memo-sticky/id1508032147`
 
 ## Important Notes
 
-- Replace `dongjiezhang` with your actual GitHub username throughout all files
-- Update the App Store URL in the HTML files with your actual app's App Store link
-- The `apple-app-site-association` file must be accessible at `https://yourusername.github.io/.well-known/apple-app-site-association`
-- GitHub Pages automatically serves the file from the root directory at the `.well-known` path
+- The domain is configured for `ray-zhang.xyz/post_it_note_share/`
+- App Store URL is set to `https://apps.apple.com/app/memo-sticky/id1508032147`
+- The `apple-app-site-association` file must be accessible at `https://ray-zhang.xyz/post_it_note_share/.well-known/apple-app-site-association`
+- Associated Domains in the app are configured for `applinks:ray-zhang.xyz`
 
 ## Testing
 
