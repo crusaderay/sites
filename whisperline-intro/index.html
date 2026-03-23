@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Whisperline | Nearby Encounters, Thoughtfully Connected</title>
+    <meta
+      name="description"
+      content="Whisperline is a mobile-first nearby networking app that turns repeat real-world encounters into lightweight, privacy-conscious connections."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <div class="brand-mark">W</div>
+          <div>
+            <p class="eyebrow">Prototype Landing Page</p>
+            <h1>Whisperline</h1>
+          </div>
+        </div>
+        <a class="ghost-link" href="#mvp">MVP Scope</a>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="hero-kicker">iOS + Android / Flutter / BLE Nearby</p>
+            <h2>把重复遇见，变成更自然的连接。</h2>
+            <p class="hero-text">
+              Whisperline
+              不是强打扰的社交工具。它先记录你和附近的人是否多次在真实世界里擦肩而过，
+              当相遇足够频繁，再把对方放进候选连接里，留给你决定要不要正式认识。
+            </p>
+            <div class="hero-actions">
+              <a class="primary-link" href="#how-it-works">How it works</a>
+              <a class="secondary-link" href="#principles">Why it feels different</a>
+            </div>
+            <ul class="hero-meta">
+              <li>Bluetooth-based nearby discovery</li>
+              <li>10-digit public ID for explicit adds</li>
+              <li>1st-connection-only feed sharing</li>
+            </ul>
+          </div>
+
+          <div class="hero-card">
+            <div class="status-pill">Prototype Status</div>
+            <div class="device-frame">
+              <div class="device-notch"></div>
+              <div class="device-screen">
+                <div class="screen-section">
+                  <span class="screen-label">Nearby</span>
+                  <strong>3 repeat encounters</strong>
+                  <p>Candidate unlocked after repeated real-world proximity.</p>
+                </div>
+                <div class="screen-section">
+                  <span class="screen-label">Candidate</span>
+                  <strong>Ray · 4319082741</strong>
+                  <p>Met across 4 sessions in 3 days.</p>
+                </div>
+                <div class="screen-section">
+                  <span class="screen-label">Feed</span>
+                  <strong>Offer exchange</strong>
+                  <p>Only visible after a deliberate 1st connection is made.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="signal-grid" id="principles">
+          <article>
+            <p class="section-tag">01</p>
+            <h3>Nearby, not noisy</h3>
+            <p>
+              不是无限滑卡。只有真实空间里出现过的附近人，才会慢慢进入你的候选列表。
+            </p>
+          </article>
+          <article>
+            <p class="section-tag">02</p>
+            <h3>Repeat before reveal</h3>
+            <p>
+              相遇不足够多，就不会推动关系升级。重复出现本身，先替你做一层筛选。
+            </p>
+          </article>
+          <article>
+            <p class="section-tag">03</p>
+            <h3>Intentional profiles</h3>
+            <p>
+              资料结构轻量，只保留昵称、联系方式和 offers，减少表演感，突出可交换的信息。
+            </p>
+          </article>
+          <article>
+            <p class="section-tag">04</p>
+            <h3>Private by default</h3>
+            <p>
+              Feed 仅对正式建立的 1st
+              connections 可见，公开暴露面尽量小，互动更克制。
+            </p>
+          </article>
+        </section>
+
+        <section class="flow" id="how-it-works">
+          <div class="section-heading">
+            <p class="eyebrow">How It Works</p>
+            <h3>从偶遇到连接，只有四步。</h3>
+          </div>
+          <div class="flow-grid">
+            <article>
+              <span>Step 1</span>
+              <h4>Discover nearby</h4>
+              <p>通过 BLE 广播和扫描感知附近设备，记录一次真实相遇。</p>
+            </article>
+            <article>
+              <span>Step 2</span>
+              <h4>Aggregate repeats</h4>
+              <p>多次相遇会被聚合成本地 encounter sessions，并计算候选阈值。</p>
+            </article>
+            <article>
+              <span>Step 3</span>
+              <h4>Promote to candidate</h4>
+              <p>满足 3 天或 5 次阈值后，才会进入 Candidates 列表。</p>
+            </article>
+            <article>
+              <span>Step 4</span>
+              <h4>Add intentionally</h4>
+              <p>你可以主动加为 1st connection，或者直接输入 10 位 public ID 添加。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="mvp-panel" id="mvp">
+          <div class="section-heading">
+            <p class="eyebrow">Current MVP</p>
+            <h3>原型里已经能跑通的部分。</h3>
+          </div>
+          <div class="mvp-columns">
+            <ul>
+              <li>Google / Apple OAuth via Supabase Auth</li>
+              <li>Onboarding + profile editing</li>
+              <li>10-digit public ID generation</li>
+              <li>Feed / Nearby / Candidates / Me</li>
+            </ul>
+            <ul>
+              <li>BLE advertise + scan + handshake</li>
+              <li>Local encounter aggregation with Drift</li>
+              <li>Supabase profiles / connections schema with RLS</li>
+              <li>Cross-platform Flutter shell for iOS and Android</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="closing-card">
+          <p class="eyebrow">Design Intent</p>
+          <h3>让“可能认识”比“立刻匹配”更重要。</h3>
+          <p>
+            Whisperline 想保留现实世界关系增长的节奏感:
+            先同频，再连接；先出现，再开口。
+          </p>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>Whisperline MVP landing page.</p>
+        <div class="footer-links">
+          <a href="./privacy.html">Privacy</a>
+          <a href="./terms.html">Terms</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
