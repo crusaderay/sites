@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ray Zhang - Network Engineer, Yinzer, and Houston Rockets</title>
+    <meta name="description" content="Ray Zhang - Network Engineer specializing in telecommunications, data center networking, and automation. Personal blog covering networking, CDN, DNS, and more.">
+    <meta name="keywords" content="Ray Zhang, Network Engineer, telecommunications, data center, CDN, DNS, networking, Python, automation">
+    <meta name="author" content="Ray Zhang">
+    <link rel="canonical" href="https://ray-zhang.xyz/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ray-zhang.xyz/">
+    <meta property="og:title" content="Ray Zhang - Network Engineer">
+    <meta property="og:description" content="Network Engineer specializing in telecommunications, data center networking, and automation.">
+    <meta property="og:site_name" content="Ray Zhang">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Ray Zhang - Network Engineer">
+    <meta name="twitter:description" content="Network Engineer specializing in telecommunications, data center networking, and automation.">
+
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LR9DDCTCJ"></script>
@@ -19,11 +33,12 @@
     </script>
 </head>
 <body>
+    <canvas id="particles-canvas"></canvas>
     <header class="header">
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-brand">
-                    <h1><a href="#home">Ray Zhang</a></h1>
+                    <h1><a href="#home"><span class="brand-prefix">$&nbsp;</span>Ray Zhang</a></h1>
                     <p class="tagline">Network Engineer, Yinzer, and Houston Rockets</p>
                 </div>
                 <ul class="nav-menu">
@@ -57,11 +72,11 @@
                             </div>
                         </div>
                     </div>
-                    <h2 class="hero-title">Welcome to My Digital Space</h2>
+                    <h2 class="hero-title"><span class="terminal-prompt">ray@zhang:~$</span> <span class="typed-text"></span><span class="cursor">_</span></h2>
                     <p class="hero-description">Exploring the intersection of networking, technology, and life</p>
                     <div class="hero-buttons">
-                        <a href="#about" class="btn btn-primary">Learn More</a>
-                        <a href="#projects" class="btn btn-secondary">View Projects</a>
+                        <a href="#about" class="btn btn-primary"><span class="btn-prefix">&gt;&nbsp;</span>Learn More</a>
+                        <a href="#projects" class="btn btn-secondary"><span class="btn-prefix">&gt;&nbsp;</span>View Projects</a>
                     </div>
                 </div>
             </div>
@@ -130,6 +145,10 @@
                             <h3><a href="sshed-intro/index.html">SSHed</a> <span class="project-type">iOS</span></h3>
                             <p>Your Secure SSH Companion - Professional SSH client with advanced security features and intuitive interface</p>
                         </li>
+                        <li>
+                            <h3><a href="portableHole-intro/index.html">Portable Hole</a> <span class="project-type">iOS</span></h3>
+                            <p>Your Personal Digital Vault - Secure file storage and management with advanced encryption</p>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -188,6 +207,7 @@
                     <a href="https://www.linkedin.com/in/crusaderay" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
                 <p>&copy; 2024 Ray Zhang. All rights reserved.</p>
+                <p class="footer-status">system status: <span class="status-online">online</span> | uptime: <span id="uptime"></span></p>
             </div>
         </div>
     </footer>

@@ -4,9 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memo Sticky - Your Smart Note Companion</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta name="description" content="Memo Sticky - A smart note-taking companion app for organizing your thoughts, reminders, and ideas with an intuitive sticky note interface.">
+    <meta name="keywords" content="Memo Sticky, note app, sticky notes, productivity, reminder, organization">
+    <link rel="canonical" href="https://ray-zhang.xyz/memo-sticky-intro/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ray-zhang.xyz/memo-sticky-intro/">
+    <meta property="og:title" content="Memo Sticky - Your Smart Note Companion">
+    <meta property="og:description" content="A smart note-taking companion app for organizing your thoughts, reminders, and ideas.">
+    <meta property="og:site_name" content="Ray Zhang">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Memo Sticky - Your Smart Note Companion">
+    <meta name="twitter:description" content="A smart note-taking companion app for organizing your thoughts, reminders, and ideas.">
+
     <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LR9DDCTCJ"></script>
@@ -17,140 +30,15 @@
 
       gtag('config', 'G-9LR9DDCTCJ');
     </script>
-    
-    <style>
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 100px 0;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-        
-        .hero p {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .content-section {
-            padding: 80px 0;
-        }
-        
-        .content-section h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            color: #1a1a1a;
-            text-align: center;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .feature-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #1a1a1a;
-        }
-        
-        .feature-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        .download-section {
-            background: #f8f9fa;
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        .download-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-        
-        .download-btn {
-            display: inline-block;
-            background: #007bff;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .download-btn:hover {
-            background: #0056b3;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
-        }
-        
-        .contact-section {
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        .contact-section a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        
-        .contact-section a:hover {
-            text-decoration: underline;
-        }
-        
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .content-section h2 {
-                font-size: 2rem;
-            }
-            
-            .download-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
 </head>
 <body>
+    <canvas id="particles-canvas"></canvas>
+
     <header class="header">
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-brand">
-                    <h1><a href="../index.html">Ray Zhang</a></h1>
+                    <h1><a href="../index.html"><span class="brand-prefix">$&nbsp;</span>Ray Zhang</a></h1>
                     <p class="tagline">Network Engineer, Yinzer, and Houston Rockets</p>
                 </div>
                 <ul class="nav-menu">
@@ -159,78 +47,92 @@
                     <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
                     <li><a href="../index.html#blog" class="nav-link">Blog</a></li>
                 </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Memo Sticky</h1>
-            <p>Your Smart Note Companion</p>
-        </div>
-    </section>
+    <div class="project-page">
+        <section class="project-hero">
+            <div class="container">
+                <h1>Memo Sticky</h1>
+                <p class="hero-subtitle">Your Smart Note Companion</p>
+            </div>
+        </section>
 
-    <section class="content-section">
-        <div class="container">
-            <h2>About Memo Sticky</h2>
-            <p style="text-align: center; font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto;">Memo Sticky is a modern, intuitive, and powerful note-taking app designed to enhance your recording and management experience. Whether you're a student, professional, or creative worker who needs to capture ideas on the go, Memo Sticky provides a smooth and efficient note-taking experience.</p>
-        </div>
-    </section>
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">About Memo Sticky</h2>
+                <p>Memo Sticky is a modern, intuitive, and powerful note-taking app designed to enhance your recording and management experience. Whether you're a student, professional, or creative worker who needs to capture ideas on the go, Memo Sticky provides a smooth and efficient note-taking experience.</p>
+            </div>
+        </section>
 
-    <section class="content-section" style="background: #f8f9fa;">
-        <div class="container">
-            <h2>Key Features</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>🎤 Voice-to-Text</h3>
-                    <p>Advanced speech recognition technology that effortlessly converts your voice into text, making note-taking more convenient than ever.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>📷 Document Scanning</h3>
-                    <p>Built-in document scanning feature that extracts text from images and converts them into editable note content.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🔒 Face ID Security</h3>
-                    <p>Protect your important notes with Face ID or Touch ID authentication, ensuring your privacy and data security.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>📱 iOS Widget Support</h3>
-                    <p>Quick access to your note count directly from your home screen, keeping you updated on your recording activity.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🎨 Colorful Note Designs</h3>
-                    <p>Multiple vibrant color schemes for your notes, making your records more visually appealing and organized.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>💾 Reliable Data Storage</h3>
-                    <p>Powered by Core Data technology to ensure your notes are safely stored and never lost.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🔄 Background Refresh</h3>
-                    <p>Supports background app refresh to keep your note content always up-to-date and synchronized.</p>
+        <section class="project-section project-section-alt">
+            <div class="container">
+                <h2 class="project-section-title">Key Features</h2>
+                <div class="project-features-grid">
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🎤</div>
+                        <h3>Voice-to-Text</h3>
+                        <p>Advanced speech recognition technology that effortlessly converts your voice into text, making note-taking more convenient than ever.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📷</div>
+                        <h3>Document Scanning</h3>
+                        <p>Built-in document scanning feature that extracts text from images and converts them into editable note content.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Face ID Security</h3>
+                        <p>Protect your important notes with Face ID or Touch ID authentication, ensuring your privacy and data security.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>iOS Widget Support</h3>
+                        <p>Quick access to your note count directly from your home screen, keeping you updated on your recording activity.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Colorful Note Designs</h3>
+                        <p>Multiple vibrant color schemes for your notes, making your records more visually appealing and organized.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">💾</div>
+                        <h3>Reliable Data Storage</h3>
+                        <p>Powered by Core Data technology to ensure your notes are safely stored and never lost.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Background Refresh</h3>
+                        <p>Supports background app refresh to keep your note content always up-to-date and synchronized.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="download-section">
-        <div class="container">
-            <h2>Download Memo Sticky</h2>
-            <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">Ready to start your smart note-taking journey? Download Memo Sticky today!</p>
-            <div class="download-buttons">
-                <a href="https://apps.apple.com/us/app/memo-sticky/id1508032147" class="download-btn">Download on the App Store</a>
-                <a href="#" class="download-btn">Download on Google Play (Coming Soon)</a>
+        <section class="project-section project-download">
+            <div class="container">
+                <h2 class="project-section-title">Download Memo Sticky</h2>
+                <p>Ready to start your smart note-taking journey? Download Memo Sticky today!</p>
+                <div class="project-download-buttons">
+                    <a href="https://apps.apple.com/us/app/memo-sticky/id1508032147" class="project-btn project-btn-primary"><i class="fab fa-apple"></i> Download on the App Store</a>
+                    <a href="#" class="project-btn"><i class="fab fa-google-play"></i> Google Play (Coming Soon)</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="contact-section">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <p style="font-size: 1.1rem; color: #666; margin-bottom: 1rem;">We'd love to hear from you! For technical support, feedback, or business inquiries, please feel free to contact us.</p>
-            <p style="font-size: 1.1rem;">Email: <a href="mailto:crusade.ray@gmail.com">crusade.ray@gmail.com</a></p>
-        </div>
-    </section>
+        <section class="project-section project-contact">
+            <div class="container">
+                <h2 class="project-section-title">Contact Us</h2>
+                <p>We'd love to hear from you! For technical support, feedback, or business inquiries, please feel free to contact us.</p>
+                <p>Email: <a href="mailto:crusade.ray@gmail.com">crusade.ray@gmail.com</a></p>
+            </div>
+        </section>
+    </div>
 
     <footer class="footer">
         <div class="container">
@@ -241,9 +143,10 @@
                     <a href="https://www.linkedin.com/in/crusaderay" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
                 <p>&copy; 2024 Ray Zhang. All rights reserved.</p>
-                <p><a href="privacy-policy.html" style="color: #007bff; text-decoration: none;">Privacy Policy</a></p>
             </div>
         </div>
     </footer>
+
+    <script src="../script.js"></script>
 </body>
 </html>

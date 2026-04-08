@@ -1,175 +1,188 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Whisperline | Nearby Encounters, Thoughtfully Connected</title>
-    <meta
-      name="description"
-      content="Whisperline is a mobile-first nearby networking app that turns repeat real-world encounters into lightweight, privacy-conscious connections."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <div class="page-shell">
-      <header class="topbar">
-        <div class="brand-lockup">
-          <div class="brand-mark">W</div>
-          <div>
-            <p class="eyebrow">Prototype Landing Page</p>
-            <h1>Whisperline</h1>
-          </div>
-        </div>
-        <a class="ghost-link" href="#mvp">MVP Scope</a>
-      </header>
+    <meta name="description" content="Whisperline is a mobile-first nearby networking app that turns repeat real-world encounters into lightweight, privacy-conscious connections.">
+    <meta name="keywords" content="Whisperline, nearby networking, social app, privacy, encounters, connections">
+    <link rel="canonical" href="https://ray-zhang.xyz/whisperline-intro/">
 
-      <main>
-        <section class="hero">
-          <div class="hero-copy">
-            <p class="hero-kicker">iOS + Android / Flutter / BLE Nearby</p>
-            <h2>把重复遇见，变成更自然的连接。</h2>
-            <p class="hero-text">
-              Whisperline
-              不是强打扰的社交工具。它先记录你和附近的人是否多次在真实世界里擦肩而过，
-              当相遇足够频繁，再把对方放进候选连接里，留给你决定要不要正式认识。
-            </p>
-            <div class="hero-actions">
-              <a class="primary-link" href="#how-it-works">How it works</a>
-              <a class="secondary-link" href="#principles">Why it feels different</a>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ray-zhang.xyz/whisperline-intro/">
+    <meta property="og:title" content="Whisperline | Nearby Encounters, Thoughtfully Connected">
+    <meta property="og:description" content="A mobile-first nearby networking app that turns repeat real-world encounters into lightweight, privacy-conscious connections.">
+    <meta property="og:site_name" content="Ray Zhang">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Whisperline | Nearby Encounters, Thoughtfully Connected">
+    <meta name="twitter:description" content="A mobile-first nearby networking app that turns repeat real-world encounters into lightweight, privacy-conscious connections.">
+
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LR9DDCTCJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-9LR9DDCTCJ');
+    </script>
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <h1><a href="../index.html"><span class="brand-prefix">$&nbsp;</span>Ray Zhang</a></h1>
+                    <p class="tagline">Network Engineer, Yinzer, and Houston Rockets</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../index.html#blog" class="nav-link">Blog</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
-            <ul class="hero-meta">
-              <li>Bluetooth-based nearby discovery</li>
-              <li>10-digit public ID for explicit adds</li>
-              <li>1st-connection-only feed sharing</li>
-            </ul>
-          </div>
+        </nav>
+    </header>
 
-          <div class="hero-card">
-            <div class="status-pill">Prototype Status</div>
-            <div class="device-frame">
-              <div class="device-notch"></div>
-              <div class="device-screen">
-                <div class="screen-section">
-                  <span class="screen-label">Nearby</span>
-                  <strong>3 repeat encounters</strong>
-                  <p>Candidate unlocked after repeated real-world proximity.</p>
-                </div>
-                <div class="screen-section">
-                  <span class="screen-label">Candidate</span>
-                  <strong>Ray · 4319082741</strong>
-                  <p>Met across 4 sessions in 3 days.</p>
-                </div>
-                <div class="screen-section">
-                  <span class="screen-label">Feed</span>
-                  <strong>Offer exchange</strong>
-                  <p>Only visible after a deliberate 1st connection is made.</p>
-                </div>
-              </div>
+    <div class="project-page">
+        <section class="project-hero">
+            <div class="container">
+                <h1>Whisperline</h1>
+                <p class="hero-subtitle">Nearby Encounters, Thoughtfully Connected</p>
+                <p class="hero-subtitle" style="font-size: 1.1rem; color: var(--text-secondary); margin-top: 1rem;">iOS + Android / Flutter / BLE Nearby</p>
             </div>
-          </div>
         </section>
 
-        <section class="signal-grid" id="principles">
-          <article>
-            <p class="section-tag">01</p>
-            <h3>Nearby, not noisy</h3>
-            <p>
-              不是无限滑卡。只有真实空间里出现过的附近人，才会慢慢进入你的候选列表。
-            </p>
-          </article>
-          <article>
-            <p class="section-tag">02</p>
-            <h3>Repeat before reveal</h3>
-            <p>
-              相遇不足够多，就不会推动关系升级。重复出现本身，先替你做一层筛选。
-            </p>
-          </article>
-          <article>
-            <p class="section-tag">03</p>
-            <h3>Intentional profiles</h3>
-            <p>
-              资料结构轻量，只保留昵称、联系方式和 offers，减少表演感，突出可交换的信息。
-            </p>
-          </article>
-          <article>
-            <p class="section-tag">04</p>
-            <h3>Private by default</h3>
-            <p>
-              Feed 仅对正式建立的 1st
-              connections 可见，公开暴露面尽量小，互动更克制。
-            </p>
-          </article>
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">把重复遇见，变成更自然的连接。</h2>
+                <p>Whisperline 不是强打扰的社交工具。它先记录你和附近的人是否多次在真实世界里擦肩而过，当相遇足够频繁，再把对方放进候选连接里，留给你决定要不要正式认识。</p>
+                <ul class="project-feature-list">
+                    <li>Bluetooth-based nearby discovery</li>
+                    <li>10-digit public ID for explicit adds</li>
+                    <li>1st-connection-only feed sharing</li>
+                </ul>
+            </div>
         </section>
 
-        <section class="flow" id="how-it-works">
-          <div class="section-heading">
-            <p class="eyebrow">How It Works</p>
-            <h3>从偶遇到连接，只有四步。</h3>
-          </div>
-          <div class="flow-grid">
-            <article>
-              <span>Step 1</span>
-              <h4>Discover nearby</h4>
-              <p>通过 BLE 广播和扫描感知附近设备，记录一次真实相遇。</p>
-            </article>
-            <article>
-              <span>Step 2</span>
-              <h4>Aggregate repeats</h4>
-              <p>多次相遇会被聚合成本地 encounter sessions，并计算候选阈值。</p>
-            </article>
-            <article>
-              <span>Step 3</span>
-              <h4>Promote to candidate</h4>
-              <p>满足 3 天或 5 次阈值后，才会进入 Candidates 列表。</p>
-            </article>
-            <article>
-              <span>Step 4</span>
-              <h4>Add intentionally</h4>
-              <p>你可以主动加为 1st connection，或者直接输入 10 位 public ID 添加。</p>
-            </article>
-          </div>
+        <section class="project-section project-section-alt">
+            <div class="container">
+                <h2 class="project-section-title">Why it feels different</h2>
+                <div class="project-flow-grid">
+                    <div class="project-flow-step">
+                        <div class="step-number">01</div>
+                        <h3>Nearby, not noisy</h3>
+                        <p>不是无限滑卡。只有真实空间里出现过的附近人，才会慢慢进入你的候选列表。</p>
+                    </div>
+                    <div class="project-flow-step">
+                        <div class="step-number">02</div>
+                        <h3>Repeat before reveal</h3>
+                        <p>相遇不足够多，就不会推动关系升级。重复出现本身，先替你做一层筛选。</p>
+                    </div>
+                    <div class="project-flow-step">
+                        <div class="step-number">03</div>
+                        <h3>Intentional profiles</h3>
+                        <p>资料结构轻量，只保留昵称、联系方式和 offers，减少表演感，突出可交换的信息。</p>
+                    </div>
+                    <div class="project-flow-step">
+                        <div class="step-number">04</div>
+                        <h3>Private by default</h3>
+                        <p>Feed 仅对正式建立的 1st connections 可见，公开暴露面尽量小，互动更克制。</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="mvp-panel" id="mvp">
-          <div class="section-heading">
-            <p class="eyebrow">Current MVP</p>
-            <h3>原型里已经能跑通的部分。</h3>
-          </div>
-          <div class="mvp-columns">
-            <ul>
-              <li>Google / Apple OAuth via Supabase Auth</li>
-              <li>Onboarding + profile editing</li>
-              <li>10-digit public ID generation</li>
-              <li>Feed / Nearby / Candidates / Me</li>
-            </ul>
-            <ul>
-              <li>BLE advertise + scan + handshake</li>
-              <li>Local encounter aggregation with Drift</li>
-              <li>Supabase profiles / connections schema with RLS</li>
-              <li>Cross-platform Flutter shell for iOS and Android</li>
-            </ul>
-          </div>
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">How It Works</h2>
+                <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">从偶遇到连接，只有四步。</p>
+                <div class="project-flow-grid">
+                    <div class="project-flow-step">
+                        <div class="step-number">1</div>
+                        <h3>Discover nearby</h3>
+                        <p>通过 BLE 广播和扫描感知附近设备，记录一次真实相遇。</p>
+                    </div>
+                    <div class="project-flow-step">
+                        <div class="step-number">2</div>
+                        <h3>Aggregate repeats</h3>
+                        <p>多次相遇会被聚合成本地 encounter sessions，并计算候选阈值。</p>
+                    </div>
+                    <div class="project-flow-step">
+                        <div class="step-number">3</div>
+                        <h3>Promote to candidate</h3>
+                        <p>满足 3 天或 5 次阈值后，才会进入 Candidates 列表。</p>
+                    </div>
+                    <div class="project-flow-step">
+                        <div class="step-number">4</div>
+                        <h3>Add intentionally</h3>
+                        <p>你可以主动加为 1st connection，或者直接输入 10 位 public ID 添加。</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="closing-card">
-          <p class="eyebrow">Design Intent</p>
-          <h3>让“可能认识”比“立刻匹配”更重要。</h3>
-          <p>
-            Whisperline 想保留现实世界关系增长的节奏感:
-            先同频，再连接；先出现，再开口。
-          </p>
+        <section class="project-section project-section-alt">
+            <div class="container">
+                <h2 class="project-section-title">Current MVP</h2>
+                <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">原型里已经能跑通的部分。</p>
+                <div class="project-features-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                    <div class="project-feature-card">
+                        <h3>Auth & Profile</h3>
+                        <ul class="project-feature-list">
+                            <li>Google / Apple OAuth via Supabase Auth</li>
+                            <li>Onboarding + profile editing</li>
+                            <li>10-digit public ID generation</li>
+                            <li>Feed / Nearby / Candidates / Me</li>
+                        </ul>
+                    </div>
+                    <div class="project-feature-card">
+                        <h3>Core & Infra</h3>
+                        <ul class="project-feature-list">
+                            <li>BLE advertise + scan + handshake</li>
+                            <li>Local encounter aggregation with Drift</li>
+                            <li>Supabase profiles / connections schema with RLS</li>
+                            <li>Cross-platform Flutter shell for iOS and Android</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </section>
-      </main>
 
-      <footer class="site-footer">
-        <p>Whisperline MVP landing page.</p>
-        <div class="footer-links">
-          <a href="./privacy.html">Privacy</a>
-          <a href="./terms.html">Terms</a>
-        </div>
-      </footer>
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">Design Intent</h2>
+                <p>让"可能认识"比"立刻匹配"更重要。</p>
+                <p style="margin-top: 1rem; color: var(--text-secondary);">Whisperline 想保留现实世界关系增长的节奏感：先同频，再连接；先出现，再开口。</p>
+            </div>
+        </section>
     </div>
-  </body>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="mailto:crusade.ray@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/crusaderay" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/crusaderay" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p>&copy; 2024 Ray Zhang. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
 </html>

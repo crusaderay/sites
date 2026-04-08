@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECMP - Ray Zhang</title>
+    <title>ECMP - Equal-Cost Multi-Path Routing - Ray Zhang</title>
+    <meta name="description" content="ECMP (Equal-Cost Multi-Path) routing explained - Learn how ECMP works, hash algorithms, benefits, protocol support (OSPF, BGP, EIGRP), data center applications, and best practices for network load balancing.">
+    <meta name="keywords" content="ECMP, equal-cost multi-path, load balancing, OSPF, BGP, routing, data center networking, hash algorithm">
+    <meta name="author" content="Ray Zhang">
+    <link rel="canonical" href="https://ray-zhang.xyz/blog/ecmp.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ray-zhang.xyz/blog/ecmp.html">
+    <meta property="og:title" content="ECMP - Equal-Cost Multi-Path Routing">
+    <meta property="og:description" content="Learn how ECMP works, hash algorithms, benefits, protocol support, data center applications, and best practices.">
+    <meta property="og:site_name" content="Ray Zhang">
+    <meta property="article:published_time" content="2024-04-05">
+    <meta property="article:author" content="Ray Zhang">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ECMP - Equal-Cost Multi-Path Routing">
+    <meta name="twitter:description" content="Learn how ECMP works, hash algorithms, benefits, protocol support, data center applications, and best practices.">
+
     <link rel="stylesheet" href="../styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <!-- Google tag (gtag.js) -->
@@ -19,6 +35,8 @@
     </script>
 </head>
 <body>
+    <canvas id="particles-canvas"></canvas>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">

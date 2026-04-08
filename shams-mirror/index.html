@@ -3,284 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>篮球资讯智能监控系统</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <title>篮球资讯智能监控系统 | Shams Mirror</title>
+    <meta name="description" content="Shams Mirror - 篮球资讯智能监控系统，实时追踪NBA新闻、交易动态和比赛数据，为篮球爱好者提供一站式信息聚合服务。">
+    <meta name="keywords" content="Shams Mirror, NBA, 篮球资讯, NBA新闻, 交易动态, 篮球监控, Houston Rockets">
+    <link rel="canonical" href="https://ray-zhang.xyz/shams-mirror/">
 
-        body {
-            font-family: 'Comic Sans MS', 'KaiTi', 'STKaiti', 'FangSong', 'STFangsong', 'SimSun', cursive, sans-serif;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
-            min-height: 100vh;
-            color: #333;
-        }
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ray-zhang.xyz/shams-mirror/">
+    <meta property="og:title" content="篮球资讯智能监控系统 | Shams Mirror">
+    <meta property="og:description" content="篮球资讯智能监控系统，实时追踪NBA新闻、交易动态和比赛数据。">
+    <meta property="og:site_name" content="Ray Zhang">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="篮球资讯智能监控系统 | Shams Mirror">
+    <meta name="twitter:description" content="篮球资讯智能监控系统，实时追踪NBA新闻、交易动态和比赛数据。">
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LR9DDCTCJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-        .header {
-            text-align: center;
-            margin-bottom: 60px;
-            padding-top: 40px;
-        }
-
-        .logo {
-            font-size: 3.5rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .subtitle {
-            font-size: 1.3rem;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 30px;
-        }
-
-        .main-card {
-            background: rgba(255,255,255,0.95);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-            margin-bottom: 40px;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .feature-card {
-            background: linear-gradient(145deg, #f0f0f0, #ffffff);
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .feature-title {
-            font-size: 1.4rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .feature-desc {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .stats-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            color: white;
-            padding: 25px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(255, 154, 158, 0.4);
-            border: 3px solid #fff;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        .intro-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .highlight {
-            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
-            padding: 2px 8px;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-        .tech-stack {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .tech-badge {
-            background: linear-gradient(135deg, #ff9a9e, #fecfef);
-            color: #333;
-            padding: 10px 18px;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: 2px solid #fff;
-            box-shadow: 0 4px 8px rgba(255, 154, 158, 0.3);
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 60px;
-            color: rgba(255,255,255,0.8);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 2.5rem;
-            }
-            
-            .main-card {
-                padding: 25px;
-            }
-            
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+      gtag('config', 'G-9LR9DDCTCJ');
+    </script>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo floating">🏀 篮球资讯智能监控</div>
-            <div class="subtitle">AI驱动的海外篮球资讯自动化分享平台</div>
-        </div>
+    <canvas id="particles-canvas"></canvas>
 
-        <div class="main-card">
-            <div class="intro-text">
-                欢迎来到<span class="highlight">篮球资讯智能监控系统</span>！我们使用先进的人工智能技术，
-                实时监控海外篮球社交平台的相关动态，智能筛选优质内容，并自动翻译分享到微博平台。
-                让您第一时间获取最新、最准确的篮球资讯！
-            </div>
-
-            <div class="stats-section">
-                <div class="stat-card">
-                    <div class="stat-number">30s</div>
-                    <div class="stat-label">实时监控间隔</div>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <h1><a href="../index.html"><span class="brand-prefix">$&nbsp;</span>Ray Zhang</a></h1>
+                    <p class="tagline">Network Engineer, Yinzer, and Houston Rockets</p>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">AI</div>
-                    <div class="stat-label">智能内容分析</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">全天候服务</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">多账号</div>
-                    <div class="stat-label">同时监控</div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../index.html#blog" class="nav-link">Blog</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
+        </nav>
+    </header>
 
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">🎯</span>
-                    <div class="feature-title">智能内容筛选</div>
-                    <div class="feature-desc">
-                        使用DeepSeek AI技术，精准识别篮球相关内容，包括NBA、国际篮球、选秀等各类资讯，确保内容的相关性和质量。
+    <div class="project-page">
+        <section class="project-hero">
+            <div class="container">
+                <h1>Shams Mirror</h1>
+                <p class="hero-subtitle">篮球资讯智能监控系统</p>
+                <p class="hero-subtitle" style="font-size: 1.1rem; color: var(--text-secondary); margin-top: 1rem;">AI驱动的海外篮球资讯自动化分享平台</p>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">About</h2>
+                <p>欢迎来到篮球资讯智能监控系统！我们使用先进的人工智能技术，实时监控海外篮球社交平台的相关动态，智能筛选优质内容，并自动翻译分享到微博平台。让您第一时间获取最新、最准确的篮球资讯！</p>
+            </div>
+        </section>
+
+        <section class="project-section project-section-alt">
+            <div class="container">
+                <h2 class="project-section-title">Stats</h2>
+                <div class="project-stats-grid">
+                    <div class="project-stat-card">
+                        <div class="stat-number">30s</div>
+                        <div class="stat-label">实时监控间隔</div>
                     </div>
-                </div>
-
-                <div class="feature-card">
-                    <span class="feature-icon">🛡️</span>
-                    <div class="feature-title">内容安全过滤</div>
-                    <div class="feature-desc">
-                        自动检测并过滤不适宜内容，确保分享的资讯健康正面，符合平台规范。
+                    <div class="project-stat-card">
+                        <div class="stat-number">AI</div>
+                        <div class="stat-label">智能内容分析</div>
                     </div>
-                </div>
-
-                <div class="feature-card">
-                    <span class="feature-icon">🌐</span>
-                    <div class="feature-title">智能翻译</div>
-                    <div class="feature-desc">
-                        采用先进的AI翻译技术，将英文推文自然流畅地翻译成中文，保持原意的同时确保语言表达地道。
+                    <div class="project-stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">全天候服务</div>
                     </div>
-                </div>
-
-                <div class="feature-card">
-                    <span class="feature-icon">⚡</span>
-                    <div class="feature-title">实时同步</div>
-                    <div class="feature-desc">
-                        30秒检查间隔，确保最新资讯第一时间获取和分享，让您始终掌握篮球世界的最新动态。
-                    </div>
-                </div>
-
-                <div class="feature-card">
-                    <span class="feature-icon">📱</span>
-                    <div class="feature-title">多媒体支持</div>
-                    <div class="feature-desc">
-                        自动处理推文中的图片内容，完整保留原始信息，为用户提供更丰富的视觉体验。
-                    </div>
-                </div>
-
-                <div class="feature-card">
-                    <span class="feature-icon">🔧</span>
-                    <div class="feature-title">灵活配置</div>
-                    <div class="feature-desc">
-                        支持多账号监控，可随时添加或移除监控对象，满足不同用户的个性化需求。
+                    <div class="project-stat-card">
+                        <div class="stat-number">Multi</div>
+                        <div class="stat-label">多账号同时监控</div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="tech-stack">
-                <span class="tech-badge">海外API接口</span>
-                <span class="tech-badge">DeepSeek AI</span>
-                <span class="tech-badge">微博 API</span>
-                <span class="tech-badge">Python 3</span>
-                <span class="tech-badge">OAuth 认证</span>
-                <span class="tech-badge">实时监控</span>
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">Key Features</h2>
+                <div class="project-features-grid">
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>智能内容筛选</h3>
+                        <p>使用DeepSeek AI技术，精准识别篮球相关内容，包括NBA、国际篮球、选秀等各类资讯，确保内容的相关性和质量。</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>内容安全过滤</h3>
+                        <p>自动检测并过滤不适宜内容，确保分享的资讯健康正面，符合平台规范。</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3>智能翻译</h3>
+                        <p>采用先进的AI翻译技术，将英文推文自然流畅地翻译成中文，保持原意的同时确保语言表达地道。</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>实时同步</h3>
+                        <p>30秒检查间隔，确保最新资讯第一时间获取和分享，让您始终掌握篮球世界的最新动态。</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>多媒体支持</h3>
+                        <p>自动处理推文中的图片内容，完整保留原始信息，为用户提供更丰富的视觉体验。</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🔧</div>
+                        <h3>灵活配置</h3>
+                        <p>支持多账号监控，可随时添加或移除监控对象，满足不同用户的个性化需求。</p>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="footer">
-            <p>🏀 让AI为您带来最新最准确的篮球资讯 🏀</p>
-            <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.7;">Powered by DeepSeek AI & 海外API</p>
-        </div>
+        <section class="project-section project-section-alt">
+            <div class="container">
+                <h2 class="project-section-title">Tech Stack</h2>
+                <div class="project-tech-stack">
+                    <span class="tech-badge">海外API接口</span>
+                    <span class="tech-badge">DeepSeek AI</span>
+                    <span class="tech-badge">微博 API</span>
+                    <span class="tech-badge">Python 3</span>
+                    <span class="tech-badge">OAuth 认证</span>
+                    <span class="tech-badge">实时监控</span>
+                </div>
+            </div>
+        </section>
     </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="mailto:crusade.ray@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/crusaderay" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/crusaderay" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p>&copy; 2024 Ray Zhang. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
 </body>
 </html>

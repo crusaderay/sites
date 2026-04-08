@@ -4,134 +4,144 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portable Hole - Your Personal Digital Vault</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: #fff;
-            line-height: 1.8;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .header {
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 20px 0;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 3em;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-        .container {
-            flex: 1;
-            width: 90%;
-            max-width: 960px;
-            margin: 30px auto;
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            color: #333;
-        }
-        h2 {
-            color: #6a11cb;
-            font-size: 2em;
-            margin-top: 30px;
-            border-bottom: 2px solid #2575fc;
-            padding-bottom: 10px;
-        }
-        p {
-            margin-bottom: 15px;
-        }
-        .features ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .features ul li {
-            background-color: #e0f7fa;
-            margin-bottom: 10px;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            color: #00796b;
-            font-weight: 500;
-        }
-        .download-buttons a {
-            display: inline-block;
-            background-color: #2575fc;
-            color: #fff;
-            padding: 15px 30px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 1.1em;
-            margin-right: 20px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        .download-buttons a:hover {
-            background-color: #6a11cb;
-            transform: translateY(-3px);
-        }
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            font-size: 0.9em;
-            color: #fff;
-            background-color: rgba(0, 0, 0, 0.2);
-        }
-        .footer a {
-            color: #fff;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <meta name="description" content="Portable Hole - A personal digital vault for securely storing and managing your sensitive data, passwords, and private information.">
+    <meta name="keywords" content="Portable Hole, digital vault, password manager, secure storage, privacy">
+    <link rel="canonical" href="https://ray-zhang.xyz/portableHole-intro/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ray-zhang.xyz/portableHole-intro/">
+    <meta property="og:title" content="Portable Hole - Your Personal Digital Vault">
+    <meta property="og:description" content="A personal digital vault for securely storing and managing your sensitive data and private information.">
+    <meta property="og:site_name" content="Ray Zhang">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Portable Hole - Your Personal Digital Vault">
+    <meta name="twitter:description" content="A personal digital vault for securely storing and managing your sensitive data and private information.">
+
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LR9DDCTCJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-9LR9DDCTCJ');
+    </script>
 </head>
 <body>
-    <div class="header">
-        <h1>Portable Hole</h1>
-        <p>Your Personal Digital Vault</p>
+    <canvas id="particles-canvas"></canvas>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <h1><a href="../index.html"><span class="brand-prefix">$&nbsp;</span>Ray Zhang</a></h1>
+                    <p class="tagline">Network Engineer, Yinzer, and Houston Rockets</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../index.html#blog" class="nav-link">Blog</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="project-page">
+        <section class="project-hero">
+            <div class="container">
+                <h1>Portable Hole</h1>
+                <p class="hero-subtitle">Your Personal Digital Vault</p>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">About Portable Hole</h2>
+                <p>Portable Hole is your personal digital sanctuary - a secure local storage app that lets you collect, organize, and access important information completely offline. Independent from social media platforms, it provides a dedicated space on your phone to store valuable content that truly belongs to you.</p>
+            </div>
+        </section>
+
+        <section class="project-section project-section-alt">
+            <div class="container">
+                <h2 class="project-section-title">Key Features</h2>
+                <div class="project-features-grid">
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Complete Privacy & Control</h3>
+                        <p>100% local storage - your data never leaves your device, ensuring complete privacy and independence.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📥</div>
+                        <h3>Effortless Content Collection</h3>
+                        <p>Save web links, add custom descriptions, and attach images or videos to create rich, organized entries.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🏷️</div>
+                        <h3>Smart Organization System</h3>
+                        <p>Use custom tags to categorize your content and find what you need with powerful search functionality.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📡</div>
+                        <h3>Offline Independence</h3>
+                        <p>Works completely offline without requiring accounts, cloud sync, or dependence on social media platforms.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Cross-Platform Availability</h3>
+                        <p>Available on iOS and Android, built with Flutter for a smooth, responsive user experience.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">✨</div>
+                        <h3>Clean & Intuitive Design</h3>
+                        <p>Beautiful, minimalist interface designed for daily use with no ads, tracking, or data collection.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section project-download">
+            <div class="container">
+                <h2 class="project-section-title">Download Portable Hole</h2>
+                <p>Ready to take control of your digital life? Create your personal information sanctuary today!</p>
+                <div class="project-download-buttons">
+                    <a href="https://apps.apple.com/us/app/portable-hole/id6752504688" class="project-btn project-btn-primary"><i class="fab fa-apple"></i> App Store </a>
+                    <a href="#" class="project-btn"><i class="fab fa-google-play"></i> Google Play (Coming Soon)</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section project-contact">
+            <div class="container">
+                <h2 class="project-section-title">Contact Us</h2>
+                <p>We'd love to hear from you! For support, feedback, or suggestions about Portable Hole, please reach out to us.</p>
+                <p>Email: <a href="mailto:crusade.ray@gmail.com">crusade.ray@gmail.com</a></p>
+            </div>
+        </section>
     </div>
 
-    <div class="container">
-        <h2>About Portable Hole</h2>
-        <p>Portable Hole is your personal digital sanctuary - a secure local storage app that lets you collect, organize, and access important information completely offline. Independent from social media platforms, it provides a dedicated space on your phone to store valuable content that truly belongs to you.</p>
-        
-        <h2>Key Features</h2>
-        <div class="features">
-            <ul>
-                <li><strong>Complete Privacy & Control:</strong> 100% local storage - your data never leaves your device, ensuring complete privacy and independence.</li>
-                <li><strong>Effortless Content Collection:</strong> Save web links, add custom descriptions, and attach images or videos to create rich, organized entries.</li>
-                <li><strong>Smart Organization System:</strong> Use custom tags to categorize your content and find what you need with powerful search functionality.</li>
-                <li><strong>Offline Independence:</strong> Works completely offline without requiring accounts, cloud sync, or dependence on social media platforms.</li>
-                <li><strong>Cross-Platform Availability:</strong> Available on iOS and Android, built with Flutter for a smooth, responsive user experience.</li>
-                <li><strong>Clean & Intuitive Design:</strong> Beautiful, minimalist interface designed for daily use with no ads, tracking, or data collection.</li>
-            </ul>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="mailto:crusade.ray@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/crusaderay" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/crusaderay" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p>&copy; 2024 Ray Zhang. All rights reserved.</p>
+            </div>
         </div>
-        
-        <h2>Download Portable Hole</h2>
-        <p>Ready to take control of your digital life? Create your personal information sanctuary today!</p>
-        <div class="download-buttons">
-            <a href="#">Download on the App Store (Coming Soon)</a>
-            <a href="#">Download on Google Play (Coming Soon)</a>
-        </div>
+    </footer>
 
-        <h2>Contact Us</h2>
-        <p>We'd love to hear from you! For support, feedback, or suggestions about Portable Hole, please reach out to us.</p>
-        <p>Email: <a href="mailto:crusade.ray@gmail.com">crusade.ray@gmail.com</a></p>
-    </div>
-
-    <div class="footer">
-        <p>&copy; 2024 Portable Hole. All rights reserved.</p>
-        <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-    </div>
+    <script src="../script.js"></script>
 </body>
 </html>
