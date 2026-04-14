@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixel Battlefield | Tactical Grid Battles on iPhone</title>
+  <meta
+    name="description"
+    content="Pixel Battlefield is a tactical grid strategy game for iPhone. Hide your planes, tanks, and commander, then outread your opponent in ranked, casual, bot, or nearby battles."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Pixel Battlefield | Tactical Grid Battles on iPhone" />
+  <meta
+    property="og:description"
+    content="A sharp, turn-based strategy game where headshots matter, layouts matter, and every shot is a read."
+  />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Pixel Battlefield | Tactical Grid Battles on iPhone" />
+  <meta
+    name="twitter:description"
+    content="Hide your fleet. Read the board. Land the headshot."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;family=IBM+Plex+Mono:wght@400;500;700&amp;display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #081019;
+      --bg-deep: #050a10;
+      --panel: rgba(12, 22, 34, 0.88);
+      --panel-strong: #101c29;
+      --panel-soft: #152435;
+      --border: rgba(163, 189, 214, 0.16);
+      --text: #edf3f8;
+      --text-soft: #aac0d6;
+      --text-muted: #71859a;
+      --accent: #8fb7d9;
+      --accent-strong: #d7e8f8;
+      --warm: #d2a464;
+      --warm-soft: rgba(210, 164, 100, 0.18);
+      --danger: #c96c5b;
+      --success: #5f9b79;
+      --shadow: 0 28px 64px rgba(0, 0, 0, 0.44);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1140px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, rgba(143, 183, 217, 0.18), transparent 34%),
+        radial-gradient(circle at 85% 18%, rgba(210, 164, 100, 0.12), transparent 18%),
+        linear-gradient(180deg, #0c1521 0%, var(--bg) 38%, var(--bg-deep) 100%);
+      color: var(--text);
+      font-family: "Space Grotesk", "Avenir Next", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(143, 183, 217, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(143, 183, 217, 0.045) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: radial-gradient(circle at center, black 45%, transparent 92%);
+      pointer-events: none;
+      opacity: 0.65;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+    }
+
+    .mono {
+      font-family: "IBM Plex Mono", "Menlo", monospace;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(5, 10, 16, 0.76);
+      border-bottom: 1px solid rgba(163, 189, 214, 0.08);
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 72px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-decoration: none;
+    }
+
+    .brand-name {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-name span {
+      color: var(--accent);
+    }
+
+    .brand-note {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      text-decoration: none;
+      transition: color 0.18s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta,
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .nav-cta,
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+      color: #081019;
+      box-shadow: 0 10px 32px rgba(143, 183, 217, 0.28);
+    }
+
+    .nav-cta:hover,
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+    }
+
+    .nav-cta {
+      padding: 11px 18px;
+      font-size: 0.92rem;
+    }
+
+    .hero {
+      padding: 72px 0 54px;
+      position: relative;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+      gap: 30px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(143, 183, 217, 0.18);
+      background: rgba(143, 183, 217, 0.08);
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 22px 0 14px;
+      font-size: clamp(3rem, 8vw, 5.8rem);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+      display: inline-block;
+    }
+
+    .hero-copy {
+      max-width: 660px;
+      color: var(--text-soft);
+      font-size: clamp(1.05rem, 2.1vw, 1.28rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      padding: 14px 24px;
+      font-size: 1rem;
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(163, 189, 214, 0.18);
+      background: rgba(16, 28, 41, 0.6);
+      color: var(--text);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .meta-pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(16, 28, 41, 0.72);
+      border: 1px solid rgba(163, 189, 214, 0.12);
+      color: var(--text-soft);
+      font-size: 0.86rem;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-visual::before,
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      border-radius: 28px;
+      inset: auto;
+      pointer-events: none;
+    }
+
+    .hero-visual::before {
+      width: 240px;
+      height: 240px;
+      top: -30px;
+      right: -10px;
+      background: radial-gradient(circle, rgba(143, 183, 217, 0.26), transparent 70%);
+    }
+
+    .hero-visual::after {
+      width: 220px;
+      height: 220px;
+      left: -30px;
+      bottom: -30px;
+      background: radial-gradient(circle, rgba(210, 164, 100, 0.22), transparent 68%);
+    }
+
+    .battle-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(163, 189, 214, 0.16);
+      background:
+        linear-gradient(180deg, rgba(18, 31, 45, 0.98), rgba(9, 17, 27, 0.98)),
+        rgba(9, 17, 27, 0.96);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .battle-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(143, 183, 217, 0.14), transparent 24%),
+        linear-gradient(320deg, rgba(210, 164, 100, 0.12), transparent 26%);
+      pointer-events: none;
+    }
+
+    .battle-topline,
+    .battle-stats {
+      position: relative;
+      z-index: 1;
+    }
+
+    .battle-topline {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .battle-label {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .battle-turn {
+      font-size: 0.88rem;
+      color: var(--warm);
+    }
+
+    .board-wrap {
+      position: relative;
+      z-index: 1;
+      padding: 14px;
+      border-radius: 22px;
+      background: rgba(4, 8, 13, 0.58);
+      border: 1px solid rgba(163, 189, 214, 0.1);
+    }
+
+    .board-grid {
+      display: grid;
+      grid-template-columns: repeat(10, minmax(0, 1fr));
+      gap: 4px;
+    }
+
+    .cell {
+      aspect-ratio: 1;
+      border-radius: 6px;
+      background: #1a2736;
+      border: 1px solid rgba(143, 183, 217, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: #081019;
+      transition: transform 0.18s ease, opacity 0.4s ease;
+    }
+
+    .cell.hit {
+      background: rgba(95, 155, 121, 0.78);
+      color: #eff8f2;
+    }
+
+    .cell.crit {
+      background: rgba(210, 164, 100, 0.88);
+      color: #1d1204;
+    }
+
+    .cell.miss {
+      background: rgba(201, 108, 91, 0.72);
+      color: #fff0ed;
+    }
+
+    .cell.focus {
+      background: rgba(143, 183, 217, 0.9);
+      color: #081019;
+      transform: scale(1.06);
+      box-shadow: 0 0 0 2px rgba(143, 183, 217, 0.35);
+    }
+
+    .battle-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat-card {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(16, 28, 41, 0.78);
+      border: 1px solid rgba(163, 189, 214, 0.1);
+    }
+
+    .stat-label {
+      display: block;
+      color: var(--text-muted);
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .section {
+      padding: 34px 0 92px;
+    }
+
+    .section-shell {
+      padding: 30px;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(163, 189, 214, 0.12);
+      background: rgba(11, 19, 30, 0.6);
+      box-shadow: var(--shadow);
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 32px;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin: 12px 0 12px;
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 1rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+      gap: 24px;
+    }
+
+    .about-copy {
+      padding: 26px;
+      border-radius: var(--radius-lg);
+      background: var(--panel);
+      border: 1px solid rgba(163, 189, 214, 0.12);
+    }
+
+    .about-copy p {
+      margin: 0 0 16px;
+      color: var(--text-soft);
+    }
+
+    .about-copy p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-facts {
+      display: grid;
+      gap: 14px;
+    }
+
+    .fact-card {
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, rgba(21, 36, 53, 0.92), rgba(11, 20, 30, 0.92));
+      border: 1px solid rgba(163, 189, 214, 0.12);
+    }
+
+    .fact-label {
+      color: var(--text-muted);
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .fact-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .fact-detail {
+      margin-top: 5px;
+      color: var(--text-soft);
+      font-size: 0.92rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature-card,
+    .mode-card {
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(16, 28, 41, 0.9), rgba(10, 18, 27, 0.9));
+      border: 1px solid rgba(163, 189, 214, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before,
+    .mode-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(143, 183, 217, 0.08), transparent 45%);
+      pointer-events: none;
+    }
+
+    .feature-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(143, 183, 217, 0.12);
+      border: 1px solid rgba(143, 183, 217, 0.18);
+      font-size: 1.35rem;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3,
+    .mode-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+
+    .feature-card p,
+    .mode-card p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+
+    .mode-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .mode-badge.ranked {
+      background: var(--warm-soft);
+      color: #f4d5ac;
+      border: 1px solid rgba(210, 164, 100, 0.26);
+    }
+
+    .mode-badge.casual {
+      background: rgba(95, 155, 121, 0.16);
+      color: #a6d0b5;
+      border: 1px solid rgba(95, 155, 121, 0.22);
+    }
+
+    .mode-badge.bot {
+      background: rgba(143, 183, 217, 0.16);
+      color: var(--accent);
+      border: 1px solid rgba(143, 183, 217, 0.22);
+    }
+
+    .mode-badge.local {
+      background: rgba(201, 108, 91, 0.14);
+      color: #efb5a8;
+      border: 1px solid rgba(201, 108, 91, 0.22);
+    }
+
+    .download-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .download-panel,
+    .support-panel {
+      padding: 28px;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(163, 189, 214, 0.12);
+      background: linear-gradient(180deg, rgba(16, 28, 41, 0.92), rgba(8, 15, 23, 0.92));
+    }
+
+    .download-panel p,
+    .support-panel p {
+      color: var(--text-soft);
+    }
+
+    .download-note {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .download-note span {
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(163, 189, 214, 0.12);
+      background: rgba(6, 12, 18, 0.5);
+      color: var(--text-soft);
+      font-size: 0.85rem;
+    }
+
+    .support-panel h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .contact-item {
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      background: rgba(6, 12, 18, 0.54);
+      border: 1px solid rgba(163, 189, 214, 0.1);
+      text-decoration: none;
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.92rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .contact-item span {
+      color: var(--text-soft);
+      word-break: break-word;
+    }
+
+    .site-footer {
+      padding: 0 0 38px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .site-footer a {
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    @media (max-width: 980px) {
+      .hero-layout,
+      .about-grid,
+      .download-card,
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .site-nav {
+        padding: 12px 0;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .nav-links a {
+        font-size: 0.88rem;
+      }
+
+      .nav-cta {
+        width: 100%;
+      }
+
+      .hero-actions {
+        align-items: stretch;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+      }
+
+      .section {
+        padding-bottom: 72px;
+      }
+
+      .section-shell,
+      .download-panel,
+      .support-panel {
+        padding: 22px;
+      }
+
+      .battle-card {
+        padding: 18px;
+      }
+
+      .battle-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-nav">
+      <a class="brand" href="#top">
+        <span class="brand-name mono"><span>Pixel</span> Battlefield</span>
+        <span class="brand-note mono">Turn-based iPhone strategy</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#modes">Modes</a>
+        <a href="#download">Download</a>
+        <a class="nav-cta" href="https://apps.apple.com/us/app/pixel-warzone-grid-war-game/id1512896172" target="_blank" rel="noreferrer">App Store</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-layout">
+        <div>
+          <div class="eyebrow mono">Grid tactics · headshots matter</div>
+          <h1>Hide smart.<br /><span>Strike sharper.</span></h1>
+          <p class="hero-copy">
+            Pixel Battlefield is a tactical grid battle game for iPhone. Place your planes, tanks,
+            and commander, then read the board better than your opponent across ranked matches,
+            relaxed casual games, smart bots, or nearby offline duels.
+          </p>
+          <div class="hero-actions">
+            <a
+              class="btn-primary"
+              href="https://apps.apple.com/us/app/pixel-warzone-grid-war-game/id1512896172"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Download on the App Store
+            </a>
+            <a class="btn-secondary" href="#features">See key features</a>
+          </div>
+          <div class="hero-meta">
+            <span class="meta-pill mono">Free</span>
+            <span class="meta-pill mono">iPhone · iOS 13+</span>
+            <span class="meta-pill mono">Game Center enabled</span>
+            <span class="meta-pill mono">11 languages</span>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="battle-card">
+            <div class="battle-topline">
+              <div>
+                <div class="battle-label mono">Opponent board</div>
+                <strong>Turn 8 · Ladder Match</strong>
+              </div>
+              <div class="battle-turn mono">Headshot clues hidden</div>
+            </div>
+
+            <div class="board-wrap">
+              <div class="board-grid" id="battle-grid" aria-label="Game board preview"></div>
+            </div>
+
+            <div class="battle-stats">
+              <div class="stat-card">
+                <span class="stat-label mono">Hit rule</span>
+                <span class="stat-value">Head cells decide kills</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label mono">Pressure</span>
+                <span class="stat-value">15 sec per turn</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-label mono">Win path</span>
+                <span class="stat-value">Commander or full wipe</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container section-shell">
+        <div class="section-heading">
+          <div class="section-kicker mono">About Pixel Battlefield</div>
+          <h2>A small board. A lot of psychology.</h2>
+          <p>
+            The rules are simple enough to learn fast, but every battle turns into a real reading
+            game once you understand how planes, tanks, and head cells interact.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>
+              Each side hides 2 planes, 2 tanks, and 1 commander on a 10×10 battlefield. Players
+              alternate turns, choose a target, and fire. A normal hit is useful information, but
+              it does not destroy a plane or tank unless you hit the exact head cell.
+            </p>
+            <p>
+              That one rule changes everything. Every green hit creates tension, every miss removes
+              possibilities, and every headshot feels earned. If you find the enemy commander, the
+              match ends instantly. If you fail to act in time, the timer punishes hesitation.
+            </p>
+            <p>
+              It is a modern, cleaner take on an old-school paper game, rebuilt for quick iPhone
+              sessions, Game Center competition, and offline practice.
+            </p>
+          </div>
+
+          <div class="about-facts">
+            <div class="fact-card">
+              <div class="fact-label mono">Board setup</div>
+              <div class="fact-value">2 planes · 2 tanks · 1 commander</div>
+              <div class="fact-detail">Every lineup creates a different deduction problem.</div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-label mono">Victory paths</div>
+              <div class="fact-value">Commander kill or total destruction</div>
+              <div class="fact-detail">Go for the instant finish or map the whole formation.</div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-label mono">Match tempo</div>
+              <div class="fact-value">Fast turns, high pressure</div>
+              <div class="fact-detail">Three timeouts in one match and you lose.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker mono">Key features</div>
+          <h2>Built around reads, risk, and replayability.</h2>
+          <p>
+            The page you shared is structured around clear product value, so this version keeps the
+            same rhythm while translating it into the tactical identity of this game.
+          </p>
+        </div>
+
+        <div class="card-grid">
+          <article class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3>Headshot-only destruction</h3>
+            <p>
+              Hitting a unit is only the beginning. Planes and tanks go down only when you find the
+              head cell, which makes pattern reading the real skill ceiling.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🏆</div>
+            <h3>Ranked Game Center ladder</h3>
+            <p>
+              Climb the leaderboard in ladder mode, where critical-hit clues are hidden and every
+              successful shot has to be interpreted under uncertainty.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🎮</div>
+            <h3>Casual matchmaking</h3>
+            <p>
+              Practice against real players without ranking pressure. Casual matches keep the
+              clearer feedback markers, so it is easier to sharpen your reads.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <h3>Three bot difficulties</h3>
+            <p>
+              Easy is relaxed, Medium hunts after a hit, and Hard actively looks for heads using
+              pattern recognition. Great for solo practice anywhere.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">📶</div>
+            <h3>Nearby offline battles</h3>
+            <p>
+              Host or join a local match over Bluetooth or nearby Wi-Fi. Perfect for a quick duel
+              when you are traveling or just sitting across from a friend.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🧩</div>
+            <h3>Custom board editing</h3>
+            <p>
+              Start quickly with the ready-to-play default board, then move units, rotate planes and
+              tanks, and save layouts that make your next opponent guess wrong.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="modes">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker mono">Game modes</div>
+          <h2>Four ways to command the board.</h2>
+          <p>
+            The core rules stay sharp, but each queue changes the tone of the match and how much
+            information the game gives back to you.
+          </p>
+        </div>
+
+        <div class="card-grid">
+          <article class="mode-card">
+            <div class="mode-badge ranked mono">Ranked</div>
+            <h3>Ladder Match</h3>
+            <p>
+              The most competitive queue. Wins award leaderboard points, losses award none, and the
+              game hides the extra critical-hit clue that casual players can see.
+            </p>
+          </article>
+
+          <article class="mode-card">
+            <div class="mode-badge casual mono">Casual</div>
+            <h3>Casual Random Match</h3>
+            <p>
+              Real opponents, friendlier information. A good way to practice board reading before
+              you take the same skills into the ladder.
+            </p>
+          </article>
+
+          <article class="mode-card">
+            <div class="mode-badge bot mono">Practice</div>
+            <h3>Bot Match</h3>
+            <p>
+              A fast training ground for new players and a controlled test bed for experienced ones.
+              No internet needed and no ranking impact.
+            </p>
+          </article>
+
+          <article class="mode-card">
+            <div class="mode-badge local mono">Offline</div>
+            <h3>Nearby Match</h3>
+            <p>
+              One player hosts, one joins, and the match stays local. Great for quick tactical
+              showdowns on the same Wi-Fi or over Bluetooth.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="download">
+      <div class="container download-card">
+        <div class="download-panel">
+          <div class="section-kicker mono">Download Pixel Battlefield</div>
+          <h2 style="margin-top: 12px; margin-bottom: 14px; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1;">
+            Ready to outread your next opponent?
+          </h2>
+          <p>
+            The App Store listing currently appears under the title
+            <span class="mono">Pixel WarZone - Grid War Game</span>. If you want a fast tactical
+            game with a distinctive deduction hook, that is the one to download.
+          </p>
+          <div class="hero-actions" style="margin-top: 26px;">
+            <a
+              class="btn-primary"
+              href="https://apps.apple.com/us/app/pixel-warzone-grid-war-game/id1512896172"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View on the App Store
+            </a>
+          </div>
+          <div class="download-note">
+            <span class="mono">Only for iPhone</span>
+            <span class="mono">Game Center support</span>
+            <span class="mono">Free download</span>
+            <span class="mono">English + 10 more languages</span>
+          </div>
+        </div>
+
+        <aside class="support-panel" id="support">
+          <h3>Support &amp; contact</h3>
+          <p>
+            For feedback, support questions, or publishing updates, use the contacts below.
+          </p>
+
+          <div class="contact-list">
+            <a class="contact-item" href="mailto:crusade.ray@gmail.com">
+              <strong class="mono">Email</strong>
+              <span>crusade.ray@gmail.com</span>
+            </a>
+            <a class="contact-item" href="privacy-policy.html">
+              <strong class="mono">Privacy policy</strong>
+              <span>Read how the iOS app handles local data, Game Center, analytics, and ads.</span>
+            </a>
+            <a
+              class="contact-item"
+              href="https://ray-zhang.xyz"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <strong class="mono">Developer site</strong>
+              <span>ray-zhang.xyz</span>
+            </a>
+            <a
+              class="contact-item"
+              href="https://apps.apple.com/us/app/pixel-warzone-grid-war-game/id1512896172"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <strong class="mono">App Store listing</strong>
+              <span>Pixel WarZone - Grid War Game</span>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      © 2026 Dongjie Zhang · Built for tactical iPhone battles ·
+      <a href="mailto:crusade.ray@gmail.com">Contact</a> ·
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </footer>
+
+  <script>
+    const states = Array(100).fill("base");
+    const hits = [14, 24, 34, 35, 63, 73];
+    const crits = [36, 64];
+    const misses = [1, 2, 8, 10, 18, 27, 32, 46, 49, 55, 70, 82, 91];
+    const focus = [54];
+
+    hits.forEach((index) => { states[index] = "hit"; });
+    crits.forEach((index) => { states[index] = "crit"; });
+    misses.forEach((index) => { states[index] = "miss"; });
+    focus.forEach((index) => { states[index] = "focus"; });
+
+    const symbols = {
+      hit: "•",
+      crit: "✦",
+      miss: "×",
+      focus: "⌖"
+    };
+
+    const grid = document.getElementById("battle-grid");
+
+    states.forEach((state) => {
+      const cell = document.createElement("div");
+      cell.className = "cell " + state;
+      if (symbols[state]) {
+        cell.textContent = symbols[state];
+      }
+      grid.appendChild(cell);
+    });
+
+    const focusCell = grid.querySelector(".focus");
+    if (focusCell) {
+      setInterval(() => {
+        focusCell.style.opacity = focusCell.style.opacity === "0.45" ? "1" : "0.45";
+      }, 780);
+    }
+  </script>
+</body>
+</html>

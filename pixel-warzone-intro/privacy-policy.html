@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | Pixel Battlefield</title>
+  <meta
+    name="description"
+    content="Privacy Policy for Pixel Battlefield, the tactical iPhone board game by Dongjie Zhang."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;family=IBM+Plex+Mono:wght@400;500;700&amp;display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #081019;
+      --bg-deep: #050a10;
+      --panel: rgba(12, 22, 34, 0.9);
+      --panel-soft: rgba(16, 28, 41, 0.88);
+      --border: rgba(163, 189, 214, 0.16);
+      --text: #edf3f8;
+      --text-soft: #aac0d6;
+      --text-muted: #71859a;
+      --accent: #8fb7d9;
+      --accent-strong: #d7e8f8;
+      --warm: #d2a464;
+      --shadow: 0 28px 64px rgba(0, 0, 0, 0.44);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1020px;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, rgba(143, 183, 217, 0.18), transparent 34%),
+        radial-gradient(circle at 85% 18%, rgba(210, 164, 100, 0.12), transparent 18%),
+        linear-gradient(180deg, #0c1521 0%, var(--bg) 38%, var(--bg-deep) 100%);
+      color: var(--text);
+      font-family: "Space Grotesk", "Avenir Next", sans-serif;
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(143, 183, 217, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(143, 183, 217, 0.045) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: radial-gradient(circle at center, black 45%, transparent 92%);
+      pointer-events: none;
+      opacity: 0.65;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+    }
+
+    .mono {
+      font-family: "IBM Plex Mono", "Menlo", monospace;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(5, 10, 16, 0.76);
+      border-bottom: 1px solid rgba(163, 189, 214, 0.08);
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 72px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-name {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-name span {
+      color: var(--accent);
+    }
+
+    .brand-note {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .nav-back {
+      color: var(--text-soft);
+      border: 1px solid rgba(163, 189, 214, 0.14);
+      background: rgba(16, 28, 41, 0.52);
+    }
+
+    .nav-store {
+      color: #081019;
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+      box-shadow: 0 10px 32px rgba(143, 183, 217, 0.24);
+    }
+
+    .hero {
+      padding: 68px 0 34px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(143, 183, 217, 0.18);
+      background: rgba(143, 183, 217, 0.08);
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 20px 0 12px;
+      font-size: clamp(2.8rem, 6vw, 4.9rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 1.05rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .meta-pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(16, 28, 41, 0.72);
+      border: 1px solid rgba(163, 189, 214, 0.12);
+      color: var(--text-soft);
+      font-size: 0.86rem;
+    }
+
+    .policy-shell {
+      padding: 10px 0 80px;
+    }
+
+    .summary-card,
+    .policy-section {
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(163, 189, 214, 0.12);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .summary-card {
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .summary-card h2,
+    .policy-section h2 {
+      margin-top: 0;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .summary-card ul {
+      margin: 18px 0 0;
+      padding-left: 20px;
+      color: var(--text-soft);
+    }
+
+    .summary-card li + li {
+      margin-top: 10px;
+    }
+
+    .policy-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .policy-section {
+      padding: 28px;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .policy-section p,
+    .policy-section li {
+      color: var(--text-soft);
+    }
+
+    .policy-section ul {
+      margin: 16px 0 0;
+      padding-left: 20px;
+    }
+
+    .policy-section li + li {
+      margin-top: 9px;
+    }
+
+    .note {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      background: rgba(16, 28, 41, 0.76);
+      border: 1px solid rgba(163, 189, 214, 0.1);
+      color: var(--text-soft);
+    }
+
+    .link-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .link-card {
+      display: block;
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      background: rgba(16, 28, 41, 0.76);
+      border: 1px solid rgba(163, 189, 214, 0.1);
+      text-decoration: none;
+    }
+
+    .link-card strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--accent);
+    }
+
+    .link-card span {
+      color: var(--text-soft);
+    }
+
+    .site-footer {
+      padding: 0 0 38px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .site-footer a {
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    @media (max-width: 760px) {
+      .site-nav {
+        padding: 12px 0;
+      }
+
+      .nav-actions {
+        width: 100%;
+      }
+
+      .nav-actions a {
+        width: 100%;
+      }
+
+      .summary-card,
+      .policy-section {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-nav">
+      <a class="brand" href="index.html">
+        <span class="brand-name mono"><span>Pixel</span> Battlefield</span>
+        <span class="brand-note mono">Privacy policy</span>
+      </a>
+      <div class="nav-actions">
+        <a class="nav-back" href="index.html">Back to intro</a>
+        <a
+          class="nav-store"
+          href="https://apps.apple.com/us/app/pixel-warzone-grid-war-game/id1512896172"
+          target="_blank"
+          rel="noreferrer"
+        >
+          App Store
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow mono">Policy for the iOS app</div>
+        <h1>Privacy Policy</h1>
+        <p>
+          This Privacy Policy explains how Pixel Battlefield handles information when you use the
+          iPhone app published by Dongjie Zhang. It is written to match the app's current feature
+          set, including Game Center support, nearby offline matches, Firebase Analytics, and
+          Google Mobile Ads.
+        </p>
+        <div class="hero-meta">
+          <span class="meta-pill mono">Last updated: April 13, 2026</span>
+          <span class="meta-pill mono">Applies to the iOS app</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="policy-shell">
+      <div class="container">
+        <div class="summary-card">
+          <h2>Summary</h2>
+          <ul>
+            <li>The app does not ask you to create a Pixel Battlefield account.</li>
+            <li>
+              Board layouts, onboarding flags, and some gameplay-related settings are stored on your
+              device.
+            </li>
+            <li>
+              If you use Game Center features, Apple processes Game Center data such as scores,
+              multiplayer activity, nickname, avatar, and related sharing settings.
+            </li>
+            <li>
+              The app initializes Google Firebase Analytics and Google Mobile Ads SDKs, so Google
+              may process app-usage, device, identifier, and advertising-related data according to
+              your configuration, region, and device settings.
+            </li>
+            <li>
+              Nearby offline play uses Bluetooth or local Wi-Fi to discover and connect another
+              player on the same local network.
+            </li>
+          </ul>
+        </div>
+
+        <div class="policy-stack">
+          <section class="policy-section">
+            <div class="section-kicker mono">1. Information stored on your device</div>
+            <h2>Local gameplay data</h2>
+            <p>
+              Pixel Battlefield stores certain data locally on your device so the game can function
+              without making you repeat setup steps every time you open it.
+            </p>
+            <ul>
+              <li>Your saved board layout and unit positions.</li>
+              <li>Board-orientation and head-position data used to restore your setup.</li>
+              <li>Onboarding and tutorial flags, such as whether welcome flows were shown.</li>
+              <li>Some locally cached ranking or setup state used to improve the in-app experience.</li>
+            </ul>
+            <div class="note">
+              This local storage is based on the app's current implementation and is kept on the
+              device unless you delete the app data, change the settings yourself, or uninstall the
+              app.
+            </div>
+          </section>
+
+          <section class="policy-section">
+            <div class="section-kicker mono">2. Apple services</div>
+            <h2>Game Center, leaderboards, and multiplayer</h2>
+            <p>
+              Pixel Battlefield supports Apple Game Center for leaderboards and online matchmaking.
+              When you use those features while signed in to Game Center, Apple, not us, handles the
+              Game Center account relationship and the associated personal data processing.
+            </p>
+            <ul>
+              <li>Scores, achievements, multiplayer activity, and leaderboard participation.</li>
+              <li>Your Game Center nickname, avatar, and activity-sharing choices.</li>
+              <li>Friends, recently played players, and related Game Center social features if enabled.</li>
+            </ul>
+            <p>
+              If you play a nearby-capable match with Game Center's nearby-player support enabled,
+              Apple says nearby players on the same Wi-Fi network, local area network, or within
+              Bluetooth range may be able to see your nickname and avatar.
+            </p>
+            <div class="note">
+              We do not control Apple's Game Center processing rules. For those features, Apple's
+              own privacy terms apply in addition to this policy.
+            </div>
+          </section>
+
+          <section class="policy-section">
+            <div class="section-kicker mono">3. Google services</div>
+            <h2>Analytics and advertising</h2>
+            <p>
+              The app currently initializes Firebase and Google Mobile Ads. Based on the current app
+              code and Google's official documentation, these SDKs may process information such as:
+            </p>
+            <ul>
+              <li>App opens, sessions, updates, and other app-usage metrics.</li>
+              <li>Device model, operating system, approximate geography, and app-instance identifiers.</li>
+              <li>Advertising-related data, ad requests, ad interactions, and performance signals.</li>
+              <li>
+                Device identifiers made available by the platform or SDK configuration, subject to
+                availability and your device settings.
+              </li>
+            </ul>
+            <p>
+              The exact data Google processes can vary based on SDK defaults, account settings,
+              regional compliance requirements, and future app updates.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <div class="section-kicker mono">4. Nearby offline play</div>
+            <h2>Local network and Bluetooth</h2>
+            <p>
+              The app requests local network access for nearby offline matches. This feature is used
+              to discover and connect another player over Bluetooth or local Wi-Fi.
+            </p>
+            <ul>
+              <li>Nearby mode is intended only for local discovery and local match connection.</li>
+              <li>The app advertises a local Bonjour service for nearby connection setup.</li>
+              <li>
+                If you do not want to use nearby offline play, you can decline local network access
+                or stop using that mode.
+              </li>
+            </ul>
+          </section>
+
+          <section class="policy-section">
+            <div class="section-kicker mono">5. What we do not ask for directly</div>
+            <h2>No in-app account registration</h2>
+            <p>
+              The app does not currently ask you to create a dedicated Pixel Battlefield username,
+              password, email account, or profile hosted by us. Any account-level identity used for
+              multiplayer and rankings is provided through Apple Game Center.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <div class="section-kicker mono">6. Retention</div>
+            <h2>How long information is kept</h2>
+            <ul>
+              <li>
+                Local gameplay data remains on your device until you overwrite it, clear the app,
+                reset the device data, or uninstall the app.
+              </li>
+              <li>
+                Apple Game Center data is retained by Apple under Apple's own privacy and retention
+                practices.
+              </li>
+              <li>
+                Google Analytics and Google Mobile Ads data is retained by Google according to the
+                account and product policies that apply to those services.
+              </li>
+            </ul>
+          </section>
+
+          <section class="policy-section">
+            <div class="section-kicker mono">7. Your choices</div>
+            <h2>Controls available to you</h2>
+            <ul>
+              <li>Do not sign in to Game Center if you do not want to use those features.</li>
+              <li>
+                Change Game Center settings such as Activity Sharing, Nearby Players, Share Friends
+                List, Help Friends Find You, and Reset Identifier in iOS Settings.
+              </li>
+              <li>
+                Manage advertising and privacy choices through your iPhone privacy settings and any
+                consent or privacy notices provided by Apple or Google where applicable.
+              </li>
+              <li>Delete the app if you want to remove locally stored gameplay data from the device.</li>
+            </ul>
+          </section>
+
+          <section class="policy-section">
+            <div class="section-kicker mono">8. Children</div>
+            <h2>Children's use</h2>
+            <p>
+              The app does not knowingly ask children to submit personal information directly to us.
+              If a child uses Game Center features, Apple provides parental-control options through
+              Screen Time and Game Center restrictions.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <div class="section-kicker mono">9. Changes</div>
+            <h2>Policy updates</h2>
+            <p>
+              We may update this Privacy Policy when app features, SDKs, or legal requirements
+              change. When that happens, we will update the "Last updated" date on this page.
+            </p>
+          </section>
+
+          <section class="policy-section">
+            <div class="section-kicker mono">10. Contact</div>
+            <h2>Questions or requests</h2>
+            <p>
+              If you have questions about this policy or the app's data handling, contact:
+            </p>
+            <div class="link-list">
+              <a class="link-card" href="mailto:crusade.ray@gmail.com">
+                <strong class="mono">Email</strong>
+                <span>crusade.ray@gmail.com</span>
+              </a>
+            </div>
+          </section>
+
+          <section class="policy-section">
+            <div class="section-kicker mono">Reference links</div>
+            <h2>Third-party privacy resources</h2>
+            <p>
+              For the third-party services mentioned above, you can review the following official
+              pages:
+            </p>
+            <div class="link-list">
+              <a
+                class="link-card"
+                href="https://www.apple.com/au/legal/privacy/data/en/game-center/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <strong class="mono">Apple Game Center &amp; Privacy</strong>
+                <span>Apple's description of Game Center data use, nearby players, and sharing settings.</span>
+              </a>
+              <a
+                class="link-card"
+                href="https://support.google.com/firebase/answer/6318039?hl=en"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <strong class="mono">Firebase data collection</strong>
+                <span>Google's overview of default Google Analytics for Firebase data collection.</span>
+              </a>
+              <a
+                class="link-card"
+                href="https://developers.google.com/admob/ios/privacy/data-disclosure"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <strong class="mono">Google Mobile Ads data disclosure</strong>
+                <span>Google's guidance on App Store data disclosure requirements for the Mobile Ads SDK.</span>
+              </a>
+              <a
+                class="link-card"
+                href="https://developers.google.com/admob/ios/privacy"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <strong class="mono">Google privacy and messaging</strong>
+                <span>Google's guidance for consent and privacy-choice flows on iOS apps.</span>
+              </a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      © 2026 Dongjie Zhang · <a href="index.html">Intro page</a> ·
+      <a href="mailto:crusade.ray@gmail.com">Contact</a>
+    </div>
+  </footer>
+</body>
+</html>

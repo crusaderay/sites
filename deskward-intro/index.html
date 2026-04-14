@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deskward - Work Hours Tracker</title>
+    <meta name="description" content="Deskward is a work hours tracker that separates real work time from breaks across office and WFH modes.">
+    <meta name="keywords" content="Deskward, work hours tracker, WFH, office, live activity, screensaver, overtime">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Monaco', 'Menlo', 'Consolas', monospace;
+            line-height: 1.6;
+            color: #c8d6e5;
+            background-color: #0a0e17;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .header,
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(92, 172, 238, 0.15);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .nav-brand h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .nav-brand h1 a {
+            color: #5cacee;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(92, 172, 238, 0.3);
+        }
+
+        .nav-brand h1 a:hover {
+            color: #7ec8ff;
+            text-shadow: 0 0 20px rgba(92, 172, 238, 0.6);
+        }
+
+        .tagline {
+            font-size: 0.7rem;
+            color: #5cacee;
+            margin: 0;
+            font-weight: 400;
+            opacity: 0.6;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #8892a4;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link:hover {
+            color: #5cacee;
+            border-color: rgba(92, 172, 238, 0.2);
+            background: rgba(92, 172, 238, 0.05);
+        }
+
+        .nav-link::before {
+            content: '>';
+            margin-right: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: #5cacee;
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            opacity: 1;
+        }
+
+        .nav-link.active {
+            color: #5cacee;
+            border-color: rgba(92, 172, 238, 0.3);
+            background: rgba(92, 172, 238, 0.08);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 22px;
+            height: 2px;
+            background: #5cacee;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 1px;
+        }
+
+        .project-page {
+            padding-top: 90px;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-hero {
+            text-align: center;
+            padding: 4rem 0 3rem;
+            position: relative;
+        }
+
+        .project-hero::before {
+            content: '// project details';
+            display: block;
+            font-size: 0.75rem;
+            color: #5cacee;
+            opacity: 0.4;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .project-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #e8f0fe;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(92, 172, 238, 0.3);
+        }
+
+        .project-hero h1::before {
+            content: '$ ';
+            color: #5cacee;
+        }
+
+        .project-hero .hero-subtitle {
+            font-size: 1.15rem;
+            color: #8892a4;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .project-section {
+            padding: 3rem 0;
+            position: relative;
+        }
+
+        .project-section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #e8f0fe;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(92, 172, 238, 0.15);
+            position: relative;
+        }
+
+        .project-section-title::before {
+            content: '// ';
+            color: #5cacee;
+            opacity: 0.5;
+        }
+
+        .project-section > .container > p,
+        .project-section > .container > div > p {
+            color: #8892a4;
+            line-height: 1.8;
+            font-size: 0.95rem;
+            max-width: 800px;
+            margin: 0 auto 1rem;
+        }
+
+        .project-section-alt {
+            background: rgba(92, 172, 238, 0.02);
+            border-top: 1px solid rgba(92, 172, 238, 0.05);
+            border-bottom: 1px solid rgba(92, 172, 238, 0.05);
+        }
+
+        .project-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .project-feature-card {
+            background: rgba(15, 20, 35, 0.8);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border: 1px solid rgba(92, 172, 238, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(92, 172, 238, 0.3), transparent);
+        }
+
+        .project-feature-card:hover {
+            border-color: rgba(92, 172, 238, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-feature-card .feature-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-feature-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #e8f0fe;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-feature-card h3::before {
+            content: '> ';
+            color: #5cacee;
+            opacity: 0.5;
+            font-size: 0.85em;
+        }
+
+        .project-feature-card p {
+            color: #6b7a8d;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        .project-download {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .project-download-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .project-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(92, 172, 238, 0.1);
+            color: #5cacee;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(92, 172, 238, 0.3);
+            font-family: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .project-btn:hover {
+            background: rgba(92, 172, 238, 0.2);
+            box-shadow: 0 0 20px rgba(92, 172, 238, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .project-btn-primary {
+            background: rgba(92, 172, 238, 0.15);
+            border-color: rgba(92, 172, 238, 0.5);
+        }
+
+        .project-btn-primary:hover {
+            background: rgba(92, 172, 238, 0.25);
+            box-shadow: 0 0 25px rgba(92, 172, 238, 0.3);
+        }
+
+        .project-contact {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .project-contact a {
+            color: #5cacee;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .project-contact a:hover {
+            text-shadow: 0 0 10px rgba(92, 172, 238, 0.3);
+        }
+
+        .footer {
+            background: rgba(5, 8, 15, 0.9);
+            color: #6b7a8d;
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(92, 172, 238, 0.08);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: #6b7a8d;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .social-links a:hover {
+            color: #5cacee;
+            border-color: rgba(92, 172, 238, 0.2);
+            background: rgba(92, 172, 238, 0.05);
+            text-shadow: 0 0 10px rgba(92, 172, 238, 0.3);
+        }
+
+        .footer p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.8rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: rgba(10, 14, 23, 0.98);
+                backdrop-filter: blur(20px);
+                width: 100%;
+                text-align: left;
+                transition: 0.3s;
+                padding: 1rem 20px;
+                border-bottom: 1px solid rgba(92, 172, 238, 0.1);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+
+            .project-hero .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .project-features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container,
+            .container {
+                padding: 0 15px;
+            }
+
+            .project-hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .project-section-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <h1><a href="index.html"><span class="brand-prefix">$&nbsp;</span>Deskward</a></h1>
+                    <p class="tagline">Work Hours Tracker for Office and WFH</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#download" class="nav-link">Download</a></li>
+                    <li><a href="privacy-policy.html" class="nav-link">Privacy</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="project-page">
+        <section class="project-hero">
+            <div class="container">
+                <h1>Deskward</h1>
+                <p class="hero-subtitle">Track the hours you actually worked</p>
+            </div>
+        </section>
+
+        <section class="project-section" id="about">
+            <div class="container">
+                <h2 class="project-section-title">About Deskward</h2>
+                <p>Deskward is a work hours tracker built for people who want to know how much time they actually spent working, not just how long they stayed at a desk. It separates active work time from breaks, supports both office and WFH modes, and keeps your timer visible through an always-on charging screensaver and Live Activity on the Lock Screen.</p>
+            </div>
+        </section>
+
+        <section class="project-section project-section-alt" id="features">
+            <div class="container">
+                <h2 class="project-section-title">Key Features</h2>
+                <div class="project-features-grid">
+                    <div class="project-feature-card">
+                        <div class="feature-icon">⏱️</div>
+                        <h3>Real Work Time Tracking</h3>
+                        <p>Track the minutes you were actually working and keep breaks separate, so your total reflects real focus time instead of vague attendance.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🏢</div>
+                        <h3>Office and WFH Modes</h3>
+                        <p>Switch between working at the office and working from home while keeping one consistent record of your day.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📺</div>
+                        <h3>Screensaver and Live Activity</h3>
+                        <p>When your phone is charging, Deskward can stay on as an OLED-friendly screensaver. Unplug it and your timer continues on the Lock Screen.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">✅</div>
+                        <h3>To-Dos That Match Your Work Mode</h3>
+                        <p>Create daily and recurring tasks, then show the right to-dos for office days, WFH days, or every workday.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📝</div>
+                        <h3>Edit History and Recover Records</h3>
+                        <p>Review past sessions, fix missed pauses, and restore deleted records from the trash when you need to clean up your timeline.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Overtime and Weekly Insights</h3>
+                        <p>See total hours, pause time, office vs WFH distribution, and overtime based on your own schedule templates instead of a generic nine-to-five.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section project-download" id="download">
+            <div class="container">
+                <h2 class="project-section-title">Download Deskward</h2>
+                <p>Ready to see how long you actually worked today? Start tracking your real work hours with Deskward.</p>
+                <div class="project-download-buttons">
+                    <a href="https://apps.apple.com/app/id6744786419" class="project-btn project-btn-primary"><i class="fab fa-apple"></i> App Store</a>
+                    <a href="privacy-policy.html" class="project-btn"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section project-contact" id="contact">
+            <div class="container">
+                <h2 class="project-section-title">Contact Us</h2>
+                <p>We would love to hear from you. For support, feedback, or suggestions about Deskward, please visit the App Store listing and the privacy page for the latest support information.</p>
+                <p>App Store: <a href="https://apps.apple.com/app/id6744786419">Deskward</a></p>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="https://apps.apple.com/app/id6744786419" title="App Store"><i class="fab fa-apple"></i></a>
+                    <a href="privacy-policy.html" title="Privacy Policy"><i class="fas fa-shield-alt"></i></a>
+                    <a href="#download" title="Download"><i class="fas fa-clock"></i></a>
+                </div>
+                <p>&copy; 2026 Deskward. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger?.classList.remove('active');
+                navMenu?.classList.remove('active');
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const header = document.querySelector('.header');
+        let lastScrollTop = 0;
+
+        window.addEventListener('scroll', () => {
+            if (!header) return;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > 100) {
+                header.style.background = 'rgba(10, 14, 23, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(92, 172, 238, 0.1)';
+                header.style.borderBottom = '1px solid rgba(92, 172, 238, 0.15)';
+            } else {
+                header.style.background = 'rgba(10, 14, 23, 0.95)';
+                header.style.boxShadow = 'none';
+                header.style.borderBottom = '1px solid rgba(92, 172, 238, 0.08)';
+            }
+
+            if (scrollTop > lastScrollTop && scrollTop > 200) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+
+            lastScrollTop = scrollTop;
+        });
+
+        class ParticleNetwork {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.particles = [];
+                this.mouse = { x: null, y: null, radius: 150 };
+                this.particleCount = this.getParticleCount();
+                this.maxDistance = 120;
+
+                this.resize();
+                this.init();
+                this.bindEvents();
+                this.animate();
+            }
+
+            getParticleCount() {
+                const width = window.innerWidth;
+                if (width < 768) return 40;
+                if (width < 1200) return 70;
+                return 100;
+            }
+
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+
+            init() {
+                this.particles = [];
+                this.particleCount = this.getParticleCount();
+                for (let index = 0; index < this.particleCount; index += 1) {
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        radius: Math.random() * 1.5 + 0.5,
+                        opacity: Math.random() * 0.5 + 0.2
+                    });
+                }
+            }
+
+            bindEvents() {
+                window.addEventListener('resize', () => {
+                    this.resize();
+                    this.init();
+                });
+
+                window.addEventListener('mousemove', event => {
+                    this.mouse.x = event.clientX;
+                    this.mouse.y = event.clientY;
+                });
+
+                window.addEventListener('mouseout', () => {
+                    this.mouse.x = null;
+                    this.mouse.y = null;
+                });
+            }
+
+            drawParticle(particle) {
+                this.ctx.beginPath();
+                this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                this.ctx.fillStyle = `rgba(92, 172, 238, ${particle.opacity})`;
+                this.ctx.fill();
+            }
+
+            drawConnections() {
+                for (let i = 0; i < this.particles.length; i += 1) {
+                    for (let j = i + 1; j < this.particles.length; j += 1) {
+                        const dx = this.particles[i].x - this.particles[j].x;
+                        const dy = this.particles[i].y - this.particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < this.maxDistance) {
+                            const opacity = (1 - distance / this.maxDistance) * 0.15;
+                            this.ctx.beginPath();
+                            this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+                            this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+                            this.ctx.strokeStyle = `rgba(92, 172, 238, ${opacity})`;
+                            this.ctx.lineWidth = 0.5;
+                            this.ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            drawMouseConnections() {
+                if (this.mouse.x === null || this.mouse.y === null) return;
+
+                for (let i = 0; i < this.particles.length; i += 1) {
+                    const dx = this.particles[i].x - this.mouse.x;
+                    const dy = this.particles[i].y - this.mouse.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < this.mouse.radius) {
+                        const opacity = (1 - distance / this.mouse.radius) * 0.3;
+                        this.ctx.beginPath();
+                        this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+                        this.ctx.lineTo(this.mouse.x, this.mouse.y);
+                        this.ctx.strokeStyle = `rgba(92, 172, 238, ${opacity})`;
+                        this.ctx.lineWidth = 0.8;
+                        this.ctx.stroke();
+                    }
+                }
+            }
+
+            update() {
+                this.particles.forEach(particle => {
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+
+                    if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
+                    if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
+
+                    if (this.mouse.x !== null && this.mouse.y !== null) {
+                        const dx = particle.x - this.mouse.x;
+                        const dy = particle.y - this.mouse.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < this.mouse.radius) {
+                            const force = (this.mouse.radius - distance) / this.mouse.radius * 0.01;
+                            particle.vx += dx * force;
+                            particle.vy += dy * force;
+                        }
+                    }
+
+                    const speed = Math.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
+                    if (speed > 1.5) {
+                        particle.vx *= 0.98;
+                        particle.vy *= 0.98;
+                    }
+                });
+            }
+
+            animate() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                this.update();
+                this.drawConnections();
+                this.drawMouseConnections();
+                this.particles.forEach(particle => this.drawParticle(particle));
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        const particlesCanvas = document.getElementById('particles-canvas');
+        if (particlesCanvas) {
+            new ParticleNetwork(particlesCanvas);
+        }
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.project-feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Memo Sticky</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <meta name="description" content="Privacy policy for Memo Sticky, covering local note storage, permissions, analytics, and advertising services.">
+    <link rel="canonical" href="https://ray-zhang.xyz/memo-sticky-intro/privacy-policy.html">
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LR9DDCTCJ"></script>
     <script>
@@ -15,230 +19,204 @@
 
       gtag('config', 'G-9LR9DDCTCJ');
     </script>
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        .header {
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 20px 0;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 3em;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-        .container {
-            flex: 1;
-            width: 90%;
-            max-width: 960px;
-            margin: 30px auto;
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            color: #333;
-        }
-        h1 {
-            color: #5cacee;
-            font-size: 2.5em;
-            margin-top: 0;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 10px;
-        }
-        h2 {
-            color: #5cacee;
-            font-size: 2em;
-            margin-top: 30px;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 10px;
-        }
-        h3 {
-            color: #4a9bd1;
-            font-size: 1.5em;
-            margin-top: 20px;
-        }
-        p {
-            margin-bottom: 1em;
-        }
-        ul {
-            margin-bottom: 1em;
-            padding-left: 20px;
-        }
-        li {
-            margin-bottom: 0.5em;
-        }
-        a {
-            color: #5cacee;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            font-size: 0.9em;
-            color: #fff;
-            background-color: rgba(0, 0, 0, 0.2);
-        }
-        .footer a {
-            color: #fff;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Memo Sticky</h1>
-        <p>Privacy Policy</p>
+    <canvas id="particles-canvas"></canvas>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <h1><a href="../index.html"><span class="brand-prefix">$&nbsp;</span>Ray Zhang</a></h1>
+                    <p class="tagline">Network Engineer, Yinzer, and Houston Rockets</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../index.html#blog" class="nav-link">Blog</a></li>
+                    <li><a href="privacy-policy.html" class="nav-link active">Privacy</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="project-page">
+        <section class="project-hero">
+            <div class="container">
+                <h1>Memo Sticky</h1>
+                <p class="hero-subtitle">Privacy Policy</p>
+                <p class="hero-subtitle" style="font-size: 1rem; color: #8892a4; margin-top: 1rem;">Last updated: December 2024</p>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">Privacy Overview</h2>
+                <p>This privacy policy describes how Memo Sticky ("Application", "we", "our") handles information when you use the app. Memo Sticky is designed around local note storage and device-side protection, with limited third-party analytics and advertising services used to support the product.</p>
+            </div>
+        </section>
+
+        <section class="project-section project-section-alt">
+            <div class="container">
+                <h2 class="project-section-title">At a Glance</h2>
+                <div class="project-features-grid">
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📝</div>
+                        <h3>No Direct Note Collection</h3>
+                        <p>We do not directly collect note content, scanned documents, voice recordings, transcription text, or other personal note data from you.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Stored on Your Device</h3>
+                        <p>Notes and preferences are stored locally on your device, with support for secure storage and biometric protection.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🔐</div>
+                        <h3>Permission-Based Features</h3>
+                        <p>Camera, microphone, speech recognition, and Face ID or Touch ID are only used after you grant permission for those features.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">Information We Do Not Collect</h2>
+                <p>Memo Sticky is designed with privacy in mind. We do not collect, store, or process the following data directly:</p>
+                <ul class="project-feature-list">
+                    <li>Your IP address or device identifiers</li>
+                    <li>Personal contact information</li>
+                    <li>Note content or text data</li>
+                    <li>Voice recordings or transcription content</li>
+                    <li>Scanned documents or image content</li>
+                    <li>Any other personal identification information</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="project-section project-section-alt">
+            <div class="container">
+                <h2 class="project-section-title">Third-Party Services</h2>
+                <p>We use third-party services to provide app functionality and improvements. These services may process limited anonymous data.</p>
+                <div class="project-features-grid">
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3>Firebase Analytics</h3>
+                        <p><strong>Purpose:</strong> Crash reporting, performance monitoring, and usage analytics.</p>
+                        <p><strong>Data:</strong> Anonymous app usage patterns, crash reports, and device performance metrics.</p>
+                        <p><strong>Retention:</strong> Up to 26 months according to Google policy.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📣</div>
+                        <h3>Google Mobile Ads</h3>
+                        <p><strong>Purpose:</strong> Advertising display and ad-effectiveness measurement.</p>
+                        <p><strong>Data:</strong> Anonymous advertising identifiers and ad interaction data.</p>
+                        <p><strong>Retention:</strong> Managed according to Google's advertising policies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">Storage and Security</h2>
+                <div class="project-features-grid">
+                    <div class="project-feature-card">
+                        <div class="feature-icon">💾</div>
+                        <h3>Local Data Storage</h3>
+                        <p>All note data and user preferences are stored locally on your device using secure operating-system storage mechanisms.</p>
+                        <p>We use encrypted local storage, secure keychain or keystore integration, no cloud sync or remote backup, and optional Face ID or Touch ID protection for important notes.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">⏳</div>
+                        <h3>Retention</h3>
+                        <p><strong>Local data:</strong> Retained until you delete notes or uninstall the app.</p>
+                        <p><strong>Firebase data:</strong> Automatically deleted after 26 months.</p>
+                        <p><strong>Ad data:</strong> Managed according to Google's retention policies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section project-section-alt">
+            <div class="container">
+                <h2 class="project-section-title">Permissions and Controls</h2>
+                <div class="project-features-grid">
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🎤</div>
+                        <h3>Device Permissions</h3>
+                        <p>Camera permission supports document scanning, microphone and speech recognition support voice-to-text, and Face ID or Touch ID protects note access.</p>
+                        <p>All permissions are used only after your explicit authorization and solely for the related feature.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🛠️</div>
+                        <h3>Your Rights and Choices</h3>
+                        <p>You can view, edit, or delete saved notes, clear app data through device settings, uninstall the app to remove local data, and manage personalized ads through device settings.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">Additional Notes</h2>
+                <div class="project-features-grid">
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🌍</div>
+                        <h3>International Transfer</h3>
+                        <p>Firebase and Google Ads may transfer anonymous data to servers in various countries, including the United States, under Google's privacy and contractual safeguards.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">👶</div>
+                        <h3>Children's Privacy</h3>
+                        <p>Memo Sticky is not intended for children under 13. If you believe a child has provided personal information, please contact us so we can take appropriate steps.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3>External Services</h3>
+                        <p>Third-party websites or services linked from the app have their own privacy practices, which should be reviewed separately.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">⚖️</div>
+                        <h3>Legal Compliance and Updates</h3>
+                        <p>This policy is intended to align with GDPR, CCPA, COPPA, and the Personal Information Protection Law of the People's Republic of China. We may revise it as practices or laws change.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section project-contact">
+            <div class="container">
+                <h2 class="project-section-title">Contact Us</h2>
+                <p>If you have questions, concerns, or requests regarding this privacy policy or our data processing practices, please contact us. We strive to respond to all inquiries within 30 days.</p>
+                <p>Email: <a href="mailto:crusade.ray@gmail.com">crusade.ray@gmail.com</a></p>
+                <div class="project-download-buttons">
+                    <a href="https://apps.apple.com/us/app/memo-sticky/id1508032147" class="project-btn project-btn-primary"><i class="fab fa-apple"></i> App Store</a>
+                    <a href="index.html" class="project-btn"><i class="fas fa-arrow-left"></i> Back to Memo Sticky</a>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <div class="container">
-        <h1>Memo Sticky Privacy Policy</h1>
-        <p><em>Last Updated: December 2024</em></p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="mailto:crusade.ray@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/crusaderay" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/crusaderay" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p>&copy; 2024 Ray Zhang. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-        <p>This privacy policy describes how Memo Sticky ("Application", "we", "our") handles information when you use our mobile application Memo Sticky. We are committed to protecting your privacy and being transparent about our data processing practices.</p>
-
-        <h2>1. Information We Do Not Collect</h2>
-        <p>Memo Sticky is designed with your privacy in mind. We do not collect, store, or process any personal user data, including but not limited to:</p>
-        <ul>
-            <li>Your IP address or device identifiers</li>
-            <li>Personal contact information</li>
-            <li>Note content or text data</li>
-            <li>Voice recordings or transcription content</li>
-            <li>Scanned documents or image content</li>
-            <li>Any other personal identification information</li>
-        </ul>
-
-        <h2>2. Information Collected by Third-Party Services</h2>
-        <p>While we do not directly collect personal data, we use third-party services to provide app functionality and improvements. These services may collect limited anonymous data:</p>
-        
-        <h3>2.1 Firebase Analytics</h3>
-        <ul>
-            <li><strong>Purpose:</strong> Crash reporting, performance monitoring, and usage analytics</li>
-            <li><strong>Data Collected:</strong> Anonymous app usage patterns, crash reports, device performance metrics</li>
-            <li><strong>Retention Period:</strong> Up to 26 months according to Google policy</li>
-            <li><strong>Legal Basis:</strong> Legitimate interest for app improvement and stability</li>
-        </ul>
-        
-        <h3>2.2 Google Mobile Ads</h3>
-        <ul>
-            <li><strong>Purpose:</strong> Display advertisements and measure ad effectiveness</li>
-            <li><strong>Data Collected:</strong> Anonymous advertising identifiers, ad interaction data</li>
-            <li><strong>Retention Period:</strong> According to Google advertising policy</li>
-            <li><strong>Legal Basis:</strong> Legitimate interest for app monetization</li>
-        </ul>
-
-        <h2>3. Data Storage and Security</h2>
-        <h3>3.1 Local Data Storage</h3>
-        <p>All note data (note content, user preferences) is stored exclusively on your local device using secure storage mechanisms provided by the operating system. We implement the following security measures:</p>
-        <ul>
-            <li>Encrypted local storage for sensitive note data</li>
-            <li>Secure keychain/keystore integration for data management</li>
-            <li>No cloud sync or remote backup of note data</li>
-            <li>Face ID/Touch ID protection for important notes</li>
-        </ul>
-        
-        <h3>3.2 Data Retention</h3>
-        <ul>
-            <li><strong>Local Data:</strong> Retained until you manually delete notes or uninstall the app</li>
-            <li><strong>Firebase Data:</strong> Automatically deleted after 26 months</li>
-            <li><strong>Ad Data:</strong> Managed according to Google retention policies</li>
-        </ul>
-
-        <h2>4. International Data Transfer</h2>
-        <p>Third-party services (Firebase and Google Ads) may transfer anonymous data to servers located in various countries (including the United States). These transfers are governed by:</p>
-        <ul>
-            <li>Google's Privacy Shield certification and Standard Contractual Clauses</li>
-            <li>Adequate data protection measures required by applicable law</li>
-            <li>Google's global privacy and security standards</li>
-        </ul>
-
-        <h2>5. Your Rights and Choices</h2>
-        <h3>5.1 Local Data Management</h3>
-        <p>You have complete control over your local data:</p>
-        <ul>
-            <li>View, edit, or delete any saved notes within the app</li>
-            <li>Clear all app data through device settings</li>
-            <li>Uninstall the app to delete all local data</li>
-            <li>Control note access using Face ID/Touch ID</li>
-        </ul>
-        
-        <h3>5.2 Third-Party Data Control</h3>
-        <ul>
-            <li><strong>Advertising:</strong> Opt out of personalized ads through device advertising settings</li>
-            <li><strong>Analytics:</strong> Disable analytics through Firebase settings (if available in future updates)</li>
-            <li><strong>Ad ID Reset:</strong> Reset your advertising identifier in device privacy settings</li>
-        </ul>
-
-        <h2>6. Children's Privacy</h2>
-        <p>Memo Sticky is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately and we will take steps to delete such information.</p>
-
-        <h2>7. Device Permissions</h2>
-        <p>Our app requires the following device permissions to provide core functionality:</p>
-        <ul>
-            <li><strong>Camera Permission:</strong> For document scanning and image-to-text functionality</li>
-            <li><strong>Microphone Permission:</strong> For voice-to-text functionality</li>
-            <li><strong>Face ID/Touch ID:</strong> For secure note access protection</li>
-            <li><strong>Speech Recognition:</strong> For converting voice to text</li>
-        </ul>
-        <p>All permissions are only used after your explicit authorization and solely for providing the corresponding functionality.</p>
-
-        <h2>8. Third-Party Links and Services</h2>
-        <p>Our app may contain links to third-party websites or services. We are not responsible for the privacy practices of these external sites. We encourage you to review the privacy policies of any third-party services accessed through our app.</p>
-
-        <h2>9. Legal Compliance</h2>
-        <p>This privacy policy complies with applicable privacy laws, including:</p>
-        <ul>
-            <li>General Data Protection Regulation (GDPR) for EU users</li>
-            <li>California Consumer Privacy Act (CCPA) for California residents</li>
-            <li>Children's Online Privacy Protection Act (COPPA)</li>
-            <li>Personal Information Protection Law of the People's Republic of China</li>
-        </ul>
-
-        <h2>10. Privacy Policy Changes</h2>
-        <p>We may periodically update this privacy policy to reflect changes in our practices or applicable law. When we make significant changes, we will:</p>
-        <ul>
-            <li>Update the "Last Updated" date at the top of this policy</li>
-            <li>Notify users through the app or this website</li>
-            <li>Provide a summary of significant changes</li>
-        </ul>
-        <p>Your continued use of the app after changes take effect indicates acceptance of the updated policy.</p>
-
-        <h2>11. Contact Us</h2>
-        <p>If you have any questions, concerns, or requests regarding this privacy policy or our data processing practices, please contact us:</p>
-        <ul>
-            <li><strong>Email:</strong> <a href="mailto:crusade.ray@gmail.com">crusade.ray@gmail.com</a></li>
-            <li><strong>Response Time:</strong> We strive to respond to all inquiries within 30 days</li>
-        </ul>
-        
-        <p>For EU residents: If you believe we have not adequately addressed your concerns, you have the right to file a complaint with your local data protection authority.</p>
-    </div>
-
-    <div class="footer">
-        <p>&copy; 2024 Memo Sticky. All rights reserved.</p>
-        <p><a href="index.html">Home</a> | <a href="privacy-policy.html">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-    </div>
+    <script src="../script.js"></script>
 </body>
 </html>

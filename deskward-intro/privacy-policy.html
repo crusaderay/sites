@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Deskward</title>
+    <meta name="description" content="Deskward privacy policy covering local storage, iCloud sync, analytics, and advertising services.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Monaco', 'Menlo', 'Consolas', monospace;
+            line-height: 1.6;
+            color: #c8d6e5;
+            background-color: #0a0e17;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .header,
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(92, 172, 238, 0.15);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .nav-brand h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .nav-brand h1 a {
+            color: #5cacee;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(92, 172, 238, 0.3);
+        }
+
+        .nav-brand h1 a:hover {
+            color: #7ec8ff;
+            text-shadow: 0 0 20px rgba(92, 172, 238, 0.6);
+        }
+
+        .tagline {
+            font-size: 0.7rem;
+            color: #5cacee;
+            margin: 0;
+            font-weight: 400;
+            opacity: 0.6;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #8892a4;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link:hover {
+            color: #5cacee;
+            border-color: rgba(92, 172, 238, 0.2);
+            background: rgba(92, 172, 238, 0.05);
+        }
+
+        .nav-link::before {
+            content: '>';
+            margin-right: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: #5cacee;
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            opacity: 1;
+        }
+
+        .nav-link.active {
+            color: #5cacee;
+            border-color: rgba(92, 172, 238, 0.3);
+            background: rgba(92, 172, 238, 0.08);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 22px;
+            height: 2px;
+            background: #5cacee;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 1px;
+        }
+
+        .project-page {
+            padding-top: 90px;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-hero {
+            text-align: center;
+            padding: 4rem 0 3rem;
+            position: relative;
+        }
+
+        .project-hero::before {
+            content: '// policy';
+            display: block;
+            font-size: 0.75rem;
+            color: #5cacee;
+            opacity: 0.4;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .project-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #e8f0fe;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(92, 172, 238, 0.3);
+        }
+
+        .project-hero h1::before {
+            content: '$ ';
+            color: #5cacee;
+        }
+
+        .hero-subtitle,
+        .hero-meta {
+            color: #8892a4;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+        }
+
+        .hero-meta {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .project-section {
+            padding: 3rem 0;
+            position: relative;
+        }
+
+        .project-section-alt {
+            background: rgba(92, 172, 238, 0.02);
+            border-top: 1px solid rgba(92, 172, 238, 0.05);
+            border-bottom: 1px solid rgba(92, 172, 238, 0.05);
+        }
+
+        .project-section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #e8f0fe;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(92, 172, 238, 0.15);
+            position: relative;
+        }
+
+        .project-section-title::before {
+            content: '// ';
+            color: #5cacee;
+            opacity: 0.5;
+        }
+
+        .project-section p,
+        .project-section li {
+            color: #8892a4;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .policy-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .policy-summary-card,
+        .policy-block {
+            background: rgba(15, 20, 35, 0.8);
+            border: 1px solid rgba(92, 172, 238, 0.1);
+            border-radius: 6px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .policy-summary-card::before,
+        .policy-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(92, 172, 238, 0.3), transparent);
+        }
+
+        .policy-summary-card h3,
+        .policy-block h3 {
+            color: #e8f0fe;
+            margin-bottom: 0.85rem;
+            font-size: 1rem;
+        }
+
+        .policy-summary-card h3::before,
+        .policy-block h3::before {
+            content: '> ';
+            color: #5cacee;
+            opacity: 0.6;
+        }
+
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .policy-block ul {
+            margin-top: 1rem;
+            padding-left: 1.25rem;
+        }
+
+        .policy-block li + li,
+        .policy-list li + li {
+            margin-top: 0.65rem;
+        }
+
+        .policy-list {
+            padding-left: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .policy-inline-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(92, 172, 238, 0.1);
+            color: #5cacee;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(92, 172, 238, 0.3);
+            font-family: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .project-btn:hover {
+            background: rgba(92, 172, 238, 0.2);
+            box-shadow: 0 0 20px rgba(92, 172, 238, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .project-btn-primary {
+            background: rgba(92, 172, 238, 0.15);
+            border-color: rgba(92, 172, 238, 0.5);
+        }
+
+        .project-btn-primary:hover {
+            background: rgba(92, 172, 238, 0.25);
+            box-shadow: 0 0 25px rgba(92, 172, 238, 0.3);
+        }
+
+        a {
+            color: #5cacee;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            text-shadow: 0 0 10px rgba(92, 172, 238, 0.3);
+        }
+
+        .footer {
+            background: rgba(5, 8, 15, 0.9);
+            color: #6b7a8d;
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(92, 172, 238, 0.08);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: #6b7a8d;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .social-links a:hover {
+            color: #5cacee;
+            border-color: rgba(92, 172, 238, 0.2);
+            background: rgba(92, 172, 238, 0.05);
+            text-shadow: 0 0 10px rgba(92, 172, 238, 0.3);
+        }
+
+        .footer p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: rgba(10, 14, 23, 0.98);
+                backdrop-filter: blur(20px);
+                width: 100%;
+                text-align: left;
+                transition: 0.3s;
+                padding: 1rem 20px;
+                border-bottom: 1px solid rgba(92, 172, 238, 0.1);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+
+            .policy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .policy-inline-links {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container,
+            .container {
+                padding: 0 15px;
+            }
+
+            .project-hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .project-section-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <h1><a href="index.html"><span class="brand-prefix">$&nbsp;</span>Deskward</a></h1>
+                    <p class="tagline">Work Hours Tracker for Office and WFH</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="#summary" class="nav-link">Summary</a></li>
+                    <li><a href="#details" class="nav-link">Details</a></li>
+                    <li><a href="privacy-policy.html" class="nav-link active">Privacy</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="project-page">
+        <section class="project-hero">
+            <div class="container">
+                <h1>Privacy Policy</h1>
+                <p class="hero-subtitle">Deskward is built around local-first tracking. This page explains what data stays on your device, what can sync through Apple services, and what limited information may be processed by third-party providers.</p>
+                <p class="hero-meta">Last updated: April 13, 2026</p>
+            </div>
+        </section>
+
+        <section class="project-section" id="summary">
+            <div class="container">
+                <h2 class="project-section-title">At a Glance</h2>
+                <div class="policy-summary-grid">
+                    <article class="policy-summary-card">
+                        <h3>Local-First Storage</h3>
+                        <p>Work sessions, to-dos, summaries, and preferences are primarily stored inside the app sandbox on your device.</p>
+                    </article>
+                    <article class="policy-summary-card">
+                        <h3>Optional Apple Sync</h3>
+                        <p>If iCloud sync is available and enabled, supported data can synchronize across your devices through CloudKit.</p>
+                    </article>
+                    <article class="policy-summary-card">
+                        <h3>Limited Third-Party Processing</h3>
+                        <p>Analytics and ads may rely on Firebase Analytics and Google Mobile Ads, each governed by their own policies.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section project-section-alt" id="details">
+            <div class="container">
+                <h2 class="project-section-title">Information We Process</h2>
+                <div class="policy-grid">
+                    <article class="policy-block">
+                        <h3>Information Stored by the App</h3>
+                        <p>Deskward is designed to help you track work hours and related productivity information. Depending on how you use the app, the following information may be stored on your device:</p>
+                        <ul>
+                            <li>Work session records, including start time, end time, work mode, and state changes such as working or away</li>
+                            <li>Daily to-dos and recurring task rules</li>
+                            <li>Statistics, summaries, badges, and related activity history</li>
+                            <li>Settings such as schedule templates, target hours, reminders, and display preferences</li>
+                        </ul>
+                    </article>
+                    <article class="policy-block">
+                        <h3>Third-Party Services</h3>
+                        <p>Deskward may rely on third-party services to provide analytics, advertising, and optional synchronization support. These services may process limited information according to their own policies.</p>
+                        <ul>
+                            <li><strong>Firebase Analytics:</strong> App usage analytics and product improvement</li>
+                            <li><strong>Google Mobile Ads:</strong> Ad delivery, measurement, and related identifiers permitted by the platform</li>
+                            <li><strong>Apple iCloud / CloudKit:</strong> Optional synchronization of supported data across your devices</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">Storage and Security</h2>
+                <div class="policy-grid">
+                    <article class="policy-block">
+                        <h3>Local Data Storage</h3>
+                        <p>Deskward uses local device storage as its primary data layer. Your work records, to-dos, statistics, and settings are stored within the app sandbox on your device, which helps the app continue functioning even when you are offline.</p>
+                        <ul>
+                            <li>Primary app data is stored locally on your device</li>
+                            <li>The app can continue working without a constant network connection</li>
+                            <li>We do not operate our own custom cloud server for your work session content</li>
+                        </ul>
+                    </article>
+                    <article class="policy-block">
+                        <h3>Retention and Sync</h3>
+                        <p>If iCloud synchronization is available and enabled, some app data may also be synchronized through your Apple iCloud account using CloudKit. If iCloud is unavailable, Deskward may continue in a local-only mode.</p>
+                        <ul>
+                            <li><strong>Local app data:</strong> Retained until you delete it, clear app data, or uninstall the app</li>
+                            <li><strong>iCloud data:</strong> Retained until you remove it from the app or associated iCloud storage</li>
+                            <li><strong>Analytics and ad-related data:</strong> Managed according to the applicable provider policies</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section project-section-alt">
+            <div class="container">
+                <h2 class="project-section-title">Your Rights and Choices</h2>
+                <div class="policy-grid">
+                    <article class="policy-block">
+                        <h3>In-App Controls</h3>
+                        <p>You remain in control of the work records and related information you create in Deskward. Depending on the feature, you may be able to:</p>
+                        <ul>
+                            <li>View, edit, or delete historical work sessions</li>
+                            <li>Export backups of your data</li>
+                            <li>Import backups to restore or migrate data</li>
+                            <li>Clear local data and, where supported, remove associated iCloud data</li>
+                        </ul>
+                    </article>
+                    <article class="policy-block">
+                        <h3>Provider Controls</h3>
+                        <p>You can also manage related settings through the underlying platforms and services:</p>
+                        <ul>
+                            <li><strong>Advertising:</strong> Manage ad-related preferences using the privacy and advertising settings available on your device</li>
+                            <li><strong>Analytics:</strong> Review available platform controls or future in-app settings if introduced</li>
+                            <li><strong>iCloud:</strong> Manage iCloud availability through your Apple account and device settings</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">Additional Notes</h2>
+                <div class="policy-grid">
+                    <article class="policy-block">
+                        <h3>Notifications and Live Activities</h3>
+                        <p>Deskward may request notification permissions for local reminders and session-related updates. The app may also use Live Activities or Lock Screen display features to show your current work timer back to you on your own device.</p>
+                    </article>
+                    <article class="policy-block">
+                        <h3>International Data Transfers</h3>
+                        <p>Third-party services such as Firebase Analytics and Google Mobile Ads may process data on servers located in various countries, including the United States. Any such processing is governed by the respective provider's privacy and data transfer frameworks.</p>
+                    </article>
+                    <article class="policy-block">
+                        <h3>Children and External Links</h3>
+                        <p>Deskward is not specifically directed at children. If children use the app, we recommend supervision by a parent or guardian. We may also link to third-party services such as the App Store or provider documentation, and those services have their own privacy practices.</p>
+                    </article>
+                    <article class="policy-block">
+                        <h3>Policy Changes</h3>
+                        <p>We may update this Privacy Policy from time to time to reflect changes to the app, its data flows, or applicable legal requirements. When we make material changes, we will update the last-updated date on this page.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section project-section-alt" id="contact">
+            <div class="container">
+                <h2 class="project-section-title">Contact</h2>
+                <p>If you have questions, concerns, or requests regarding this Privacy Policy or Deskward's data practices, please refer to the App Store listing and the home page for the latest support information.</p>
+                <ul class="policy-list">
+                    <li><strong>App Store:</strong> <a href="https://apps.apple.com/app/id6744786419">Deskward</a></li>
+                    <li><strong>Reference page:</strong> <a href="index.html">Deskward Home</a></li>
+                </ul>
+                <div class="policy-inline-links">
+                    <a href="https://apps.apple.com/app/id6744786419" class="project-btn project-btn-primary"><i class="fab fa-apple"></i> App Store</a>
+                    <a href="index.html" class="project-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="https://apps.apple.com/app/id6744786419" title="App Store"><i class="fab fa-apple"></i></a>
+                    <a href="privacy-policy.html" title="Privacy Policy"><i class="fas fa-shield-alt"></i></a>
+                    <a href="index.html" title="Home"><i class="fas fa-house"></i></a>
+                </div>
+                <p>&copy; 2026 Deskward. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger?.classList.remove('active');
+                navMenu?.classList.remove('active');
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const header = document.querySelector('.header');
+        let lastScrollTop = 0;
+
+        window.addEventListener('scroll', () => {
+            if (!header) return;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > 100) {
+                header.style.background = 'rgba(10, 14, 23, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(92, 172, 238, 0.1)';
+                header.style.borderBottom = '1px solid rgba(92, 172, 238, 0.15)';
+            } else {
+                header.style.background = 'rgba(10, 14, 23, 0.95)';
+                header.style.boxShadow = 'none';
+                header.style.borderBottom = '1px solid rgba(92, 172, 238, 0.08)';
+            }
+
+            if (scrollTop > lastScrollTop && scrollTop > 200) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+
+            lastScrollTop = scrollTop;
+        });
+
+        class ParticleNetwork {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.particles = [];
+                this.mouse = { x: null, y: null, radius: 150 };
+                this.particleCount = this.getParticleCount();
+                this.maxDistance = 120;
+
+                this.resize();
+                this.init();
+                this.bindEvents();
+                this.animate();
+            }
+
+            getParticleCount() {
+                const width = window.innerWidth;
+                if (width < 768) return 40;
+                if (width < 1200) return 70;
+                return 100;
+            }
+
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+
+            init() {
+                this.particles = [];
+                this.particleCount = this.getParticleCount();
+                for (let index = 0; index < this.particleCount; index += 1) {
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        radius: Math.random() * 1.5 + 0.5,
+                        opacity: Math.random() * 0.5 + 0.2
+                    });
+                }
+            }
+
+            bindEvents() {
+                window.addEventListener('resize', () => {
+                    this.resize();
+                    this.init();
+                });
+
+                window.addEventListener('mousemove', event => {
+                    this.mouse.x = event.clientX;
+                    this.mouse.y = event.clientY;
+                });
+
+                window.addEventListener('mouseout', () => {
+                    this.mouse.x = null;
+                    this.mouse.y = null;
+                });
+            }
+
+            animate() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                this.updateParticles();
+                this.drawConnections();
+                this.drawParticles();
+                requestAnimationFrame(() => this.animate());
+            }
+
+            updateParticles() {
+                this.particles.forEach(particle => {
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+
+                    if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
+                    if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
+
+                    if (this.mouse.x !== null) {
+                        const dx = this.mouse.x - particle.x;
+                        const dy = this.mouse.y - particle.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < this.mouse.radius) {
+                            const force = (this.mouse.radius - distance) / this.mouse.radius;
+                            particle.x -= dx * force * 0.01;
+                            particle.y -= dy * force * 0.01;
+                        }
+                    }
+                });
+            }
+
+            drawParticles() {
+                this.particles.forEach(particle => {
+                    this.ctx.beginPath();
+                    this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                    this.ctx.fillStyle = `rgba(92, 172, 238, ${particle.opacity})`;
+                    this.ctx.fill();
+                });
+            }
+
+            drawConnections() {
+                for (let first = 0; first < this.particles.length; first += 1) {
+                    for (let second = first + 1; second < this.particles.length; second += 1) {
+                        const dx = this.particles[first].x - this.particles[second].x;
+                        const dy = this.particles[first].y - this.particles[second].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < this.maxDistance) {
+                            const opacity = (this.maxDistance - distance) / this.maxDistance * 0.2;
+                            this.ctx.beginPath();
+                            this.ctx.moveTo(this.particles[first].x, this.particles[first].y);
+                            this.ctx.lineTo(this.particles[second].x, this.particles[second].y);
+                            this.ctx.strokeStyle = `rgba(92, 172, 238, ${opacity})`;
+                            this.ctx.lineWidth = 0.5;
+                            this.ctx.stroke();
+                        }
+                    }
+                }
+            }
+        }
+
+        const particlesCanvas = document.getElementById('particles-canvas');
+        if (particlesCanvas) {
+            new ParticleNetwork(particlesCanvas);
+        }
+    </script>
+</body>
+</html>
