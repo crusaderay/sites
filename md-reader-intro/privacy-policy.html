@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - markdownalds</title>
+    <meta name="description" content="Privacy policy for markdownalds, covering local Markdown processing, file access, storage, and privacy-related behavior.">
+    <link rel="canonical" href="https://ray-zhang.xyz/md-reader-intro/privacy-policy.html">
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <h1><a href="../index.html"><span class="brand-prefix">$&nbsp;</span>Ray Zhang</a></h1>
+                    <p class="tagline">Network Engineer, Yinzer, and Houston Rockets</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../index.html#blog" class="nav-link">Blog</a></li>
+                    <li><a href="privacy-policy.html" class="nav-link active">Privacy</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="project-page">
+        <section class="project-hero">
+            <div class="container">
+                <h1>markdownalds</h1>
+                <p class="hero-subtitle">Privacy Policy</p>
+                <p class="hero-subtitle" style="font-size: 1rem; color: #8892a4; margin-top: 1rem;">Last updated: April 16, 2026</p>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">Overview</h2>
+                <p>markdownalds is designed as a local-first macOS app for opening, reading, and editing Markdown files. Based on the current implementation, the app processes the Markdown documents you choose to open on your Mac and does not include its own account system, cloud sync service, advertising SDK, or analytics SDK.</p>
+            </div>
+        </section>
+
+        <section class="project-section project-section-alt">
+            <div class="container">
+                <h2 class="project-section-title">At A Glance</h2>
+                <div class="project-features-grid">
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📄</div>
+                        <h3>Files Stay Local</h3>
+                        <p>The app reads Markdown files from your device and writes edits back to local files only when you choose to save.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🔐</div>
+                        <h3>No Built-In Tracking</h3>
+                        <p>The current app implementation does not include user accounts, ads, telemetry, or analytics services.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🖼️</div>
+                        <h3>Remote Images Are Hidden</h3>
+                        <p>Remote image URLs are intentionally not fetched by the app. They are shown as privacy-preserving placeholders instead.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">Information The App Handles</h2>
+                <p>When you use markdownalds, the app may access the following information on your device:</p>
+                <ul class="project-feature-list">
+                    <li>Markdown files you explicitly choose to open through the macOS file picker</li>
+                    <li>Metadata contained in those files, such as front matter, headings, tags, task lists, and code blocks</li>
+                    <li>Local image references embedded in those files when the image path points to a file on your device</li>
+                    <li>Edits you make while using Edit mode, including unsaved local draft changes during the current session</li>
+                </ul>
+                <p>This information is used to render the reading interface, support raw and structured views, and save your edits back to disk when requested.</p>
+            </div>
+        </section>
+
+        <section class="project-section project-section-alt">
+            <div class="container">
+                <h2 class="project-section-title">What The App Does Not Currently Do</h2>
+                <ul class="project-feature-list">
+                    <li>It does not require account creation or sign-in</li>
+                    <li>It does not sync your documents to a remote server operated by us</li>
+                    <li>It does not include in-app advertising</li>
+                    <li>It does not include built-in analytics, crash reporting, or telemetry services</li>
+                    <li>It does not upload your Markdown content to us for parsing or rendering</li>
+                    <li>It does not fetch remote images referenced by <code>http://</code> or <code>https://</code> links in the current implementation</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">File Access And Permissions</h2>
+                <div class="project-features-grid">
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📂</div>
+                        <h3>User-Selected File Access</h3>
+                        <p>The app uses the macOS file importer to let you choose which Markdown file to open. It does not browse your files automatically without your action.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">💾</div>
+                        <h3>Saving Changes</h3>
+                        <p>If you edit an opened file and choose Save, the app writes the updated text back to that local file on your device. The bundled sample document can be edited for preview but is not written back to disk.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🖼️</div>
+                        <h3>Image Handling</h3>
+                        <p>Local image references may be loaded from disk to render image blocks. Remote image references are intentionally hidden for privacy and are not fetched in the current app behavior.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section project-section-alt">
+            <div class="container">
+                <h2 class="project-section-title">Storage And Retention</h2>
+                <div class="project-features-grid">
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3>On-Device State</h3>
+                        <p>The app keeps the currently opened document, render mode, section selection, and any unsaved edits in local app memory while you use it.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">⏳</div>
+                        <h3>Retention</h3>
+                        <p>Your document content remains in the original files you control. If you save edits, they stay in that file until you change or delete it. If you do not save, the unsaved in-memory draft is not intended as a long-term cloud-backed copy.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">☁️</div>
+                        <h3>No Managed Cloud Storage</h3>
+                        <p>The current implementation does not provide its own hosted backend for Markdown documents, tags, or reader state.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">Third-Party Services</h2>
+                <p>Based on the current codebase, markdownalds does not bundle third-party analytics, advertising, or cloud-processing SDKs inside the app itself. If you distribute the app through a platform such as the Mac App Store, that platform may have its own independent data practices, which are governed by its own policies.</p>
+            </div>
+        </section>
+
+        <section class="project-section project-section-alt">
+            <div class="container">
+                <h2 class="project-section-title">Policy Changes</h2>
+                <p>If the app later adds networked features such as sync, account services, remote image loading, telemetry, or external APIs, this privacy policy should be updated to describe those behaviors before release.</p>
+            </div>
+        </section>
+
+        <section class="project-section project-contact">
+            <div class="container">
+                <h2 class="project-section-title">Contact</h2>
+                <p>If you have questions about this privacy policy or want it updated for a production release, please reach out.</p>
+                <p>Email: <a href="mailto:crusade.ray@gmail.com">crusade.ray@gmail.com</a></p>
+                <div class="project-download-buttons">
+                    <a href="index.html" class="project-btn project-btn-primary"><i class="fas fa-arrow-left"></i> Back to markdownalds</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="mailto:crusade.ray@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/crusaderay" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/crusaderay" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p>&copy; 2024 Ray Zhang. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

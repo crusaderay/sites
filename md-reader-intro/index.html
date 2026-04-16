@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>markdownalds - Intentional Markdown Reading on macOS</title>
+    <meta name="description" content="markdownalds is a native macOS app that turns raw Markdown into a format-aware reading and editing workspace with front matter, outline navigation, checklist cards, and code previews.">
+    <meta name="keywords" content="markdownalds, Markdown Reader, macOS Markdown app, SwiftUI Markdown, YAML front matter, checklist reader">
+    <link rel="canonical" href="https://ray-zhang.xyz/md-reader-intro/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ray-zhang.xyz/md-reader-intro/">
+    <meta property="og:title" content="markdownalds - Intentional Markdown Reading on macOS">
+    <meta property="og:description" content="A native macOS Markdown reader that reshapes front matter, outlines, task lists, and code fences into a structured workspace.">
+    <meta property="og:site_name" content="Ray Zhang">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="markdownalds - Intentional Markdown Reading on macOS">
+    <meta name="twitter:description" content="A native macOS Markdown reader for structured reading, raw inspection, and live split editing.">
+
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+        .md-reader-hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+            gap: 2rem;
+            align-items: center;
+            margin-top: 2.5rem;
+        }
+
+        .md-reader-copy {
+            text-align: left;
+        }
+
+        .md-reader-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .md-reader-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 999px;
+            border: 1px solid rgba(92, 172, 238, 0.22);
+            background: rgba(92, 172, 238, 0.08);
+            color: #7ec8ff;
+            font-size: 0.78rem;
+        }
+
+        .md-reader-copy p.md-reader-lead {
+            margin: 0 0 1rem;
+            max-width: none;
+            color: #a4b3c6;
+            line-height: 1.85;
+        }
+
+        .reader-shell {
+            background: linear-gradient(180deg, rgba(18, 24, 42, 0.96), rgba(10, 14, 23, 0.98));
+            border: 1px solid rgba(92, 172, 238, 0.14);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
+            position: relative;
+        }
+
+        .reader-shell::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(92, 172, 238, 0.08), transparent 35%, transparent 65%, rgba(92, 172, 238, 0.05));
+            pointer-events: none;
+        }
+
+        .reader-shell-topbar {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.95rem 1.2rem;
+            border-bottom: 1px solid rgba(92, 172, 238, 0.08);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .reader-window-dots {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .reader-window-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .reader-window-dots span:nth-child(1) { background: #ff6b6b; }
+        .reader-window-dots span:nth-child(2) { background: #feca57; }
+        .reader-window-dots span:nth-child(3) { background: #1dd1a1; }
+
+        .reader-shell-file {
+            color: #d8e7fb;
+            font-size: 0.8rem;
+            opacity: 0.88;
+        }
+
+        .reader-shell-body {
+            display: grid;
+            grid-template-columns: 240px minmax(0, 1fr);
+            min-height: 520px;
+        }
+
+        .reader-shell-sidebar {
+            padding: 1.15rem;
+            border-right: 1px solid rgba(92, 172, 238, 0.08);
+            background: rgba(255, 255, 255, 0.015);
+        }
+
+        .reader-shell-main {
+            padding: 1.15rem;
+        }
+
+        .reader-shell-panel {
+            background: rgba(92, 172, 238, 0.05);
+            border: 1px solid rgba(92, 172, 238, 0.09);
+            border-radius: 18px;
+            padding: 0.9rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .reader-shell-label {
+            color: #5cacee;
+            opacity: 0.78;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.65rem;
+        }
+
+        .reader-meta-list,
+        .reader-outline,
+        .reader-task-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .reader-meta-list li,
+        .reader-outline li,
+        .reader-task-list li {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0.75rem;
+            color: #c8d6e5;
+            font-size: 0.78rem;
+            padding: 0.45rem 0;
+            border-bottom: 1px solid rgba(92, 172, 238, 0.05);
+        }
+
+        .reader-meta-list li:last-child,
+        .reader-outline li:last-child,
+        .reader-task-list li:last-child {
+            border-bottom: none;
+        }
+
+        .reader-meta-list span,
+        .reader-outline span {
+            color: #7d8ca1;
+        }
+
+        .reader-outline .reader-outline-active {
+            color: #e8f0fe;
+        }
+
+        .reader-outline .reader-outline-active::before {
+            content: '>';
+            margin-right: 0.4rem;
+            color: #5cacee;
+        }
+
+        .reader-shell-summary {
+            padding: 1rem 1.1rem;
+            margin-bottom: 0.95rem;
+            border-radius: 18px;
+            background: rgba(92, 172, 238, 0.08);
+            color: #d6e6fa;
+            line-height: 1.7;
+        }
+
+        .reader-shell-section {
+            background: rgba(15, 20, 35, 0.75);
+            border: 1px solid rgba(92, 172, 238, 0.1);
+            border-radius: 18px;
+            padding: 1rem 1.05rem;
+            margin-bottom: 0.95rem;
+        }
+
+        .reader-shell-section h3 {
+            margin: 0 0 0.9rem;
+            color: #e8f0fe;
+            font-size: 0.98rem;
+        }
+
+        .reader-shell-section h3::before {
+            content: '# ';
+            color: #5cacee;
+            opacity: 0.75;
+        }
+
+        .reader-task-list li {
+            justify-content: flex-start;
+            gap: 0.6rem;
+        }
+
+        .reader-task-bullet {
+            color: #5cacee;
+            font-weight: 700;
+        }
+
+        .reader-code-block,
+        .md-reader-snippet {
+            background: #0c111b;
+            color: #dbe8fb;
+            border: 1px solid rgba(92, 172, 238, 0.12);
+            border-radius: 18px;
+            padding: 1rem 1.15rem;
+            overflow-x: auto;
+            line-height: 1.7;
+            font-size: 0.82rem;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.01);
+        }
+
+        .md-reader-flow-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .md-reader-flow-card {
+            padding: 1.5rem;
+            border-radius: 18px;
+            background: rgba(15, 20, 35, 0.82);
+            border: 1px solid rgba(92, 172, 238, 0.1);
+            position: relative;
+        }
+
+        .md-reader-flow-step {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            margin-bottom: 1rem;
+            border-radius: 50%;
+            background: rgba(92, 172, 238, 0.12);
+            border: 1px solid rgba(92, 172, 238, 0.24);
+            color: #7ec8ff;
+            font-weight: 700;
+        }
+
+        .md-reader-flow-card h3 {
+            color: #e8f0fe;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .md-reader-flow-card p {
+            color: #7f8da2;
+            margin: 0;
+            line-height: 1.75;
+            font-size: 0.9rem;
+        }
+
+        .md-reader-format-card {
+            margin-top: 2rem;
+            padding: 1.2rem;
+            border-radius: 24px;
+            background: rgba(15, 20, 35, 0.78);
+            border: 1px solid rgba(92, 172, 238, 0.1);
+        }
+
+        .md-reader-note {
+            margin-top: 1rem;
+            color: #7f8da2;
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 980px) {
+            .md-reader-hero-grid,
+            .md-reader-flow-grid,
+            .reader-shell-body {
+                grid-template-columns: 1fr;
+            }
+
+            .reader-shell-sidebar {
+                border-right: none;
+                border-bottom: 1px solid rgba(92, 172, 238, 0.08);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .md-reader-copy {
+                text-align: center;
+            }
+
+            .md-reader-badges,
+            .project-download-buttons {
+                justify-content: center;
+            }
+
+            .reader-shell-topbar,
+            .reader-shell-sidebar,
+            .reader-shell-main {
+                padding: 0.9rem;
+            }
+
+            .reader-shell {
+                border-radius: 20px;
+            }
+        }
+    </style>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LR9DDCTCJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-9LR9DDCTCJ');
+    </script>
+</head>
+<body>
+    <canvas id="particles-canvas"></canvas>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <h1><a href="../index.html"><span class="brand-prefix">$&nbsp;</span>Ray Zhang</a></h1>
+                    <p class="tagline">Network Engineer, Yinzer, and Houston Rockets</p>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../index.html#blog" class="nav-link">Blog</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="project-page">
+        <section class="project-hero">
+            <div class="container">
+                <h1>markdownalds</h1>
+                <p class="hero-subtitle">A native macOS reader that turns raw Markdown into an intentional, format-aware reading and editing workspace.</p>
+
+                <div class="md-reader-hero-grid">
+                    <div class="md-reader-copy">
+                        <div class="md-reader-badges">
+                            <span class="md-reader-badge"><i class="fas fa-desktop"></i> macOS 12+</span>
+                            <span class="md-reader-badge"><i class="fas fa-code"></i> SwiftUI + AppKit</span>
+                            <span class="md-reader-badge"><i class="fas fa-file-lines"></i> Markdown First</span>
+                        </div>
+
+                        <p class="md-reader-lead">markdownalds is built for people who already keep notes, docs, and design writeups in plain Markdown, but want those files to feel more like finished reading surfaces than raw source text.</p>
+                        <p class="md-reader-lead">Open a <code>.md</code> file and the app promotes YAML front matter into metadata, headings into a navigable outline, task lists into checklist cards, and fenced code into clear preview panels. When you need the source again, switch to Raw mode or edit with a live split preview.</p>
+
+                        <div class="project-download-buttons">
+                            <a href="#features" class="project-btn project-btn-primary"><i class="fas fa-star"></i> Explore Features</a>
+                            <a href="#workflow" class="project-btn"><i class="fas fa-list-ol"></i> See Workflow</a>
+                        </div>
+                    </div>
+
+                    <div class="reader-shell" aria-hidden="true">
+                        <div class="reader-shell-topbar">
+                            <div class="reader-window-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="reader-shell-file">Weekly Design Sync.md</div>
+                        </div>
+
+                        <div class="reader-shell-body">
+                            <aside class="reader-shell-sidebar">
+                                <div class="reader-shell-panel">
+                                    <div class="reader-shell-label">Front Matter</div>
+                                    <ul class="reader-meta-list">
+                                        <li><span>author</span><strong>Team Notes</strong></li>
+                                        <li><span>tags</span><strong>weekly, design</strong></li>
+                                        <li><span>summary</span><strong>1 line</strong></li>
+                                    </ul>
+                                </div>
+
+                                <div class="reader-shell-panel">
+                                    <div class="reader-shell-label">Outline</div>
+                                    <ul class="reader-outline">
+                                        <li class="reader-outline-active">Context</li>
+                                        <li>Checklist</li>
+                                        <li>Code</li>
+                                        <li>Notes</li>
+                                    </ul>
+                                </div>
+
+                                <div class="reader-shell-panel">
+                                    <div class="reader-shell-label">Metrics</div>
+                                    <ul class="reader-meta-list">
+                                        <li><span>words</span><strong>842</strong></li>
+                                        <li><span>read</span><strong>4 min</strong></li>
+                                        <li><span>tasks</span><strong>2 / 3</strong></li>
+                                    </ul>
+                                </div>
+                            </aside>
+
+                            <div class="reader-shell-main">
+                                <div class="reader-shell-summary">This file feels like an editorial document instead of a flat text dump, while still staying true to the original Markdown source.</div>
+
+                                <div class="reader-shell-section">
+                                    <h3>Checklist</h3>
+                                    <ul class="reader-task-list">
+                                        <li><span class="reader-task-bullet">[x]</span> Parse the title from front matter or headings</li>
+                                        <li><span class="reader-task-bullet">[x]</span> Promote task lists into checklist cards</li>
+                                        <li><span class="reader-task-bullet">[ ]</span> Add file watching in a future iteration</li>
+                                    </ul>
+                                </div>
+
+                                <div class="reader-shell-section">
+                                    <h3>Code Preview</h3>
+                                    <pre class="reader-code-block"><code>struct ReaderFeature: Identifiable {
+    let id = UUID()
+    let name: String
+    let isImplemented: Bool
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">About The App</h2>
+                <p>markdownalds is a native SwiftUI app for macOS that opens ordinary Markdown files in a more thoughtful reading layout. It does not ask you to abandon Markdown or move your files into a proprietary format. Instead, it reads what is already there and organizes it into something easier to scan, navigate, and edit.</p>
+                <p>The current app supports file importing, reload and save actions, a bundled sample document, word count and reading time metrics, tag display, outline navigation, and three viewing modes: Structured, Raw, and Edit. In Edit mode, the rendered result stays visible while the source updates on the other side, so Markdown remains writable without becoming awkward to review.</p>
+            </div>
+        </section>
+
+        <section class="project-section project-section-alt" id="features">
+            <div class="container">
+                <h2 class="project-section-title">Core Experience</h2>
+                <div class="project-features-grid">
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🧾</div>
+                        <h3>Front Matter As Metadata</h3>
+                        <p>YAML or TOML-style front matter is elevated into a dedicated metadata panel, so document context is always visible instead of buried at the top of the file.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🧭</div>
+                        <h3>Clickable Outline Sidebar</h3>
+                        <p>Headings become a navigable outline with section previews, making long notes feel structured and easy to jump through.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">✅</div>
+                        <h3>Checklist Cards</h3>
+                        <p>Task lists are promoted into clear checklist blocks and progress metrics, turning planning notes into something closer to a working dashboard.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">⌨️</div>
+                        <h3>Readable Code Panels</h3>
+                        <p>Fenced and indented code blocks are rendered into monospace preview panels so technical documents stay legible without losing their source fidelity.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🪟</div>
+                        <h3>Three Viewing Modes</h3>
+                        <p>Switch between Structured mode for reading, Raw mode for inspecting source text, and Edit mode for live split-screen writing.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">💾</div>
+                        <h3>Native Mac Workflow</h3>
+                        <p>Open files with a native picker, reload the current document, keep track of unsaved changes, and save edits back to disk from the same workspace.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="container">
+                <h2 class="project-section-title">More Than A Basic Markdown Preview</h2>
+                <p>The parser goes beyond headings and paragraphs. It also understands richer Markdown patterns so structured documents preserve their shape when they move from source text into the reading view.</p>
+                <div class="project-features-grid">
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Tables</h3>
+                        <p>Markdown tables are parsed into dedicated table blocks instead of being left as hard-to-scan pipe syntax.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">💡</div>
+                        <h3>Callouts</h3>
+                        <p>Callout syntax is promoted into highlighted note blocks that stand apart from the surrounding body copy.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🖼️</div>
+                        <h3>Images</h3>
+                        <p>Image references resolve into inline media blocks, making visual notes and documentation easier to review.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📂</div>
+                        <h3>Details Blocks</h3>
+                        <p>Collapsible details sections are preserved as structured blocks instead of being flattened into plain text.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">📚</div>
+                        <h3>Definitions &amp; Footnotes</h3>
+                        <p>Definition lists and footnotes stay recognizable, which helps technical notes and reference-heavy documents remain readable.</p>
+                    </div>
+                    <div class="project-feature-card">
+                        <div class="feature-icon">🏷️</div>
+                        <h3>Tags, Summary &amp; Metrics</h3>
+                        <p>Tags, summary text, word count, reading time, and section metrics give every document a more intentional frame.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section project-section-alt" id="workflow">
+            <div class="container">
+                <h2 class="project-section-title">Reading Workflow</h2>
+                <p>The app is designed for a simple but high-leverage loop: open Markdown, let the structure surface automatically, then decide whether you want to read, inspect, or edit.</p>
+
+                <div class="md-reader-flow-grid">
+                    <div class="md-reader-flow-card">
+                        <div class="md-reader-flow-step">1</div>
+                        <h3>Open A Markdown File</h3>
+                        <p>Use the native macOS importer to open any <code>.md</code> or <code>.markdown</code> file, or start with the bundled sample document immediately.</p>
+                    </div>
+                    <div class="md-reader-flow-card">
+                        <div class="md-reader-flow-step">2</div>
+                        <h3>Let Structure Surface</h3>
+                        <p>The reader extracts title, summary, tags, front matter, sections, tasks, and code blocks, then reorganizes them into a navigable interface.</p>
+                    </div>
+                    <div class="md-reader-flow-card">
+                        <div class="md-reader-flow-step">3</div>
+                        <h3>Read Or Edit With Intent</h3>
+                        <p>Browse via the outline, inspect raw Markdown when needed, or switch into Edit mode to write on one side while the rendered result updates on the other.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section" id="format-guide">
+            <div class="container">
+                <h2 class="project-section-title">Best With Structured Markdown</h2>
+                <p>The app reads ordinary Markdown, but it shines when the file already has a little intentional shape. A front matter header, clear headings, task lists, and fenced code are enough to make the reading view feel dramatically better.</p>
+
+                <div class="md-reader-format-card">
+                    <pre class="md-reader-snippet"><code>---
+title: Weekly Design Sync
+author: Team Notes
+tags: weekly, design, review
+summary: Short one-line document overview.
+---
+
+# Context
+
+## Checklist
+- [ ] Follow-up item
+
+## Code
+```swift
+print("Hello")
+```</code></pre>
+                </div>
+
+                <p class="md-reader-note">That shape is enough for markdownalds to build metadata rows, an outline sidebar, checklist blocks, and a dedicated code preview without changing the underlying file.</p>
+            </div>
+        </section>
+
+        <section class="project-section project-contact">
+            <div class="container">
+                <h2 class="project-section-title">Contact</h2>
+                <p>If you want to talk about the app, share Markdown-heavy workflows, or discuss the project further, feel free to reach out.</p>
+                <p>Email: <a href="mailto:crusade.ray@gmail.com">crusade.ray@gmail.com</a></p>
+                <div class="project-download-buttons">
+                    <a href="privacy-policy.html" class="project-btn project-btn-primary"><i class="fas fa-shield-halved"></i> Privacy Policy</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="mailto:crusade.ray@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/crusaderay" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/crusaderay" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p>&copy; 2024 Ray Zhang. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
