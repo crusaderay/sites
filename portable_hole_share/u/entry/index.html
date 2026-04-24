@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open in Portable Hole</title>
+  <meta name="description" content="Open a shared Portable Hole entry.">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #101418;
+      --panel: #f8f4ea;
+      --ink: #17202a;
+      --muted: #53606c;
+      --line: rgba(23, 32, 42, 0.14);
+      --accent: #1c7c68;
+      --accent-ink: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    main {
+      width: min(460px, 100%);
+      padding: 28px;
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .icon {
+      width: 64px;
+      height: 64px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: #17202a;
+      color: #f8f4ea;
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    h1 {
+      margin: 20px 0 10px;
+      font-size: 30px;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .preview {
+      margin: 16px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.45);
+      color: var(--ink);
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .primary {
+      background: var(--accent);
+      color: var(--accent-ink);
+    }
+
+    .secondary {
+      border: 1px solid var(--line);
+      color: var(--ink);
+    }
+
+    .status {
+      margin-top: 14px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="icon">P</div>
+    <h1>Shared Portable Hole Entry</h1>
+    <p>Someone shared a saved entry with you.</p>
+    <div class="preview" id="entryPreview">Loading shared entry...</div>
+    <div class="actions">
+      <a class="button primary" href="#" id="openAppButton">Open in Portable Hole</a>
+      <a class="button secondary" href="https://apps.apple.com/us/app/portable-hole/id6752504688">Download App</a>
+    </div>
+    <p class="status" id="statusText"></p>
+  </main>
+
+  <script>
+    const appStoreUrl = 'https://apps.apple.com/us/app/portable-hole/id6752504688';
+    const params = new URLSearchParams(window.location.search);
+    const payload = params.get('payload');
+    const preview = document.getElementById('entryPreview');
+    const openButton = document.getElementById('openAppButton');
+    const statusText = document.getElementById('statusText');
+
+    function decodePayloadTitle(token) {
+      try {
+        const normalized = token.replace(/-/g, '+').replace(/_/g, '/');
+        const padded = normalized.padEnd(normalized.length + (4 - normalized.length % 4) % 4, '=');
+        const json = decodeURIComponent(
+          Array.prototype.map.call(atob(padded), (ch) => {
+            return '%' + ch.charCodeAt(0).toString(16).padStart(2, '0');
+          }).join('')
+        );
+        const entry = JSON.parse(json);
+        return entry.title || entry.url || entry.description || 'Shared entry';
+      } catch (_) {
+        return 'Shared entry';
+      }
+    }
+
+    if (payload) {
+      const appUrl = `portablehole://import?payload=${encodeURIComponent(payload)}`;
+      openButton.href = appUrl;
+      preview.textContent = decodePayloadTitle(payload);
+      statusText.textContent = 'Opening Portable Hole if it is installed.';
+
+      window.location.href = appUrl;
+      setTimeout(() => {
+        statusText.textContent = 'If Portable Hole did not open, install it from the App Store.';
+      }, 1000);
+    } else {
+      preview.textContent = 'This shared link is missing its entry payload.';
+      openButton.href = appStoreUrl;
+      openButton.textContent = 'Download Portable Hole';
+      statusText.textContent = 'Ask the sender to share the entry again.';
+    }
+  </script>
+</body>
+</html>
