@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | Tip No Tax</title>
+  <meta
+    name="description"
+    content="Privacy Policy for Tip No Tax, the iPhone pre-tax tip calculator by Dongjie Zhang."
+  />
+  <link rel="canonical" href="https://ray-zhang.xyz/tip-smart-intro/privacy-policy.html" />
+  <link rel="icon" href="assets/app-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;family=IBM+Plex+Mono:wght@400;500;700&amp;display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #071210;
+      --surface: rgba(18, 35, 31, 0.9);
+      --surface-soft: rgba(14, 28, 25, 0.78);
+      --border: rgba(214, 230, 220, 0.14);
+      --text: #f4f7f2;
+      --text-soft: #bed0c8;
+      --text-muted: #7d9389;
+      --accent: #75d7bd;
+      --accent-strong: #a8f0db;
+      --ink: #06110f;
+      --warm: #f2a65a;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.36);
+      --radius: 8px;
+      --max: 1020px;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #0c1a17 0%, var(--bg) 48%, #050b0a 100%);
+      color: var(--text);
+      font-family: "Space Grotesk", "Avenir Next", sans-serif;
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(168, 240, 219, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168, 240, 219, 0.04) 1px, transparent 1px);
+      background-size: 34px 34px;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+    }
+
+    .mono {
+      font-family: "IBM Plex Mono", "Menlo", monospace;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(5, 12, 11, 0.82);
+      border-bottom: 1px solid rgba(214, 230, 220, 0.09);
+      backdrop-filter: blur(18px);
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 72px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-name {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .brand-name span {
+      color: var(--accent);
+    }
+
+    .brand-note {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .nav-back {
+      color: var(--text-soft);
+      border: 1px solid rgba(214, 230, 220, 0.14);
+      background: rgba(18, 35, 31, 0.58);
+    }
+
+    .nav-contact {
+      color: var(--ink);
+      background: var(--accent-strong);
+      box-shadow: 0 12px 34px rgba(117, 215, 189, 0.2);
+    }
+
+    .hero {
+      padding: 68px 0 34px;
+      position: relative;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(117, 215, 189, 0.2);
+      background: rgba(117, 215, 189, 0.09);
+      color: var(--accent);
+      font-size: 0.82rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 20px 0 12px;
+      font-size: 4.2rem;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 780px;
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 1.05rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .meta-pill {
+      padding: 9px 12px;
+      border-radius: var(--radius);
+      background: rgba(18, 35, 31, 0.78);
+      border: 1px solid rgba(214, 230, 220, 0.12);
+      color: var(--text-soft);
+      font-size: 0.86rem;
+    }
+
+    .policy-shell {
+      padding: 10px 0 80px;
+      position: relative;
+    }
+
+    .summary-card,
+    .policy-section {
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .summary-card {
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .summary-card h2,
+    .policy-section h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1.65rem;
+      line-height: 1.1;
+    }
+
+    .summary-card p,
+    .policy-section p,
+    .policy-section li {
+      color: var(--text-soft);
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .summary-item {
+      padding: 16px;
+      border-radius: var(--radius);
+      background: var(--surface-soft);
+      border: 1px solid rgba(214, 230, 220, 0.1);
+    }
+
+    .summary-item strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .summary-item span {
+      color: var(--text-soft);
+      font-size: 0.94rem;
+    }
+
+    .policy-section {
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .policy-section ul {
+      margin: 12px 0 0;
+      padding-left: 20px;
+    }
+
+    .policy-section li {
+      margin-bottom: 8px;
+    }
+
+    .note-box {
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(242, 166, 90, 0.22);
+      background: rgba(242, 166, 90, 0.12);
+      color: #ffd4a6;
+      margin-top: 16px;
+    }
+
+    .note-box strong {
+      color: #ffe0bd;
+    }
+
+    .site-footer {
+      padding: 0 0 38px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .site-footer a {
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    @media (max-width: 840px) {
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .site-nav {
+        padding: 12px 0;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-actions,
+      .nav-actions a {
+        width: 100%;
+      }
+
+      .summary-card,
+      .policy-section {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-nav">
+      <a class="brand" href="index.html">
+        <span class="brand-name mono"><span>Tip</span> No Tax</span>
+        <span class="brand-note mono">Pre-tax tip calculator</span>
+      </a>
+      <div class="nav-actions">
+        <a class="nav-back" href="index.html">Back to App Page</a>
+        <a class="nav-contact" href="mailto:crusade.ray@gmail.com">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow mono">Privacy Policy</div>
+        <h1>Tip No Tax Privacy Policy</h1>
+        <p>
+          This policy explains how Tip No Tax handles information when you use the iPhone app to scan
+          receipts, confirm amounts, calculate pre-tax tips, and split checks.
+        </p>
+        <div class="hero-meta">
+          <span class="meta-pill mono">Last updated: April 29, 2026</span>
+          <span class="meta-pill mono">Developer: Dongjie Zhang</span>
+          <span class="meta-pill mono">Contact: crusade.ray@gmail.com</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="policy-shell">
+      <div class="container">
+        <div class="summary-card">
+          <h2>Privacy Overview</h2>
+          <p>
+            Tip No Tax is designed as a focused receipt utility. The app reads receipt text on the
+            device with Apple's Vision framework, lets you manually confirm or edit amounts, and
+            calculates tips from the pre-tax subtotal. The app does not require an account and does
+            not intentionally upload receipt images or receipt text to a Tip No Tax server.
+          </p>
+
+          <div class="summary-grid">
+            <div class="summary-item">
+              <strong>Receipt scanning is local</strong>
+              <span>Receipt OCR runs on device through Apple Vision, without a server OCR workflow.</span>
+            </div>
+            <div class="summary-item">
+              <strong>No receipt history account</strong>
+              <span>The app does not ask you to sign in or sync receipt history through Tip No Tax.</span>
+            </div>
+            <div class="summary-item">
+              <strong>Third-party SDKs disclosed</strong>
+              <span>The project includes Google Mobile Ads and Firebase dependencies, described below.</span>
+            </div>
+          </div>
+        </div>
+
+        <section class="policy-section">
+          <h2>Information You Provide in the App</h2>
+          <p>
+            When you use Tip No Tax, you may enter or scan receipt amounts such as subtotal, tax,
+            receipt total, tip percentage, and split count. These values are used to calculate the
+            tip amount, final total, and per-person amount.
+          </p>
+          <ul>
+            <li>Receipt images are used for text recognition after you choose to scan a receipt.</li>
+            <li>Detected amounts are shown for review and can be edited before use.</li>
+            <li>The app's core calculator flow does not create a cloud receipt archive.</li>
+            <li>The app does not require your name, email address, phone number, or a user account.</li>
+          </ul>
+        </section>
+
+        <section class="policy-section">
+          <h2>Camera and Receipt OCR</h2>
+          <p>
+            Tip No Tax requests camera access so you can scan receipt totals. The camera is used only
+            when you start scanning. Text recognition is performed on the device using Apple's
+            Vision framework.
+          </p>
+          <p>
+            The app may enhance the image locally to improve OCR accuracy. The detected receipt text
+            is parsed for likely subtotal, tax, tip, and total values so the app can offer a useful
+            starting point for your manual confirmation.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Information We Do Not Intentionally Collect</h2>
+          <p>
+            Tip No Tax is not designed to collect or store personal receipt data on a remote server.
+            In the core app workflow, we do not intentionally collect:
+          </p>
+          <ul>
+            <li>Your receipt images or raw OCR text on a Tip No Tax backend.</li>
+            <li>A history of restaurants, meals, purchases, or check totals tied to an account.</li>
+            <li>Payment card numbers, bank information, or payment credentials.</li>
+            <li>Contacts, calendars, location history, or address book data.</li>
+          </ul>
+        </section>
+
+        <section class="policy-section">
+          <h2>Third-Party Services</h2>
+          <p>
+            The Tip No Tax project includes dependencies for Google Mobile Ads and Firebase
+            Analytics. These services may process limited technical, advertising, diagnostics, or
+            usage information according to Google's policies and your device settings.
+          </p>
+          <ul>
+            <li>
+              <strong>Google Mobile Ads:</strong> Used to display ads and measure ad performance.
+              Google may use advertising identifiers, device information, and ad interaction data.
+            </li>
+            <li>
+              <strong>Firebase Analytics:</strong> May be used for app analytics, diagnostics, or
+              aggregate usage measurement. This helps understand app stability and feature usage.
+            </li>
+          </ul>
+          <div class="note-box">
+            <strong>Receipt content note:</strong> Tip No Tax's receipt scanning feature is designed
+            around local OCR. The app does not intentionally send receipt images or receipt text to
+            Google Mobile Ads or Firebase as part of the tip calculation workflow.
+          </div>
+        </section>
+
+        <section class="policy-section">
+          <h2>Storage and Retention</h2>
+          <p>
+            Tip No Tax's calculator data is used to show current results. The app does not provide a
+            receipt history feature or cloud sync in the current product scope. If local preferences
+            are stored, they remain on your device unless you clear app data or uninstall the app.
+          </p>
+          <p>
+            Data processed by third-party services is retained according to the relevant service
+            provider policies and your device privacy settings.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Your Choices</h2>
+          <ul>
+            <li>You can deny or revoke camera permission in iOS Settings.</li>
+            <li>You can enter receipt amounts manually instead of scanning a receipt.</li>
+            <li>You can limit ad tracking or manage personalized ads through iOS privacy settings.</li>
+            <li>You can uninstall the app to remove local app data from your device.</li>
+          </ul>
+        </section>
+
+        <section class="policy-section">
+          <h2>Children's Privacy</h2>
+          <p>
+            Tip No Tax is a general utility and is not directed to children under 13. If you believe
+            a child has provided personal information through the app, contact us so we can review
+            the issue.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Changes to This Policy</h2>
+          <p>
+            We may update this Privacy Policy when the app changes, when App Store requirements
+            change, or when third-party services are added, removed, or configured differently. The
+            latest version will be posted on this page with an updated date.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Contact</h2>
+          <p>
+            If you have questions about this Privacy Policy or Tip No Tax's data practices, contact:
+            <a href="mailto:crusade.ray@gmail.com">crusade.ray@gmail.com</a>.
+          </p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      2026 Dongjie Zhang - Tip No Tax -
+      <a href="index.html">App Page</a> -
+      <a href="mailto:crusade.ray@gmail.com">Contact</a>
+    </div>
+  </footer>
+</body>
+</html>

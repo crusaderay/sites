@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tip No Tax | Pre-Tax Tip Calculator for iPhone</title>
+  <meta
+    name="description"
+    content="Tip No Tax is an iPhone tip calculator that scans receipts, lets you confirm the subtotal, and calculates tips from the pre-tax amount."
+  />
+  <link rel="canonical" href="https://ray-zhang.xyz/tip-smart-intro/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ray-zhang.xyz/tip-smart-intro/" />
+  <meta property="og:title" content="Tip No Tax | Pre-Tax Tip Calculator for iPhone" />
+  <meta
+    property="og:description"
+    content="Scan a receipt, confirm the subtotal, tip before tax, and split the check without overthinking it."
+  />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tip No Tax | Pre-Tax Tip Calculator for iPhone" />
+  <meta
+    name="twitter:description"
+    content="Tip the meal, not the tax. A focused iPhone calculator for receipt scanning, subtotal confirmation, and easy split checks."
+  />
+  <link rel="icon" href="assets/app-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;family=IBM+Plex+Mono:wght@400;500;700&amp;display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #071210;
+      --bg-mid: #0d1b18;
+      --bg-soft: #12231f;
+      --surface: rgba(18, 35, 31, 0.88);
+      --surface-strong: #162a25;
+      --field: #20342f;
+      --border: rgba(214, 230, 220, 0.14);
+      --text: #f4f7f2;
+      --text-soft: #bed0c8;
+      --text-muted: #7d9389;
+      --accent: #75d7bd;
+      --accent-strong: #a8f0db;
+      --ink: #06110f;
+      --paper: #f6ead7;
+      --paper-line: rgba(62, 45, 26, 0.18);
+      --warm: #f2a65a;
+      --warm-soft: rgba(242, 166, 90, 0.16);
+      --danger: #e2806f;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+      --radius: 8px;
+      --max: 1140px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, #0c1a17 0%, var(--bg) 48%, #050b0a 100%);
+      color: var(--text);
+      font-family: "Space Grotesk", "Avenir Next", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(168, 240, 219, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168, 240, 219, 0.04) 1px, transparent 1px);
+      background-size: 34px 34px;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+    }
+
+    .mono {
+      font-family: "IBM Plex Mono", "Menlo", monospace;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(5, 12, 11, 0.82);
+      border-bottom: 1px solid rgba(214, 230, 220, 0.09);
+      backdrop-filter: blur(18px);
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 72px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-decoration: none;
+    }
+
+    .brand-name {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .brand-name span {
+      color: var(--accent);
+    }
+
+    .brand-note {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--text-soft);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.18s ease, background 0.18s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta,
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .nav-cta,
+    .btn-primary {
+      background: var(--accent-strong);
+      color: var(--ink);
+      box-shadow: 0 12px 34px rgba(117, 215, 189, 0.22);
+    }
+
+    .nav-cta:hover,
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+    }
+
+    .nav-cta {
+      padding: 10px 16px;
+      font-size: 0.92rem;
+    }
+
+    .hero {
+      padding: 74px 0 72px;
+      position: relative;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(330px, 0.96fr);
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(117, 215, 189, 0.2);
+      background: rgba(117, 215, 189, 0.09);
+      color: var(--accent);
+      font-size: 0.82rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 22px 0 14px;
+      font-size: 5rem;
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+      display: inline-block;
+    }
+
+    .hero-copy {
+      max-width: 650px;
+      color: var(--text-soft);
+      font-size: 1.22rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      padding: 14px 22px;
+      font-size: 1rem;
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(214, 230, 220, 0.18);
+      background: rgba(18, 35, 31, 0.66);
+      color: var(--text);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .meta-pill {
+      padding: 9px 12px;
+      border-radius: var(--radius);
+      background: rgba(18, 35, 31, 0.78);
+      border: 1px solid rgba(214, 230, 220, 0.12);
+      color: var(--text-soft);
+      font-size: 0.86rem;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 620px;
+      display: grid;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .phone-shell {
+      width: min(360px, 100%);
+      min-height: 590px;
+      padding: 16px;
+      border-radius: 36px;
+      background: #060c0b;
+      border: 1px solid rgba(214, 230, 220, 0.18);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .phone-screen {
+      min-height: 556px;
+      border-radius: 26px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, #e9f8ef 0%, #f8f0df 100%);
+      color: #17231f;
+      padding: 18px;
+    }
+
+    .phone-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .app-mark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .app-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      box-shadow: 0 12px 24px rgba(10, 41, 33, 0.2);
+      flex: 0 0 auto;
+    }
+
+    .app-mark strong {
+      display: block;
+      font-size: 1rem;
+      line-height: 1.1;
+    }
+
+    .app-mark span {
+      display: block;
+      color: #60746a;
+      font-size: 0.78rem;
+      line-height: 1.2;
+    }
+
+    .scan-chip {
+      padding: 8px 10px;
+      border-radius: var(--radius);
+      background: #006b58;
+      color: #ffffff;
+      font-size: 0.76rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .receipt-demo {
+      background:
+        repeating-linear-gradient(
+          180deg,
+          var(--paper),
+          var(--paper) 28px,
+          #f2dfc2 29px
+        );
+      color: #251d13;
+      border: 1px solid rgba(82, 58, 28, 0.16);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 14px 36px rgba(68, 45, 18, 0.14);
+    }
+
+    .receipt-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed rgba(62, 45, 26, 0.28);
+      margin-bottom: 10px;
+    }
+
+    .receipt-title strong {
+      font-size: 0.95rem;
+    }
+
+    .receipt-title span {
+      color: #6b5333;
+      font-size: 0.78rem;
+    }
+
+    .receipt-row,
+    .result-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 7px 0;
+      font-size: 0.92rem;
+    }
+
+    .receipt-row span:first-child,
+    .result-row span:first-child {
+      color: #665039;
+    }
+
+    .receipt-row strong,
+    .result-row strong {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .receipt-row.highlight {
+      margin-top: 6px;
+      padding: 10px;
+      background: rgba(0, 107, 88, 0.1);
+      border: 1px solid rgba(0, 107, 88, 0.16);
+      border-radius: var(--radius);
+    }
+
+    .mini-panel {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(28, 60, 49, 0.12);
+    }
+
+    .panel-label {
+      margin: 0 0 8px;
+      color: #4d6359;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .tip-options {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .tip-option {
+      border: 1px solid rgba(0, 107, 88, 0.16);
+      border-radius: var(--radius);
+      background: #e2f4ec;
+      color: #006b58;
+      min-height: 38px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .tip-option.is-active {
+      background: #006b58;
+      color: #ffffff;
+    }
+
+    .split-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .stepper {
+      display: inline-grid;
+      grid-template-columns: 34px 42px 34px;
+      align-items: center;
+      border: 1px solid rgba(0, 107, 88, 0.16);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #f7fff9;
+    }
+
+    .stepper button {
+      width: 34px;
+      height: 34px;
+      border: 0;
+      background: transparent;
+      color: #006b58;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .stepper strong {
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .total-panel {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: var(--radius);
+      background: #ffffff;
+      border: 1px solid rgba(28, 60, 49, 0.12);
+    }
+
+    .total-amount {
+      margin: 2px 0 2px;
+      color: #0f261f;
+      font-size: 2.35rem;
+      line-height: 1.05;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .each-line {
+      margin: 0 0 12px;
+      color: #006b58;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .widget-preview {
+      position: absolute;
+      right: 0;
+      bottom: 10px;
+      width: 184px;
+      padding: 16px;
+      border-radius: 22px;
+      background: rgba(16, 28, 25, 0.94);
+      border: 1px solid rgba(214, 230, 220, 0.16);
+      box-shadow: 0 22px 42px rgba(0, 0, 0, 0.34);
+    }
+
+    .widget-preview strong {
+      display: block;
+      margin: 16px 0 4px;
+      font-size: 1.05rem;
+      line-height: 1.18;
+    }
+
+    .widget-preview span {
+      display: block;
+      color: var(--text-soft);
+      font-size: 0.82rem;
+      line-height: 1.35;
+    }
+
+    .widget-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .section {
+      padding: 76px 0;
+      position: relative;
+    }
+
+    .section.alt {
+      background: rgba(13, 27, 24, 0.76);
+      border-top: 1px solid rgba(214, 230, 220, 0.08);
+      border-bottom: 1px solid rgba(214, 230, 220, 0.08);
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 30px;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+      font-size: 0.82rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2,
+    .download-panel h2 {
+      margin: 10px 0 12px;
+      font-size: 3rem;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .section-heading p,
+    .download-panel p,
+    .support-panel p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 1rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .about-copy {
+      color: var(--text-soft);
+      font-size: 1.02rem;
+    }
+
+    .about-copy p {
+      margin: 0 0 16px;
+    }
+
+    .about-copy p:last-child {
+      margin-bottom: 0;
+    }
+
+    .fact-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .fact-card,
+    .feature-card,
+    .step-card,
+    .privacy-card,
+    .support-panel,
+    .download-panel {
+      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
+    }
+
+    .fact-card {
+      padding: 16px 18px;
+    }
+
+    .fact-label {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .fact-value {
+      font-size: 1.08rem;
+      font-weight: 700;
+    }
+
+    .fact-detail {
+      margin-top: 5px;
+      color: var(--text-soft);
+      font-size: 0.92rem;
+    }
+
+    .card-grid,
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature-card,
+    .step-card,
+    .privacy-card {
+      padding: 22px;
+      min-width: 0;
+    }
+
+    .feature-icon,
+    .step-number {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius);
+      background: rgba(117, 215, 189, 0.12);
+      border: 1px solid rgba(117, 215, 189, 0.18);
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3,
+    .step-card h3,
+    .privacy-card h3,
+    .support-panel h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+
+    .feature-card p,
+    .step-card p,
+    .privacy-card p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+
+    .flow-line {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .flow-item {
+      padding: 18px;
+      border-radius: var(--radius);
+      background: rgba(6, 17, 15, 0.64);
+      border: 1px solid rgba(214, 230, 220, 0.1);
+    }
+
+    .flow-item span {
+      color: var(--warm);
+      font-weight: 700;
+      font-size: 0.86rem;
+    }
+
+    .flow-item h3 {
+      margin: 8px 0 8px;
+      font-size: 1.06rem;
+    }
+
+    .flow-item p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 0.92rem;
+    }
+
+    .privacy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .download-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .download-panel,
+    .support-panel {
+      padding: 28px;
+    }
+
+    .download-note {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .download-note span {
+      padding: 8px 10px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(214, 230, 220, 0.12);
+      background: rgba(6, 17, 15, 0.58);
+      color: var(--text-soft);
+      font-size: 0.85rem;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .contact-item {
+      padding: 16px;
+      border-radius: var(--radius);
+      background: rgba(6, 17, 15, 0.56);
+      border: 1px solid rgba(214, 230, 220, 0.1);
+      text-decoration: none;
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .contact-item span {
+      color: var(--text-soft);
+      word-break: break-word;
+    }
+
+    .site-footer {
+      padding: 0 0 38px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .site-footer a {
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    @media (max-width: 980px) {
+      .hero-layout,
+      .about-grid,
+      .download-card,
+      .card-grid,
+      .steps-grid,
+      .privacy-grid,
+      .flow-line {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      .hero h1 {
+        font-size: 4rem;
+      }
+
+      .hero-visual {
+        min-height: 600px;
+      }
+
+      .widget-preview {
+        right: 20px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .site-nav {
+        padding: 12px 0;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .nav-links a {
+        font-size: 0.88rem;
+      }
+
+      .nav-cta {
+        width: 100%;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero-copy {
+        font-size: 1.08rem;
+      }
+
+      .hero-actions {
+        align-items: stretch;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+      }
+
+      .hero-visual {
+        min-height: auto;
+        align-items: start;
+      }
+
+      .phone-shell {
+        width: 100%;
+        min-height: auto;
+        padding: 12px;
+      }
+
+      .phone-screen {
+        min-height: auto;
+        border-radius: 22px;
+        padding: 14px;
+      }
+
+      .widget-preview {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        margin-top: 16px;
+        border-radius: var(--radius);
+      }
+
+      .phone-top,
+      .split-line {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .scan-chip,
+      .stepper {
+        width: 100%;
+      }
+
+      .tip-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section {
+        padding: 62px 0;
+      }
+
+      .section-heading h2,
+      .download-panel h2 {
+        font-size: 2.25rem;
+      }
+
+      .download-panel,
+      .support-panel,
+      .feature-card,
+      .step-card,
+      .privacy-card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-nav">
+      <a class="brand" href="#top">
+        <span class="brand-name mono"><span>Tip</span> No Tax</span>
+        <span class="brand-note mono">Pre-tax tip calculator</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#support">Support</a>
+        <a class="nav-cta" href="privacy-policy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-layout">
+        <div>
+          <div class="eyebrow mono">Tip the meal, not the tax</div>
+          <h1>Tip No Tax.<br /><span>Pay clearer.</span></h1>
+          <p class="hero-copy">
+            Tip No Tax is a focused iPhone calculator for dining out in the United States. Scan a
+            receipt, confirm the subtotal, choose a tip rate, and split the check from the pre-tax
+            amount instead of letting tax-on-tax tipping quietly inflate the bill.
+          </p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="#download">Get product details</a>
+            <a class="btn-secondary" href="#features">See key features</a>
+          </div>
+          <div class="hero-meta">
+            <span class="meta-pill mono">iPhone</span>
+            <span class="meta-pill mono">iOS 17+</span>
+            <span class="meta-pill mono">On-device OCR</span>
+            <span class="meta-pill mono">No receipt account</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Tip No Tax app preview">
+          <div class="phone-shell">
+            <div class="phone-screen">
+              <div class="phone-top">
+                <div class="app-mark">
+                  <img class="app-icon" src="assets/app-icon.png" alt="Tip No Tax app icon" />
+                  <div>
+                    <strong>Tip No Tax</strong>
+                    <span>Receipt scan ready</span>
+                  </div>
+                </div>
+                <div class="scan-chip mono">Scan</div>
+              </div>
+
+              <div class="receipt-demo">
+                <div class="receipt-title">
+                  <strong>Review Scan</strong>
+                  <span class="mono">Vision on device</span>
+                </div>
+                <div class="receipt-row highlight">
+                  <span>Detected Subtotal</span>
+                  <strong class="mono" id="subtotal-value">$86.40</strong>
+                </div>
+                <div class="receipt-row">
+                  <span>Detected Tax</span>
+                  <strong class="mono">$8.20</strong>
+                </div>
+                <div class="receipt-row">
+                  <span>Receipt Total</span>
+                  <strong class="mono">$94.60</strong>
+                </div>
+              </div>
+
+              <div class="mini-panel">
+                <p class="panel-label mono">Tip</p>
+                <div class="tip-options" aria-label="Tip rate preview">
+                  <button class="tip-option" data-tip="12">12%</button>
+                  <button class="tip-option is-active" data-tip="15">15%</button>
+                  <button class="tip-option" data-tip="20">20%</button>
+                  <button class="tip-option" data-tip="18">Custom</button>
+                </div>
+                <div class="split-line">
+                  <strong>People</strong>
+                  <div class="stepper" aria-label="People count preview">
+                    <button type="button" id="people-minus" aria-label="Decrease people">-</button>
+                    <strong class="mono" id="people-count">3</strong>
+                    <button type="button" id="people-plus" aria-label="Increase people">+</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="total-panel">
+                <p class="panel-label mono">Result</p>
+                <p class="total-amount mono" id="total-value">$107.56</p>
+                <p class="each-line mono" id="each-value">$35.85 each</p>
+                <div class="result-row">
+                  <span>Pre-tax tip</span>
+                  <strong class="mono" id="tip-value">$12.96</strong>
+                </div>
+                <div class="result-row">
+                  <span>Subtotal + tax</span>
+                  <strong class="mono">$94.60</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="widget-preview">
+            <div class="widget-icon mono">OCR</div>
+            <strong>Scan Receipt Now</strong>
+            <span>Tip the meal, not the tax.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker mono">About Tip No Tax</div>
+          <h2>A tiny utility with a very clear opinion.</h2>
+          <p>
+            The app is designed for one everyday annoyance: restaurant checkout screens and receipts
+            that nudge you toward tipping on the tax. Tip No Tax keeps the calculation anchored to
+            the subtotal, then shows the total and per-person split immediately.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>
+              Open the app at the table, point the camera at the receipt, and let Apple Vision read
+              the lines locally. The scan is treated as a starting point, not a final answer, so the
+              detected subtotal, tax, and receipt total stay editable before the result is used.
+            </p>
+            <p>
+              Manual entry is just as fast when the receipt is messy. Enter the subtotal and tax,
+              pick 12%, 15%, 20%, or a custom percentage, then set the number of people at the table.
+            </p>
+            <p>
+              Tip No Tax avoids turning a simple meal into a finance app. No account, no social layer,
+              no receipt history to manage, and no cloud receipt upload in the core workflow.
+            </p>
+          </div>
+
+          <div class="fact-list">
+            <div class="fact-card">
+              <div class="fact-label mono">Tip base</div>
+              <div class="fact-value">Always subtotal first</div>
+              <div class="fact-detail">The tip amount is calculated from the pre-tax subtotal.</div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-label mono">Scan model</div>
+              <div class="fact-value">On-device Apple Vision OCR</div>
+              <div class="fact-detail">Receipt text recognition runs locally on the iPhone.</div>
+            </div>
+            <div class="fact-card">
+              <div class="fact-label mono">Split checks</div>
+              <div class="fact-value">Up to 20 people</div>
+              <div class="fact-detail">Per-person totals are rounded cleanly to cents.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker mono">Key Features</div>
+          <h2>Built for the moment the receipt hits the table.</h2>
+          <p>
+            Everything in the app is aimed at getting from receipt to fair split quickly, while
+            keeping the user in control of the numbers.
+          </p>
+        </div>
+
+        <div class="card-grid">
+          <article class="feature-card">
+            <div class="feature-icon mono">01</div>
+            <h3>Receipt scanning</h3>
+            <p>
+              Use the camera to scan a receipt and extract likely subtotal, tax, tip, and total
+              amounts with local text recognition.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon mono">02</div>
+            <h3>Manual confirmation</h3>
+            <p>
+              OCR never silently decides for you. Confirm the detected amounts, fix anything odd,
+              or rescan before calculating.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon mono">03</div>
+            <h3>Pre-tax tip math</h3>
+            <p>
+              The tip amount is based on subtotal, then tax is added back for the final total. That
+              keeps the calculation direct and easy to audit.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon mono">04</div>
+            <h3>Fast tip choices</h3>
+            <p>
+              Pick 12%, 15%, or 20% instantly, or type a custom percentage when the service,
+              restaurant, or group norm calls for it.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon mono">05</div>
+            <h3>Split by people</h3>
+            <p>
+              Set the party size and the app shows the per-person amount alongside the final total,
+              with currency formatting throughout.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon mono">06</div>
+            <h3>Home Screen widget</h3>
+            <p>
+              A small widget opens the scanner directly, so the common action is one tap away
+              without exposing receipt data on the Home Screen.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="flow">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker mono">How It Works</div>
+          <h2>Scan, confirm, tip, split.</h2>
+          <p>
+            The flow is deliberately short because the right time to use the app is also the moment
+            everyone wants to leave the table.
+          </p>
+        </div>
+
+        <div class="flow-line">
+          <div class="flow-item">
+            <span class="mono">Step 1</span>
+            <h3>Scan the receipt</h3>
+            <p>Open the camera scanner from the app or widget and let OCR find receipt amounts.</p>
+          </div>
+          <div class="flow-item">
+            <span class="mono">Step 2</span>
+            <h3>Check the numbers</h3>
+            <p>Review subtotal, tax, and total. Edit any field if the paper receipt is noisy.</p>
+          </div>
+          <div class="flow-item">
+            <span class="mono">Step 3</span>
+            <h3>Choose the tip</h3>
+            <p>Use quick percentages or enter a custom rate. The base stays pre-tax.</p>
+          </div>
+          <div class="flow-item">
+            <span class="mono">Step 4</span>
+            <h3>Split the check</h3>
+            <p>Set the number of people and see the total and each person's share.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="privacy">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker mono">Privacy Posture</div>
+          <h2>Your receipt is not the product.</h2>
+          <p>
+            The app's receipt workflow is built around local recognition and manual confirmation,
+            with a narrow data surface for a narrow job.
+          </p>
+        </div>
+
+        <div class="privacy-grid">
+          <article class="privacy-card">
+            <h3>Device-side receipt reading</h3>
+            <p>
+              Receipt OCR uses Apple's Vision framework on the iPhone. The app does not need a
+              server OCR step to read subtotal and tax lines.
+            </p>
+          </article>
+
+          <article class="privacy-card">
+            <h3>No receipt account</h3>
+            <p>
+              Tip No Tax does not ask you to sign in, sync receipts, or build a purchase history in
+              the core calculator flow.
+            </p>
+          </article>
+
+          <article class="privacy-card">
+            <h3>Transparent SDK note</h3>
+            <p>
+              The project includes Google Mobile Ads and Firebase dependencies. The privacy page
+              explains that separately from receipt scanning.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="download">
+      <div class="container download-card">
+        <div class="download-panel">
+          <div class="section-kicker mono">Tip No Tax for iPhone</div>
+          <h2>Ready for the App Store listing.</h2>
+          <p>
+            This intro page is prepared for the iOS app site and support surface. When the App Store
+            listing is live, the primary download button can point directly to Tip No Tax.
+          </p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="mailto:crusade.ray@gmail.com?subject=Tip%20No%20Tax">Contact support</a>
+            <a class="btn-secondary" href="privacy-policy.html">Read privacy policy</a>
+          </div>
+          <div class="download-note">
+            <span class="mono">Tip No Tax</span>
+            <span class="mono">Camera permission only for scanning</span>
+            <span class="mono">Widget: Scan Receipt Now</span>
+          </div>
+        </div>
+
+        <aside class="support-panel" id="support">
+          <h3>Support and contact</h3>
+          <p>
+            For bug reports, App Store publishing updates, or privacy questions, use the links below.
+          </p>
+
+          <div class="contact-list">
+            <a class="contact-item" href="mailto:crusade.ray@gmail.com">
+              <strong class="mono">Email</strong>
+              <span>crusade.ray@gmail.com</span>
+            </a>
+            <a class="contact-item" href="privacy-policy.html">
+              <strong class="mono">Privacy Policy</strong>
+              <span>Receipt scanning, camera permission, ads, analytics, and data handling.</span>
+            </a>
+            <a class="contact-item" href="https://ray-zhang.xyz" target="_blank" rel="noreferrer">
+              <strong class="mono">Developer Site</strong>
+              <span>ray-zhang.xyz</span>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      2026 Dongjie Zhang - Built for fair pre-tax tip math -
+      <a href="mailto:crusade.ray@gmail.com">Contact</a> -
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </footer>
+
+  <script>
+    const subtotal = 86.40;
+    const tax = 8.20;
+    let tipPercent = 15;
+    let people = 3;
+
+    const money = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD"
+    });
+
+    const tipButtons = document.querySelectorAll(".tip-option");
+    const peopleCount = document.getElementById("people-count");
+    const tipValue = document.getElementById("tip-value");
+    const totalValue = document.getElementById("total-value");
+    const eachValue = document.getElementById("each-value");
+    const minus = document.getElementById("people-minus");
+    const plus = document.getElementById("people-plus");
+
+    function roundCents(value) {
+      return Math.round(value * 100) / 100;
+    }
+
+    function renderCalculator() {
+      const tip = roundCents(subtotal * tipPercent / 100);
+      const total = roundCents(subtotal + tax + tip);
+      const each = roundCents(total / people);
+
+      tipValue.textContent = money.format(tip);
+      totalValue.textContent = money.format(total);
+      eachValue.textContent = people > 1 ? money.format(each) + " each" : "Solo total";
+      peopleCount.textContent = String(people);
+    }
+
+    tipButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        tipButtons.forEach((item) => item.classList.remove("is-active"));
+        button.classList.add("is-active");
+        tipPercent = Number(button.dataset.tip);
+        renderCalculator();
+      });
+    });
+
+    minus.addEventListener("click", () => {
+      people = Math.max(1, people - 1);
+      renderCalculator();
+    });
+
+    plus.addEventListener("click", () => {
+      people = Math.min(20, people + 1);
+      renderCalculator();
+    });
+
+    renderCalculator();
+  </script>
+</body>
+</html>
