@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy | Tip No Tax</title>
+  <title>Privacy Policy | No Tipflation</title>
   <meta
     name="description"
-    content="Privacy Policy for Tip No Tax, the iPhone pre-tax tip calculator by Dongjie Zhang."
+    content="Privacy Policy for No Tipflation, the iPhone pre-tax tip calculator by Dongjie Zhang."
   />
   <link rel="canonical" href="https://ray-zhang.xyz/tip-smart-intro/privacy-policy.html" />
   <link rel="icon" href="assets/app-icon.png" />
@@ -321,7 +321,7 @@
   <header class="site-header">
     <div class="container site-nav">
       <a class="brand" href="index.html">
-        <span class="brand-name mono"><span>Tip</span> No Tax</span>
+        <span class="brand-name mono"><span>No</span> Tipflation</span>
         <span class="brand-note mono">Pre-tax tip calculator</span>
       </a>
       <div class="nav-actions">
@@ -335,13 +335,15 @@
     <section class="hero">
       <div class="container">
         <div class="eyebrow mono">Privacy Policy</div>
-        <h1>Tip No Tax Privacy Policy</h1>
+        <h1>No Tipflation Privacy Policy</h1>
         <p>
-          This policy explains how Tip No Tax handles information when you use the iPhone app to scan
-          receipts, confirm amounts, calculate pre-tax tips, and split checks.
+          This policy explains how No Tipflation handles information when you use the iPhone app to
+          scan receipts, confirm amounts, calculate pre-tax tips, and split checks. It also covers
+          data processed by the third-party advertising and analytics SDKs the app integrates with.
         </p>
         <div class="hero-meta">
-          <span class="meta-pill mono">Last updated: April 29, 2026</span>
+          <span class="meta-pill mono">Effective: May 5, 2026</span>
+          <span class="meta-pill mono">Last updated: May 5, 2026</span>
           <span class="meta-pill mono">Developer: Dongjie Zhang</span>
           <span class="meta-pill mono">Contact: crusade.ray@gmail.com</span>
         </div>
@@ -353,140 +355,370 @@
         <div class="summary-card">
           <h2>Privacy Overview</h2>
           <p>
-            Tip No Tax is designed as a focused receipt utility. The app reads receipt text on the
-            device with Apple's Vision framework, lets you manually confirm or edit amounts, and
-            calculates tips from the pre-tax subtotal. The app does not require an account and does
-            not intentionally upload receipt images or receipt text to a Tip No Tax server.
+            No Tipflation is a focused receipt utility. The app reads receipt text on the device with
+            Apple's Vision framework, lets you manually confirm or edit amounts, and calculates tips
+            from the pre-tax subtotal. The app does not require an account, and we do not operate any
+            server that receives your receipt images or amounts.
+          </p>
+          <p>
+            The free version of the app shows banner ads through Google Mobile Ads (AdMob) and uses
+            Firebase Analytics to understand aggregate, non-identifying usage. We do not sell your
+            personal information.
           </p>
 
           <div class="summary-grid">
             <div class="summary-item">
               <strong>Receipt scanning is local</strong>
-              <span>Receipt OCR runs on device through Apple Vision, without a server OCR workflow.</span>
+              <span>Receipt OCR runs on device through Apple Vision. We don't operate a server OCR pipeline.</span>
             </div>
             <div class="summary-item">
-              <strong>No receipt history account</strong>
-              <span>The app does not ask you to sign in or sync receipt history through Tip No Tax.</span>
+              <strong>No account, no sync</strong>
+              <span>The app does not ask you to sign in, and your receipt amounts stay on the device.</span>
             </div>
             <div class="summary-item">
-              <strong>Third-party SDKs disclosed</strong>
-              <span>The project includes Google Mobile Ads and Firebase dependencies, described below.</span>
+              <strong>Ads &amp; analytics disclosed</strong>
+              <span>Google Mobile Ads (AdMob) and Firebase Analytics are described in detail below.</span>
             </div>
           </div>
         </div>
 
         <section class="policy-section">
-          <h2>Information You Provide in the App</h2>
+          <h2>Categories of Information</h2>
           <p>
-            When you use Tip No Tax, you may enter or scan receipt amounts such as subtotal, tax,
-            receipt total, tip percentage, and split count. These values are used to calculate the
-            tip amount, final total, and per-person amount.
+            Aligned with Apple's App Store Privacy Labels, the categories of data associated with
+            this app are:
           </p>
           <ul>
-            <li>Receipt images are used for text recognition after you choose to scan a receipt.</li>
+            <li>
+              <strong>Identifiers — Device ID:</strong> The advertising identifier (IDFA) is
+              accessed by the Google Mobile Ads SDK and is used for tracking when you grant App
+              Tracking Transparency permission. Not linked to your name.
+            </li>
+            <li>
+              <strong>Usage Data — Product Interaction:</strong> Aggregated, non-identifying
+              interaction events (e.g. screens viewed, taps on tip buttons) are collected by Firebase
+              Analytics for aggregate analytics. Not used for tracking. Not linked to your name.
+            </li>
+            <li>
+              <strong>Diagnostics — Crash Data and Performance Data:</strong> Standard crash logs
+              and performance traces collected by Firebase to help us fix bugs. Not used for
+              tracking. Not linked to your name.
+            </li>
+          </ul>
+          <p>
+            We do not collect: your name, email, phone number, location, contacts, photos library,
+            health data, financial account data, or the content of receipts or amounts you enter.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Information You Provide in the App</h2>
+          <p>
+            When you use No Tipflation, you may enter or scan receipt amounts such as subtotal, tax,
+            receipt total, tip percentage, and split count. These values are used to calculate the
+            tip amount, final total, and per-person split.
+          </p>
+          <ul>
+            <li>Receipt images are used for on-device text recognition only when you choose to scan.</li>
             <li>Detected amounts are shown for review and can be edited before use.</li>
-            <li>The app's core calculator flow does not create a cloud receipt archive.</li>
+            <li>The app does not create a cloud receipt archive or transmit amounts to a server we operate.</li>
+            <li>The app's only persistent local data is your last-used tip percentage, stored via iOS UserDefaults on your device.</li>
             <li>The app does not require your name, email address, phone number, or a user account.</li>
           </ul>
         </section>
 
         <section class="policy-section">
-          <h2>Camera and Receipt OCR</h2>
+          <h2>Camera and On-Device Receipt Scanning</h2>
           <p>
-            Tip No Tax requests camera access so you can scan receipt totals. The camera is used only
-            when you start scanning. Text recognition is performed on the device using Apple's
-            Vision framework.
+            No Tipflation requests camera access only when you start the receipt scanner. Text
+            recognition is performed on the device using Apple's Vision framework. The app may
+            enhance the captured image locally to improve OCR accuracy.
           </p>
           <p>
-            The app may enhance the image locally to improve OCR accuracy. The detected receipt text
-            is parsed for likely subtotal, tax, tip, and total values so the app can offer a useful
-            starting point for your manual confirmation.
+            Captured images and OCR text never leave your device through No Tipflation's own code.
+            Receipt content is not sent to our servers, to AdMob, or to Firebase as part of any
+            calculation workflow.
+          </p>
+          <p>
+            You can deny or revoke camera permission at any time in iOS Settings → Privacy &amp;
+            Security → Camera. The tip calculator continues to work; you can enter amounts manually.
           </p>
         </section>
 
         <section class="policy-section">
-          <h2>Information We Do Not Intentionally Collect</h2>
+          <h2>App Tracking Transparency (ATT)</h2>
           <p>
-            Tip No Tax is not designed to collect or store personal receipt data on a remote server.
-            In the core app workflow, we do not intentionally collect:
+            On iOS, No Tipflation displays Apple's standard App Tracking Transparency prompt the
+            first time you have used the app for a brief period. Your response controls whether the
+            app may access your device's advertising identifier (IDFA) for tracking purposes:
           </p>
           <ul>
-            <li>Your receipt images or raw OCR text on a Tip No Tax backend.</li>
+            <li>
+              <strong>If you tap "Allow":</strong> Google Mobile Ads (AdMob) may access the IDFA and
+              show personalized ads. Limited interaction signals may be used by Google to attribute
+              ad performance and prevent fraud.
+            </li>
+            <li>
+              <strong>If you tap "Ask App Not to Track":</strong> The app does not access the IDFA
+              for tracking. AdMob will only serve non-personalized ads, and contextual signals (e.g.
+              coarse device type) may be used to choose which ad to show. You will still see ads,
+              but they will not be tailored to you.
+            </li>
+            <li>
+              <strong>You can change your decision at any time</strong> in iOS Settings → Privacy
+              &amp; Security → Tracking, or by toggling "Allow Apps to Request to Track" off
+              entirely to deny all apps.
+            </li>
+          </ul>
+        </section>
+
+        <section class="policy-section">
+          <h2>Advertising — Google Mobile Ads (AdMob)</h2>
+          <p>
+            The free version of No Tipflation displays banner ads at the bottom of the screen using
+            Google Mobile Ads (AdMob). When the SDK serves an ad, the following types of data may be
+            processed by Google:
+          </p>
+          <ul>
+            <li>Advertising identifier (IDFA) — only when you have granted ATT permission.</li>
+            <li>Coarse device information — device type, OS version, screen size, language, country.</li>
+            <li>Ad interaction events — impressions, clicks, viewability.</li>
+            <li>Approximate location inferred from IP address (not GPS).</li>
+          </ul>
+          <p>
+            Google's collection and use of this data is governed by the
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">
+              Google Privacy Policy
+            </a>
+            and its
+            <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">
+              Advertising Privacy Policy
+            </a>. You can manage your Google ad personalization preferences at
+            <a href="https://adssettings.google.com" target="_blank" rel="noopener">
+              adssettings.google.com
+            </a>.
+          </p>
+          <p>
+            <strong>SKAdNetwork &amp; PCM.</strong> The app supports Apple's SKAdNetwork and Privacy
+            Click Measurement frameworks, which allow Apple to report aggregate, privacy-preserving
+            ad attribution data to advertisers. These frameworks do not transmit IDFA or any other
+            user identifier.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Analytics — Firebase Analytics</h2>
+          <p>
+            The app includes Firebase Analytics to understand non-identifying, aggregate product
+            usage (e.g. how many users complete a tip calculation, which percentage buttons are
+            tapped). The data we receive through the Firebase console is aggregated and not linked
+            to a specific user.
+          </p>
+          <p>
+            Firebase Analytics may process the following types of data on Google's infrastructure:
+          </p>
+          <ul>
+            <li>App Instance ID — a randomly generated identifier scoped to this app.</li>
+            <li>Screen views, taps, and other in-app events.</li>
+            <li>Approximate region inferred from IP, app version, OS version.</li>
+            <li>Crash reports and performance traces.</li>
+          </ul>
+          <p>
+            Firebase Analytics user-level data is retained on Google's infrastructure for
+            <strong>14 months by default</strong>, after which it is deleted automatically.
+            Aggregated reports may be retained longer. Google's data handling practices for Firebase
+            are described at
+            <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">
+              firebase.google.com/support/privacy
+            </a>.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Data We Do Not Collect</h2>
+          <ul>
+            <li>Your receipt images or raw OCR text on a No Tipflation backend (we don't operate one).</li>
             <li>A history of restaurants, meals, purchases, or check totals tied to an account.</li>
             <li>Payment card numbers, bank information, or payment credentials.</li>
-            <li>Contacts, calendars, location history, or address book data.</li>
+            <li>Contacts, calendars, photo library, health data, or precise location.</li>
+            <li>Your name, email, phone number, or any direct contact information.</li>
           </ul>
         </section>
 
         <section class="policy-section">
-          <h2>Third-Party Services</h2>
-          <p>
-            The Tip No Tax project includes dependencies for Google Mobile Ads and Firebase
-            Analytics. These services may process limited technical, advertising, diagnostics, or
-            usage information according to Google's policies and your device settings.
-          </p>
+          <h2>Data Retention</h2>
           <ul>
             <li>
-              <strong>Google Mobile Ads:</strong> Used to display ads and measure ad performance.
-              Google may use advertising identifiers, device information, and ad interaction data.
+              <strong>On your device:</strong> Local preferences (such as your last-used tip
+              percentage) remain until you clear app data or uninstall the app.
             </li>
             <li>
-              <strong>Firebase Analytics:</strong> May be used for app analytics, diagnostics, or
-              aggregate usage measurement. This helps understand app stability and feature usage.
+              <strong>Firebase Analytics:</strong> User-level event data is retained on Google's
+              infrastructure for up to 14 months by default, then deleted.
             </li>
+            <li>
+              <strong>AdMob ad serving data:</strong> Retained according to Google's published
+              retention practices, typically used in real time and short-term.
+            </li>
+          </ul>
+        </section>
+
+        <section class="policy-section">
+          <h2>International Data Transfers</h2>
+          <p>
+            Google Mobile Ads (AdMob) and Firebase Analytics are operated by Google LLC. Data
+            collected by these SDKs is transmitted to and processed on Google infrastructure, which
+            may be located in the United States or other countries.
+          </p>
+          <p>
+            If you access the app from the European Economic Area (EEA), the United Kingdom, or
+            Switzerland, the legal basis for these transfers is Standard Contractual Clauses
+            published by Google as part of its data processing terms.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Your Rights — EEA, UK, Switzerland (GDPR)</h2>
+          <p>
+            If you are located in the EEA, the United Kingdom, or Switzerland, you have the
+            following rights under the General Data Protection Regulation:
+          </p>
+          <ul>
+            <li>Right to access the personal data processed about you.</li>
+            <li>Right to rectification (correct inaccurate data).</li>
+            <li>Right to erasure ("right to be forgotten").</li>
+            <li>Right to restrict or object to processing.</li>
+            <li>Right to data portability.</li>
+            <li>Right to withdraw consent at any time.</li>
+            <li>Right to lodge a complaint with your local data protection authority.</li>
+          </ul>
+          <p>
+            Because No Tipflation does not maintain a user account or collect direct identifiers, we
+            are typically unable to identify a specific user's data. To exercise rights against
+            Google's processing of advertising or analytics data, please use the controls described
+            in
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">
+              Google's Privacy Policy
+            </a>
+            or contact us and we will assist where possible.
+          </p>
+          <p>
+            <strong>Legal basis for processing:</strong> Your consent (for ATT-based ad
+            personalization) and our legitimate interest in maintaining and improving a free app
+            (for non-tracking analytics and crash reporting).
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Your Rights — California Residents (CCPA / CPRA)</h2>
+          <p>
+            If you are a California resident, you have the right to:
+          </p>
+          <ul>
+            <li>Know what categories of personal information are collected and how they are used.</li>
+            <li>Request deletion of your personal information.</li>
+            <li>Opt out of the "sale" or "sharing" of personal information for cross-context behavioral advertising.</li>
+            <li>Be free from discrimination for exercising your privacy rights.</li>
           </ul>
           <div class="note-box">
-            <strong>Receipt content note:</strong> Tip No Tax's receipt scanning feature is designed
-            around local OCR. The app does not intentionally send receipt images or receipt text to
-            Google Mobile Ads or Firebase as part of the tip calculation workflow.
+            <strong>Notice of Sale / Sharing.</strong> No Tipflation does not "sell" your personal
+            information for money. However, depending on how California law interprets ad-related
+            data sharing, the use of Google Mobile Ads with personalized ads enabled may qualify as
+            "sharing" under CPRA. You can opt out at any time by tapping "Ask App Not to Track" in
+            the iOS ATT prompt, which prevents IDFA-based personalization.
           </div>
-        </section>
-
-        <section class="policy-section">
-          <h2>Storage and Retention</h2>
-          <p>
-            Tip No Tax's calculator data is used to show current results. The app does not provide a
-            receipt history feature or cloud sync in the current product scope. If local preferences
-            are stored, they remain on your device unless you clear app data or uninstall the app.
-          </p>
-          <p>
-            Data processed by third-party services is retained according to the relevant service
-            provider policies and your device privacy settings.
-          </p>
-        </section>
-
-        <section class="policy-section">
-          <h2>Your Choices</h2>
-          <ul>
-            <li>You can deny or revoke camera permission in iOS Settings.</li>
-            <li>You can enter receipt amounts manually instead of scanning a receipt.</li>
-            <li>You can limit ad tracking or manage personalized ads through iOS privacy settings.</li>
-            <li>You can uninstall the app to remove local app data from your device.</li>
-          </ul>
         </section>
 
         <section class="policy-section">
           <h2>Children's Privacy</h2>
           <p>
-            Tip No Tax is a general utility and is not directed to children under 13. If you believe
-            a child has provided personal information through the app, contact us so we can review
-            the issue.
+            No Tipflation is a general utility intended for adults paying for restaurant meals and
+            is not directed to children under 13. We do not knowingly collect personal information
+            from children under 13. If you believe a child has used the app and information has been
+            collected through Firebase Analytics or AdMob, contact us at
+            <a href="mailto:crusade.ray@gmail.com">crusade.ray@gmail.com</a> and we will work with
+            our service providers to address the matter.
           </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Your Choices and Controls</h2>
+          <ul>
+            <li>
+              <strong>Tracking:</strong> Manage in iOS Settings → Privacy &amp; Security → Tracking.
+              Toggle "Allow Apps to Request to Track" off to deny tracking app-wide.
+            </li>
+            <li>
+              <strong>Camera:</strong> Manage in iOS Settings → Privacy &amp; Security → Camera. The
+              calculator works without camera access; you can enter amounts manually.
+            </li>
+            <li>
+              <strong>Personalized ads from Google:</strong> Manage at
+              <a href="https://adssettings.google.com" target="_blank" rel="noopener">
+                adssettings.google.com
+              </a>.
+            </li>
+            <li>
+              <strong>Reset advertising identifier:</strong> iOS Settings → Privacy &amp; Security →
+              Tracking → tap on a specific app, or reset the IDFA in Apple's developer settings if
+              available on your device.
+            </li>
+            <li>
+              <strong>Delete all local data:</strong> Uninstall the app to remove on-device
+              preferences from your device.
+            </li>
+          </ul>
+        </section>
+
+        <section class="policy-section">
+          <h2>Third-Party Services Summary</h2>
+          <ul>
+            <li>
+              <strong>Google Mobile Ads (AdMob)</strong> — banner ads.
+              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">
+                Google Privacy Policy
+              </a>
+              ·
+              <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">
+                Advertising Privacy
+              </a>
+              ·
+              <a href="https://adssettings.google.com" target="_blank" rel="noopener">
+                Ad Settings
+              </a>
+            </li>
+            <li>
+              <strong>Firebase Analytics (Google LLC)</strong> — aggregate analytics &amp; crash reporting.
+              <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">
+                Firebase Privacy
+              </a>
+            </li>
+            <li>
+              <strong>Apple — Vision framework, SKAdNetwork, ATT</strong> — on-device OCR and
+              Apple's privacy-preserving advertising frameworks.
+              <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">
+                Apple Privacy Policy
+              </a>
+            </li>
+          </ul>
         </section>
 
         <section class="policy-section">
           <h2>Changes to This Policy</h2>
           <p>
             We may update this Privacy Policy when the app changes, when App Store requirements
-            change, or when third-party services are added, removed, or configured differently. The
-            latest version will be posted on this page with an updated date.
+            change, or when third-party services are added, removed, or configured differently. Any
+            material change will be reflected by an updated effective date at the top of this page.
+            For significant changes affecting how your data is used, we will update the in-app
+            disclosures on the next release.
           </p>
         </section>
 
         <section class="policy-section">
           <h2>Contact</h2>
           <p>
-            If you have questions about this Privacy Policy or Tip No Tax's data practices, contact:
+            If you have questions about this Privacy Policy or No Tipflation's data practices, or if
+            you wish to exercise a privacy right described above, contact:
             <a href="mailto:crusade.ray@gmail.com">crusade.ray@gmail.com</a>.
           </p>
         </section>
@@ -496,7 +728,7 @@
 
   <footer class="site-footer">
     <div class="container">
-      2026 Dongjie Zhang - Tip No Tax -
+      2026 Dongjie Zhang - No Tipflation -
       <a href="index.html">App Page</a> -
       <a href="mailto:crusade.ray@gmail.com">Contact</a>
     </div>
