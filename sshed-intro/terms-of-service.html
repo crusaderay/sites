@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — SSHed</title>
+  <meta name="description" content="SSHed terms of service. Subscription, refunds, acceptable use, disclaimers.">
+  <meta name="theme-color" content="#7c3aed">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A8%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f8fafc;
+      --fg: #0f172a;
+      --fg-muted: #475569;
+      --accent: #7c3aed;
+      --accent-soft: #faf5ff;
+      --border: #e2e8f0;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --bg-soft: #1e293b;
+        --fg: #f1f5f9;
+        --fg-muted: #94a3b8;
+        --accent: #a78bfa;
+        --accent-soft: #1e1b3a;
+        --border: #334155;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--fg);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+    nav {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    nav .container { display: flex; justify-content: space-between; align-items: center; padding: 0 24px; max-width: 960px; }
+    nav .brand { font-weight: 700; font-size: 18px; }
+    nav .brand .sparkle { color: var(--accent); }
+    nav .links { display: flex; gap: 24px; font-size: 15px; }
+    nav .links a { color: var(--fg-muted); text-decoration: none; }
+    nav .links a:hover { color: var(--accent); }
+
+    header.page-header {
+      padding: 60px 24px 40px;
+      background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bg) 100%);
+      text-align: center;
+    }
+    header.page-header h1 {
+      font-size: clamp(32px, 5vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    header.page-header p.lede {
+      color: var(--fg-muted);
+      font-size: 17px;
+    }
+    header.page-header .updated {
+      color: var(--fg-muted);
+      font-size: 14px;
+      margin-top: 16px;
+    }
+
+    main { padding: 40px 24px 80px; }
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-top: 40px;
+      margin-bottom: 14px;
+      padding-top: 8px;
+    }
+    h2:first-of-type { margin-top: 16px; }
+    p { margin-bottom: 12px; }
+    ul, ol { margin-bottom: 12px; padding-left: 28px; }
+    li { margin-bottom: 4px; }
+    code {
+      font-family: "SF Mono", "JetBrains Mono", Menlo, monospace;
+      font-size: 0.9em;
+      padding: 2px 6px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+
+    .callout {
+      margin: 24px 0;
+      padding: 16px 20px;
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+    }
+    .callout p:last-child { margin-bottom: 0; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 24px 60px;
+      color: var(--fg-muted);
+      font-size: 14px;
+      text-align: center;
+    }
+    footer .links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    footer .links a { color: var(--fg-muted); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <div class="brand"><a href="index.html" style="text-decoration:none;color:inherit"><span class="sparkle">✦</span> SSHed</a></div>
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms-of-service.html">Terms</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="container">
+      <h1>Terms of Service</h1>
+      <p class="lede">The agreement between you and SSHed. Plain English where possible.</p>
+      <p class="updated">Effective May 6, 2026</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <p>These Terms govern your use of SSHed, a native SSH and Telnet client for iOS, iPadOS, and macOS, operated by Ray Zhang (the "Developer", "we", "us", "our"). By installing or using SSHed, you agree to these Terms. If you do not agree, do not use the app.</p>
+
+      <h2>1. The service</h2>
+
+      <p>SSHed lets you connect to remote servers via SSH or Telnet, manage SSH keys, save host configurations, run reusable commands, generate TOTP codes, and optionally use an AI assistant for command suggestions and output explanation. Some features sync across your devices via iCloud.</p>
+
+      <h2>2. Acceptable use</h2>
+
+      <p>You agree to use SSHed only for lawful purposes and only on systems you own or are authorized to access. You will not:</p>
+
+      <ul>
+        <li>Use SSHed to access servers without authorization (e.g. brute-force attempts, unauthorized scanning).</li>
+        <li>Use the AI assistant to generate malicious code, exploit kits, or instructions facilitating harm.</li>
+        <li>Attempt to bypass quota limits, reverse-engineer the authentication system, or abuse the Cloudflare Worker that proxies AI requests.</li>
+        <li>Resell, sublicense, or redistribute SSHed without written permission.</li>
+        <li>Use SSHed in life-critical systems (medical, aviation, nuclear) where a software failure could cause physical harm.</li>
+      </ul>
+
+      <p>We may suspend access to the AI assistant or remove the app from your account if we detect abuse.</p>
+
+      <h2>3. Subscriptions and payments</h2>
+
+      <h3>3.1 Free tier</h3>
+
+      <p>SSHed is free to download and use. The Free tier includes unlimited SSH connections, all local features, and a daily AI call quota (typically 10 calls per day, subject to change).</p>
+
+      <h3>3.2 Pro tier</h3>
+
+      <p>SSHed Pro is an auto-renewing subscription that lifts the daily AI call quota and supports ongoing development. Pricing is shown in the app and billed by Apple at the price displayed at purchase. Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current period.</p>
+
+      <p>Apple's standard subscription terms apply. You can manage or cancel your subscription anytime in iOS / macOS Settings → Apple ID → Subscriptions.</p>
+
+      <h3>3.3 Refunds</h3>
+
+      <p>All payments are processed by Apple. Refund requests are handled by Apple per the App Store refund policy. We do not control refund decisions, but we are happy to escalate issues — email <a href="mailto:crusade.ray@gmail.com">crusade.ray@gmail.com</a>.</p>
+
+      <h2>4. AI assistant disclaimers</h2>
+
+      <div class="callout">
+        <p><strong>The AI assistant is advisory only.</strong> It suggests shell commands and explains output. It never executes a command on your behalf — you must manually tap "Send to terminal" or copy each command. Any command that runs is your decision and your responsibility.</p>
+      </div>
+
+      <p>Specifically:</p>
+
+      <ul>
+        <li>AI-generated commands may be incorrect, outdated, or destructive. <strong>Always verify before running</strong>, especially commands involving <code>rm</code>, <code>dd</code>, network configuration changes, or production databases.</li>
+        <li>The AI may not understand your specific environment (firewall rules, custom configs, OS quirks). Treat suggestions as a starting point.</li>
+        <li>Output explanations are best-effort interpretations. They are not authoritative documentation for your software stack.</li>
+        <li>Quota counts may differ between displayed and server-side counts during sync; in disputes, the server-side count is authoritative.</li>
+      </ul>
+
+      <h2>5. Your data and privacy</h2>
+
+      <p>How we handle your data is governed by the <a href="privacy-policy.html">Privacy Policy</a>, which is part of these Terms. Key points:</p>
+
+      <ul>
+        <li>SSH credentials live only on your device or in iCloud Keychain (if you opt in). We never see them.</li>
+        <li>AI prompts you submit are sent through our Cloudflare Worker to the upstream LLM provider (currently DeepSeek). We do not retain prompt content.</li>
+        <li>You retain all rights to data you create or store using SSHed.</li>
+      </ul>
+
+      <h2>6. Intellectual property</h2>
+
+      <p>SSHed and its trademarks are owned by Ray Zhang. The source code is being progressively open sourced under a permissive license (see the GitHub repository for current license terms). Your use of the compiled app does not transfer ownership of any IP.</p>
+
+      <p>You retain ownership of all server configurations, scripts, commands, and data you create or input into SSHed.</p>
+
+      <h2>7. Third-party services</h2>
+
+      <p>SSHed integrates third-party services (Apple iCloud, DeepSeek, Cloudflare). Their respective terms govern your interaction with them. We are not responsible for outages, data handling, or service changes by third parties beyond our control.</p>
+
+      <h2>8. Disclaimer of warranties</h2>
+
+      <p>SSHed is provided "as is" without warranties of any kind, express or implied, including but not limited to fitness for a particular purpose, merchantability, and non-infringement. We do not warrant that the app will be uninterrupted, error-free, or that AI suggestions will be accurate.</p>
+
+      <h2>9. Limitation of liability</h2>
+
+      <p>To the maximum extent permitted by law, the Developer is not liable for indirect, incidental, special, consequential, or punitive damages arising from your use of SSHed — including but not limited to data loss, service interruption, server damage, or financial loss caused by AI-suggested commands you chose to run.</p>
+
+      <p>Our total liability for any claim related to SSHed is limited to the amount you paid for the Pro subscription in the 12 months prior to the claim, or USD 10, whichever is greater.</p>
+
+      <h2>10. Changes</h2>
+
+      <p>We may update these Terms occasionally. Material changes will be flagged in the app on next launch and the "Effective" date above will update. Continued use after changes means you accept the new Terms.</p>
+
+      <h2>11. Termination</h2>
+
+      <p>You can stop using SSHed and delete it at any time. We can suspend access to the AI assistant if you violate these Terms. Your local data and iCloud-synced data are unaffected by AI-tier suspension.</p>
+
+      <h2>12. Governing law</h2>
+
+      <p>These Terms are governed by the laws of the jurisdiction where the Developer resides, without regard to conflict-of-law principles. Disputes will be resolved in the courts of that jurisdiction.</p>
+
+      <p>If you are a consumer in a jurisdiction with mandatory consumer-protection laws (EU, UK, certain US states), those laws override conflicting provisions to the extent required.</p>
+
+      <h2>13. Contact</h2>
+
+      <p>Questions about these Terms:</p>
+      <p><strong><a href="mailto:crusade.ray@gmail.com">crusade.ray@gmail.com</a></strong></p>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-service.html">Terms of Service</a>
+      <a href="https://github.com/crusaderay">GitHub</a>
+      <a href="mailto:crusade.ray@gmail.com">Contact</a>
+    </div>
+    <p>© 2026 Ray Zhang · SSHed is a native Swift app for iOS, iPadOS, and macOS.</p>
+  </footer>
+</body>
+</html>
