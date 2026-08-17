@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy | Pixel Battlefield</title>
+  <title>Privacy Policy | Pixel WarZone</title>
   <meta
     name="description"
-    content="Privacy Policy for Pixel Battlefield, the tactical iPhone board game by Dongjie Zhang."
+    content="Privacy Policy for Pixel WarZone, the tactical iPhone board game by Dongjie Zhang."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -334,14 +334,14 @@
   <header class="site-header">
     <div class="container site-nav">
       <a class="brand" href="index.html">
-        <span class="brand-name mono"><span>Pixel</span> Battlefield</span>
+        <span class="brand-name mono"><span>Pixel</span> WarZone</span>
         <span class="brand-note mono">Privacy policy</span>
       </a>
       <div class="nav-actions">
         <a class="nav-back" href="index.html">Back to intro</a>
         <a
           class="nav-store"
-          href="https://apps.apple.com/us/app/pixel-warzone-grid-war-game/id1512896172"
+          href="https://apps.apple.com/us/app/pixel-warzone-grid-tactics/id1512896172"
           target="_blank"
           rel="noreferrer"
         >
@@ -357,13 +357,13 @@
         <div class="eyebrow mono">Policy for the iOS app</div>
         <h1>Privacy Policy</h1>
         <p>
-          This Privacy Policy explains how Pixel Battlefield handles information when you use the
+          This Privacy Policy explains how Pixel WarZone handles information when you use the
           iPhone app published by Dongjie Zhang. It is written to match the app's current feature
-          set, including Game Center support, nearby offline matches, Firebase Analytics, and
-          Google Mobile Ads.
+          set, including online battles, nearby offline matches, Game Center leaderboards,
+          Firebase Analytics, and Google Mobile Ads.
         </p>
         <div class="hero-meta">
-          <span class="meta-pill mono">Last updated: April 13, 2026</span>
+          <span class="meta-pill mono">Last updated: August 16, 2026</span>
           <span class="meta-pill mono">Applies to the iOS app</span>
         </div>
       </div>
@@ -374,19 +374,24 @@
         <div class="summary-card">
           <h2>Summary</h2>
           <ul>
-            <li>The app does not ask you to create a Pixel Battlefield account.</li>
+            <li>The app does not ask you to create a Pixel WarZone account.</li>
             <li>
               Board layouts, onboarding flags, and some gameplay-related settings are stored on your
               device.
             </li>
             <li>
-              If you use Game Center features, Apple processes Game Center data such as scores,
-              multiplayer activity, nickname, avatar, and related sharing settings.
+              Game Center is used for player authentication and leaderboards; it is not used for
+              matchmaking.
             </li>
             <li>
-              The app initializes Google Firebase Analytics and Google Mobile Ads SDKs, so Google
-              may process app-usage, device, identifier, and advertising-related data according to
-              your configuration, region, and device settings.
+              Online Battle connects to a Cloudflare-hosted WebSocket service using a persistent,
+              randomly generated installation identifier and display name. The service matches
+              players, relays live gameplay, and may provide a server-controlled challenger.
+            </li>
+            <li>
+              The app uses Firebase Analytics and shows banner ads through Google Mobile Ads, so
+              Google may process app-usage, device, identifier, and advertising-related data based
+              on the SDK configuration, region, consent choices, and device settings.
             </li>
             <li>
               Nearby offline play uses Bluetooth or local Wi-Fi to discover and connect another
@@ -400,40 +405,43 @@
             <div class="section-kicker mono">1. Information stored on your device</div>
             <h2>Local gameplay data</h2>
             <p>
-              Pixel Battlefield stores certain data locally on your device so the game can function
+              Pixel WarZone stores certain data locally on your device so the game can function
               without making you repeat setup steps every time you open it.
             </p>
             <ul>
               <li>Your saved board layout and unit positions.</li>
               <li>Board-orientation and head-position data used to restore your setup.</li>
               <li>Onboarding and tutorial flags, such as whether welcome flows were shown.</li>
-              <li>Some locally cached ranking or setup state used to improve the in-app experience.</li>
+              <li>
+                Locally recorded online wins and total matches. Win percentage is calculated from
+                those two values rather than stored separately.
+              </li>
+              <li>
+                A randomly generated installation identifier stored in the iOS Keychain and used as
+                the online matchmaking client ID.
+              </li>
             </ul>
             <div class="note">
               This local storage is based on the app's current implementation and is kept on the
-              device unless you delete the app data, change the settings yourself, or uninstall the
-              app.
+              device. The Keychain identifier is stored separately from ordinary app preferences
+              and may remain on the device after the app is reinstalled.
             </div>
           </section>
 
           <section class="policy-section">
             <div class="section-kicker mono">2. Apple services</div>
-            <h2>Game Center, leaderboards, and multiplayer</h2>
+            <h2>Game Center authentication and leaderboards</h2>
             <p>
-              Pixel Battlefield supports Apple Game Center for leaderboards and online matchmaking.
-              When you use those features while signed in to Game Center, Apple, not us, handles the
-              Game Center account relationship and the associated personal data processing.
+              Pixel WarZone uses Apple Game Center to authenticate the local player and submit
+              online-play statistics to leaderboards: wins, total matches, and the win percentage
+              calculated from those two locally stored values. Game Center is not used for online
+              or nearby matchmaking.
             </p>
             <ul>
-              <li>Scores, achievements, multiplayer activity, and leaderboard participation.</li>
-              <li>Your Game Center nickname, avatar, and activity-sharing choices.</li>
-              <li>Friends, recently played players, and related Game Center social features if enabled.</li>
+              <li>Apple handles the Game Center account and authentication process.</li>
+              <li>Leaderboard values are submitted only when Game Center authentication succeeds.</li>
+              <li>The app's custom matchmaking server does not receive your Game Center identity.</li>
             </ul>
-            <p>
-              If you play a nearby-capable match with Game Center's nearby-player support enabled,
-              Apple says nearby players on the same Wi-Fi network, local area network, or within
-              Bluetooth range may be able to see your nickname and avatar.
-            </p>
             <div class="note">
               We do not control Apple's Game Center processing rules. For those features, Apple's
               own privacy terms apply in addition to this policy.
@@ -441,11 +449,43 @@
           </section>
 
           <section class="policy-section">
-            <div class="section-kicker mono">3. Google services</div>
+            <div class="section-kicker mono">3. Online Battle service</div>
+            <h2>Cloudflare WebSocket matchmaking and gameplay relay</h2>
+            <p>
+              Online Battle opens an encrypted WebSocket connection to a matchmaking service we
+              operate on Cloudflare Workers and Durable Objects. The connection includes:
+            </p>
+            <ul>
+              <li>A random installation identifier, sent as the client ID.</li>
+              <li>
+                A generated display name in the form <span class="mono">Commander XXXX</span>,
+                derived from the last four characters of that identifier.
+              </li>
+              <li>The requested game mode and protocol version.</li>
+            </ul>
+            <p>
+              The service first tries to pair you with another player. If another player is not
+              available after about eight seconds, it starts a server-controlled challenger. During
+              a match, it processes or relays gameplay messages such as readiness, target cells,
+              hit or miss results, destroyed units, turn and timeout state, board reveal data,
+              match outcomes, quitting, and disconnection state.
+            </p>
+            <div class="note">
+              The current server code does not persist completed-match state, histories, or results
+              to an application database, KV store, or object storage. Active queue and match state
+              is associated with the WebSocket connection and Cloudflare Durable Object while the
+              connection is active. Cloudflare may separately process and retain network, security,
+              and operational logs or metadata under its own policies and our service configuration.
+            </div>
+          </section>
+
+          <section class="policy-section">
+            <div class="section-kicker mono">4. Google services</div>
             <h2>Analytics and advertising</h2>
             <p>
-              The app currently initializes Firebase and Google Mobile Ads. Based on the current app
-              code and Google's official documentation, these SDKs may process information such as:
+              The app uses Firebase Analytics and requests banner ads through Google Mobile Ads.
+              Firebase receives app events for workflows such as board setup, mode selection,
+              matchmaking, and match outcomes. These SDKs may also process:
             </p>
             <ul>
               <li>App opens, sessions, updates, and other app-usage metrics.</li>
@@ -457,21 +497,28 @@
               </li>
             </ul>
             <p>
-              The exact data Google processes can vary based on SDK defaults, account settings,
-              regional compliance requirements, and future app updates.
+              The exact data Google processes can vary based on SDK defaults, advertising settings,
+              consent choices, regional requirements, and device settings. Google processes this
+              information under its own terms as a third-party service provider.
             </p>
           </section>
 
           <section class="policy-section">
-            <div class="section-kicker mono">4. Nearby offline play</div>
+            <div class="section-kicker mono">5. Nearby Offline Match</div>
             <h2>Local network and Bluetooth</h2>
             <p>
               The app requests local network access for nearby offline matches. This feature is used
               to discover and connect another player over Bluetooth or local Wi-Fi.
             </p>
             <ul>
-              <li>Nearby mode is intended only for local discovery and local match connection.</li>
+              <li>Nearby mode is used only for local discovery and local match communication.</li>
               <li>The app advertises a local Bonjour service for nearby connection setup.</li>
+              <li>
+                The app uses your current device name as its Multipeer Connectivity peer display
+                name. Nearby players can see that name during discovery, and a connected player can
+                see it during the match.
+              </li>
+              <li>Nearby match messages are sent directly between the connected devices.</li>
               <li>
                 If you do not want to use nearby offline play, you can decline local network access
                 or stop using that mode.
@@ -480,22 +527,31 @@
           </section>
 
           <section class="policy-section">
-            <div class="section-kicker mono">5. What we do not ask for directly</div>
+            <div class="section-kicker mono">6. What we do not ask for directly</div>
             <h2>No in-app account registration</h2>
             <p>
-              The app does not currently ask you to create a dedicated Pixel Battlefield username,
-              password, email account, or profile hosted by us. Any account-level identity used for
-              multiplayer and rankings is provided through Apple Game Center.
+              The app does not ask you to create a dedicated Pixel WarZone username, password,
+              email account, or profile hosted by us. The random installation identifier and
+              generated online display name are technical matchmaking identifiers, not an account.
             </p>
           </section>
 
           <section class="policy-section">
-            <div class="section-kicker mono">6. Retention</div>
+            <div class="section-kicker mono">7. Retention</div>
             <h2>How long information is kept</h2>
             <ul>
               <li>
                 Local gameplay data remains on your device until you overwrite it, clear the app,
                 reset the device data, or uninstall the app.
+              </li>
+              <li>
+                The Keychain installation identifier remains on the device until its Keychain entry
+                is removed or the device is erased, and it may survive an app reinstall.
+              </li>
+              <li>
+                The current online service does not intentionally retain a completed-match history.
+                Active queue and match state is used for the live connection; Cloudflare operational
+                data may follow Cloudflare's policies and our service configuration.
               </li>
               <li>
                 Apple Game Center data is retained by Apple under Apple's own privacy and retention
@@ -509,24 +565,25 @@
           </section>
 
           <section class="policy-section">
-            <div class="section-kicker mono">7. Your choices</div>
+            <div class="section-kicker mono">8. Your choices</div>
             <h2>Controls available to you</h2>
             <ul>
-              <li>Do not sign in to Game Center if you do not want to use those features.</li>
-              <li>
-                Change Game Center settings such as Activity Sharing, Nearby Players, Share Friends
-                List, Help Friends Find You, and Reset Identifier in iOS Settings.
-              </li>
+              <li>Do not sign in to Game Center if you do not want leaderboard submission.</li>
+              <li>Do not start Online Battle if you do not want to use the Cloudflare service.</li>
+              <li>Decline local network access if you do not want to use Nearby Offline Match.</li>
               <li>
                 Manage advertising and privacy choices through your iPhone privacy settings and any
                 consent or privacy notices provided by Apple or Google where applicable.
               </li>
-              <li>Delete the app if you want to remove locally stored gameplay data from the device.</li>
+              <li>
+                Delete the app to remove ordinary locally stored gameplay data. The Keychain
+                identifier may remain after an app reinstall as explained above.
+              </li>
             </ul>
           </section>
 
           <section class="policy-section">
-            <div class="section-kicker mono">8. Children</div>
+            <div class="section-kicker mono">9. Children</div>
             <h2>Children's use</h2>
             <p>
               The app does not knowingly ask children to submit personal information directly to us.
@@ -536,7 +593,7 @@
           </section>
 
           <section class="policy-section">
-            <div class="section-kicker mono">9. Changes</div>
+            <div class="section-kicker mono">10. Changes</div>
             <h2>Policy updates</h2>
             <p>
               We may update this Privacy Policy when app features, SDKs, or legal requirements
@@ -545,7 +602,7 @@
           </section>
 
           <section class="policy-section">
-            <div class="section-kicker mono">10. Contact</div>
+            <div class="section-kicker mono">11. Contact</div>
             <h2>Questions or requests</h2>
             <p>
               If you have questions about this policy or the app's data handling, contact:
@@ -573,7 +630,16 @@
                 rel="noreferrer"
               >
                 <strong class="mono">Apple Game Center &amp; Privacy</strong>
-                <span>Apple's description of Game Center data use, nearby players, and sharing settings.</span>
+                <span>Apple's description of Game Center data use and privacy controls.</span>
+              </a>
+              <a
+                class="link-card"
+                href="https://www.cloudflare.com/privacypolicy/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <strong class="mono">Cloudflare Privacy Policy</strong>
+                <span>Cloudflare's description of privacy practices for its services.</span>
               </a>
               <a
                 class="link-card"
